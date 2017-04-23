@@ -7,24 +7,24 @@
 
 <body>
   <div class="title">
-    <h1>Tittel</h1>
+    <h1>HiOA student information system</h1>
   </div>
 
-  <div class="navigation">
-    <a href="index.html">All</a>
-    <a href="index.html">other</a>
-    <a href="index.html">data</a>
+  <div>
+    <a class="navigation" href="index.html">All</a>
+    <a class="navigation" href="index.html">other</a>
+    <a class="navigation" href="index.html">data</a>
     <!-- Add aditional fields here-->
 
   </div>
 
-  <div class="login">
+  <div class="form_div">
     <form method="post">
-      <input type="Text" placeholder="Name">
-      <input type="Text" placeholder="Other data">
-      <input type="Text" placeholder="Other data">
-      <input type="Text" placeholder="Other data">
-      <input type="Submit">
+      <input class="dblock" type="Text" placeholder="1" >
+      <input class="dblock" type="Text" placeholder="2" >
+      <input class="dblock" type="Text" placeholder="3" >
+      <input class="dblock" type="Text" placeholder="4" >
+      <input class="dblock" type="Submit" value="BOOM">
       <!-- Add aditional fields here-->
     </form>
   </div>
@@ -34,7 +34,7 @@
 <p class="bottom">A webpage by students at Oslo and Akershus university college of applied sciences</p>
 <?php
 echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . "<br>";
-echo "The database server IP: "<br>";
+echo "The database server IP:" . $_SERVER['SERVER_ADDR'] . "<br>";
 ?>
 </footer>
 </html>

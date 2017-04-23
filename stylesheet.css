@@ -1,35 +1,46 @@
+html
+{
+  text-align: center;
+
+}
 body
 {
-  background-color: rgb(185, 193, 206);
+  background-color: lightblue;
+}
+
+footer
+{
 
 }
 
 .title
 {
-  text-align: center;
-  padding: 1px;
 
 }
 
 .navigation
 {
-  text-align: center;
-  padding: 10px;
+  padding: 20px;
 
 }
 
-.login
+.form_div
 {
-  text-align: center;
-  padding: 10px;
-  display: block;
+  margin: 0 auto;
+  display: table;
 
 }
 
 .bottom
 {
-  text-align: center;
-  vertical-align: bottom;
   bottom: 0px;
+
+}
+
+.dblock
+{
+  display: block;
+  margin-top: 20px;
+  
 
 }
