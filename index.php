@@ -11,10 +11,15 @@
   </div>
 
   <div>
-    <a class="navigation" href="index.html">All</a>
-    <a class="navigation" href="index.html">other</a>
-    <a class="navigation" href="index.html">data</a>
+    <a class="navigation" href="index.html">Home</a>
+    <a class="navigation" href="index.html">Add</a>
+    <a class="navigation" href="index.html">Retrive</a>
+    <a class="navigation" href="index.html">Update</a>
+    <a class="navigation" href="index.html">Delete</a>
     <!-- Add aditional fields here-->
+  </div>
+
+  <div>
 
   </div>
 
