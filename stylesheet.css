@@ -1,0 +1,35 @@
+body
+{
+  background-color: rgb(185, 193, 206);
+
+}
+
+.title
+{
+  text-align: center;
+  padding: 1px;
+
+}
+
+.navigation
+{
+  text-align: center;
+  padding: 10px;
+
+}
+
+.login
+{
+  text-align: center;
+  padding: 10px;
+  display: block;
+
+}
+
+.bottom
+{
+  text-align: center;
+  vertical-align: bottom;
+  bottom: 0px;
+
+}
