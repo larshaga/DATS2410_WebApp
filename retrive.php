@@ -19,7 +19,7 @@
   </div>
 
   <div class="siteinformation">
-    <p>Above you can go to another site, from there you can follow your intuition</p>
+    <p>Retrive</p>
   </div>
 
   <!--
