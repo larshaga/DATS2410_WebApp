@@ -2,12 +2,12 @@ html
 {
   text-align: center;
   height: 100%;
-
+  background-color: lightgray;
 
 }
 body
 {
-  background-color: lightblue;
+
 }
 
 .bottomofpage {
@@ -16,6 +16,13 @@ body
   bottom: 0;
   left: 0;
   padding: 1rem;
+
+}
+
+.siteinformation
+{
+  font-size: 30px;
+  margin-top: 10%;
 }
 
 .title
@@ -33,12 +40,6 @@ body
 {
   margin: 0 auto;
   display: table;
-
-}
-
-.bottom
-{
-  bottom: 0px;
 
 }
 
