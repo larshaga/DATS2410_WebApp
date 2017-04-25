@@ -24,14 +24,49 @@
 
 
   <div class="form_div">
-      <select name="selectInfo" form="selectForm">
-          <option value="1" selected="selected">Student</option>
-          <option value="2">Course</option>
-      </select>
       <form id="selectForm" method="get">
+        <select name="selectInfo">
+          <option value="1" selected="selected" <?php $info = "1" ?>>Student</option>
+          <option value="2" <?php $info ?>>Course</option>
+        </select>
+
           <input class="dblock" type="Submit" value="BOOM">
       </form>
+      <?php
+      function Student()
+      {
+          echo "  <div class=\"form_div\">
+                    <form method=\"post\">
+                        <input class=\"dblock\" type=\"Text\" placeholder=\"Student name\" >
+                        <input class=\"dblock\" type=\"Text\" placeholder=\"Student number\" >
+                        <input class=\"dblock\" type=\"Submit\" value=\"BOOM\">
+                    </form>
+                </div>";
 
+      }
+      function Course()
+      {
+          echo "  <div class=\"form_div\">
+                    <form method=\"post\">
+                        <input class=\"dblock\" type=\"Text\" placeholder=\"Course name\" >
+                        <input class=\"dblock\" type=\"Text\" placeholder=\"Course code\" >
+                        <input class=\"dblock\" type=\"Submit\" value=\"BOOM\">
+                    </form>
+                </div>";
+
+      }
+
+      //if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      if (isset($_GET["selectInfo"]))
+      {
+          $info = $_GET["selectInfo"];
+          if ($info=="1") Student();
+          if ($info=="2") Course();
+          //echo $info . "<br>";
+          //echo "Test<br>";
+//    test();
+      }
+      ?>
   </div>
   <!--
   <div class="form_div">
@@ -50,39 +85,7 @@
 <footer class="bottomofpage">
     <!-- PHP -->
 <?php
-function Student()
-{
-    echo "  <div class=\"form_div\">
-                    <form method=\"post\">
-                        <input class=\"dblock\" type=\"Text\" placeholder=\"Student name\" >
-                        <input class=\"dblock\" type=\"Text\" placeholder=\"Student number\" >
-                        <input class=\"dblock\" type=\"Submit\" value=\"BOOM\">
-                    </form>
-                </div>";
 
-}
-function Course()
-{
-    echo "  <div class=\"form_div\">
-                    <form method=\"post\">
-                        <input class=\"dblock\" type=\"Text\" placeholder=\"Course name\" >
-                        <input class=\"dblock\" type=\"Text\" placeholder=\"Course code\" >
-                        <input class=\"dblock\" type=\"Submit\" value=\"BOOM\">
-                    </form>
-                </div>";
-
-}
-
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
-if (isset($_GET["selectInfo"]))
-{
-    $info = $_GET["selectInfo"];
-    if ($info=="1") Student();
-    if ($info=="2") Course();
-    //echo $info . "<br>";
-    //echo "Test<br>";
-//    test();
-}
 //if (isset($_POST["selectInfo"])) echo ;
 echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . "<br>";
 echo "The database server IP:" . $_SERVER['SERVER_ADDR'] . "<br>";
