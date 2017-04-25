@@ -11,11 +11,11 @@
   </div>
 
   <div>
-    <a class="navigation" href="index.html">Home</a>
-    <a class="navigation" href="index.html">Add</a>
-    <a class="navigation" href="index.html">Retrive</a>
-    <a class="navigation" href="index.html">Update</a>
-    <a class="navigation" href="index.html">Delete</a>
+    <a class="navigation" href="index.php">Home</a>
+    <a class="navigation" href="index.php">Add</a>
+    <a class="navigation" href="index.php">Retrive</a>
+    <a class="navigation" href="index.php">Update</a>
+    <a class="navigation" href="index.php">Delete</a>
     <!-- Add aditional fields here-->
   </div>
 
@@ -35,11 +35,12 @@
   </div>
 </body>
 
-<footer>
-<p class="bottom">A webpage by students at Oslo and Akershus university college of applied sciences</p>
+<footer class="bottomofpage">
+    <!-- PHP -->
 <?php
 echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . "<br>";
 echo "The database server IP:" . $_SERVER['SERVER_ADDR'] . "<br>";
 ?>
+<p>A webpage by students at Oslo and Akershus university college of applied sciences</p>
 </footer>
 </html>
