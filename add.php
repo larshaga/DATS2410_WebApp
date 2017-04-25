@@ -22,6 +22,16 @@
     <p>Add</p>
   </div>
 
+
+  <div class="form_div">
+      <form method="get">
+          <select class="dblock" name="selectInfo">
+              <option value="student">Student</option>
+              <option value="course">Course</option>
+          </select>
+          <input class="dblock" type="Submit" value="BOOM">
+      </form>
+  </div>
   <!--
   <div class="form_div">
     <form method="post">
