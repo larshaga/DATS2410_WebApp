@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Web</title>
+    <title>Dats04 - Delete</title>
 </head>
 
 <body>
@@ -11,11 +11,11 @@
   </div>
 
   <div>
-    <a class="navigation" href="index.php">Home</a>
-    <a class="navigation" href="add.php">Add</a>
-    <a class="navigation" href="retrive.php">Retrive</a>
-    <a class="navigation" href="update.php">Update</a>
-    <a class="navigation" href="delete.php">Delete</a>
+      <a class="navigation" id="home_nav" href="index.php">Home</a>
+      <a class="navigation" id="add_nav" href="add.php">Add</a>
+      <a class="navigation" id="retrive_nav" href="retrive.php">Retrive</a>
+      <a class="navigation" id="update_nav" href="update.php">Update</a>
+      <b class="navigation">Delete</b>
   </div>
 
   <div class="siteinformation">
