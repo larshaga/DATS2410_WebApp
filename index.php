@@ -12,10 +12,10 @@
 
   <div>
       <b class="navigation">Home</b>
-      <a class="navigation" id="add_nav" href="add.php">Add</a>
-      <a class="navigation" id="retrive_nav" href="retrive.php">Retrive</a>
-      <a class="navigation" id="update_nav" href="update.php">Update</a>
-      <a class="navigation" id="delete_nav" href="delete.php">Delete</a>
+      <a class="navigation" href="add.php">Add</a>
+      <a class="navigation" href="retrive.php">Retrive</a>
+      <a class="navigation" href="update.php">Update</a>
+      <a class="navigation" href="delete.php">Delete</a>
   </div>
 
   <div class="siteinformation">

@@ -11,11 +11,11 @@
   </div>
 
   <div>
-      <a class="navigation" id="home_nav" href="index.php">Home</a>
-      <a class="navigation" id="add_nav" href="add.php">Add</a>
-      <a class="navigation" id="retrive_nav" href="retrive.php">Retrive</a>
+      <a class="navigation" href="index.php">Home</a>
+      <a class="navigation" href="add.php">Add</a>
+      <a class="navigation" href="retrive.php">Retrive</a>
       <b class="navigation">Update</b>
-      <a class="navigation" id="delete_nav" href="delete.php">Delete</a>
+      <a class="navigation" href="delete.php">Delete</a>
   </div>
 
   <div class="siteinformation">
