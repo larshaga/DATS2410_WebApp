@@ -22,18 +22,19 @@
     <p>Above you can go to another site, from there you can follow your intuition</p>
   </div>
 
-  <!--
+
   <div class="form_div">
-    <form method="post">
-        <input class="dblock" type="Text" placeholder="1" >
-        <input class="dblock" type="Text" placeholder="2" >
-        <input class="dblock" type="Text" placeholder="3" >
-        <input class="dblock" type="Text" placeholder="4" >
+    <form action="handleinput.php" method="GET">
+        <input class="dblock" type="Text" placeholder="1" name="fname">
+        <input class="dblock" type="Text" placeholder="2" name="lname">
+        <!--<input class="dblock" type="Text" placeholder="3" >
+        <input class="dblock" type="Text" placeholder="4" > -->
         <input class="dblock" type="Submit" value="BOOM">
         <!-- Add aditional fields here
+        -->
     </form>
   </div>
--->
+
 </body>
 
 <footer class="bottomofpage">
@@ -41,6 +42,9 @@
 <?php
 echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . "<br>";
 echo "The database server IP:" . $_SERVER['SERVER_ADDR'] . "<br>";
+/*if(isset($_GET)) {
+    echo "Name: " . $_GET["name"] . "<br>";
+}*/
 ?>
 <p>A webpage by students at Oslo and Akershus university college of applied sciences</p>
 </footer>
