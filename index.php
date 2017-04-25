@@ -12,27 +12,28 @@
 
   <div>
     <a class="navigation" href="index.php">Home</a>
-    <a class="navigation" href="index.php">Add</a>
-    <a class="navigation" href="index.php">Retrive</a>
-    <a class="navigation" href="index.php">Update</a>
-    <a class="navigation" href="index.php">Delete</a>
-    <!-- Add aditional fields here-->
+    <a class="navigation" href="add.php">Add</a>
+    <a class="navigation" href="retrive.php">Retrive</a>
+    <a class="navigation" href="update.php">Update</a>
+    <a class="navigation" href="delete.php">Delete</a>
   </div>
 
-  <div>
-
+  <div class="siteinformation">
+    <p>Above you can go to another site, from there you can follow your intuition</p>
   </div>
 
+  <!--
   <div class="form_div">
     <form method="post">
-      <input class="dblock" type="Text" placeholder="1" >
-      <input class="dblock" type="Text" placeholder="2" >
-      <input class="dblock" type="Text" placeholder="3" >
-      <input class="dblock" type="Text" placeholder="4" >
-      <input class="dblock" type="Submit" value="BOOM">
-      <!-- Add aditional fields here-->
+        <input class="dblock" type="Text" placeholder="1" >
+        <input class="dblock" type="Text" placeholder="2" >
+        <input class="dblock" type="Text" placeholder="3" >
+        <input class="dblock" type="Text" placeholder="4" >
+        <input class="dblock" type="Submit" value="BOOM">
+        <!-- Add aditional fields here
     </form>
   </div>
+-->
 </body>
 
 <footer class="bottomofpage">
