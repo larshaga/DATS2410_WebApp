@@ -31,8 +31,49 @@
               <option value="4">Enrollment</option>
               <option value="5">Grade</option>
           </select>
+          <input class="dblock" type="submit" value="Submit">
       </form>
+      <?php
+      function delete($delete)
+      {
+          echo "<input placeholder='$delete'>";
+      }
 
+      function result($array)
+      {
+          if (empty($array))
+          {
+              echo "No result";
+          }
+      }
+
+      function Student()
+      {
+
+      }
+
+      function Course()
+      {
+
+      }
+
+      function Study_Program()
+      {
+
+      }
+
+      function Enrollment()
+      {
+
+      }
+
+      function Grade()
+      {
+
+      }
+
+
+      ?>
   </div>
 </body>
 
