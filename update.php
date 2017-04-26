@@ -21,12 +21,15 @@
   <div class="siteinformation">
     <p>Update</p>
   </div>
-
+  <?php
+    ob_start();
+  ?>
   <div class="form_div">
       <form id="selectForm" method="get">
+
           <select name="selectInfo">
-              <option value="1" selected="selected" <?php $info = "1" ?>>Student</option>
-              <option value="2" <?php $info ?>>Course</option>
+              <option value="student" selected="selected" <?php $info = "1" ?>>Student</option>
+              <option value="course" <?php $info ?>>Course</option>
           </select>
 
           <input class="dblock" type="Submit" value="BOOM">
@@ -34,16 +37,26 @@
       <?php
       function search($info)
       {
-          echo "<input placeholder='$info'>";
+          ob_clean();
+          echo "
+            <form>
+                <input name='selectS' type='search' placeholder='$info'>
+            </form>
+           ";
       }
 
-      function result($array)
+      function result($info)
       {
-       if (empty($array))
-       {
-           echo "No result";
-       }
-      
+
+          if ($info=="")
+          {
+              ob_clean();
+              echo "No result";
+          }
+          else
+          {
+              var_dump(ob_get_clean());
+          }
       }
 
       function Student()
@@ -74,11 +87,16 @@
                     </form>
                 </div>";
       }
+      $i="test";
       if (isset($_GET["selectInfo"]))
       {
           $info = $_GET["selectInfo"];
-          if ($info=="1") Student();
-          if ($info=="2") Course();
+          search($info);
+      }
+      if (isset($_GET["selectS"]))
+      {
+          $info = $_GET["selectS"];
+          result($info);
       }
       ?>
   </div>
