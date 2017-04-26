@@ -35,77 +35,53 @@
   <div class="form_div">
       <form id="selectForm" method="get">
 
-          <select name="selectInfo">
-              <option value="student" <?php $info = "1" ?>>Student</option>
-              <option value="course" <?php $info ?>>Course</option>
-              <option value="study_program" <?php $info ?>>Study program</option>
+          <select name="deleteinfo">
+              <option value="1">Student</option>
+              <option value="2">Course</option>
+              <option value="3">Study program</option>
           </select>
-
           <input class="dblock" type="Submit">
       </form>
       <?php
-      function search($info)
-      {
-          ob_clean();
-          echo "
-            <form>
-                <input name='selectS' type='search' placeholder='$info'>
-            </form>
-           ";
-      }
-
-      function result($info)
-      {
-
-          if ($info=="")
-          {
-              ob_clean();
-              echo "No result";
-          }
-          else
-          {
-              var_dump(ob_get_clean());
-          }
-      }
-
-      function Student()
-      {
-          $array="";
-          $a = array("Dataingeniør","Anvendt Data","Kjemi","Maskin");
-          foreach($a as $e)
-          {
-              $array=$array. "<option value='".$e."'>".$e."</option>";
-          }
-          echo "  <div class=\"form_div\">
+        function StudentDelete()
+        {
+            echo "<div class=\"form_div\">
                     <form method=\"post\">
-                        <input class=\"dblock\" type=\"Text\" name='name'>
-                        <input class=\"dblock\" type=\"Text\" name='email'>
-                        <select>".$array."</select>
-                        <input class=\"dblock\" type=\"Submit\" value=\"BOOM\">
+                        <input class=\"dblock\" type=\"Text\" placeholder=\"What is the student number?\">
+                        <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
                     </form>
-                </div>";
+                </div>
+               ";
+        }
 
-      }
-      function Course()
-      {
-          echo " <div class=\"form_div\">
+        function CourseDelete()
+        {
+            echo "<div class=\"form_div\">
                     <form method=\"post\">
-                        <input class=\"dblock\" type=\"Text\" placeholder=\"Course name\" >
-                        <input class=\"dblock\" type=\"Text\" placeholder=\"Course code\" >
-                        <input class=\"dblock\" type=\"Submit\" value=\"BOOM\">
+                        <input class=\"dblock\" type=\"Text\" placeholder=\"What is the course number?\">
+                        <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
                     </form>
-                </div>";
-      }
-      $i="test";
-      if (isset($_GET["selectInfo"]))
+                </div>
+               ";
+        }
+
+        function Study_programDelete()
+        {
+            echo "<div class=\"form_div\">
+                    <form method=\"post\">
+                        <input class=\"dblock\" type=\"Text\" placeholder=\"What is the study program number?\">
+                        <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
+                    </form>
+                </div>
+               ";
+        }
+
+      if (isset($_GET["deleteinfo"]))
       {
-          $info = $_GET["selectInfo"];
-          search($info);
-      }
-      if (isset($_GET["selectS"]))
-      {
-          $info = $_GET["selectS"];
-          result($info);
+          $info = $_GET["deleteinfo"];
+          if ($info=="1") StudentDelete();
+          elseif ($info=="2") CourseDelete();
+          else Study_programDelete();
       }
       ?>
   </div>
