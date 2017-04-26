@@ -22,18 +22,66 @@
     <p>Update</p>
   </div>
 
-  <!--
   <div class="form_div">
-    <form method="post">
-        <input class="dblock" type="Text" placeholder="1" >
-        <input class="dblock" type="Text" placeholder="2" >
-        <input class="dblock" type="Text" placeholder="3" >
-        <input class="dblock" type="Text" placeholder="4" >
-        <input class="dblock" type="Submit" value="BOOM">
-        <!-- Add aditional fields here
-    </form>
+      <form id="selectForm" method="get">
+          <select name="selectInfo">
+              <option value="1" selected="selected" <?php $info = "1" ?>>Student</option>
+              <option value="2" <?php $info ?>>Course</option>
+          </select>
+
+          <input class="dblock" type="Submit" value="BOOM">
+      </form>
+      <?php
+      function search($info)
+      {
+          echo "<input placeholder='$info'>";
+      }
+
+      function result($array)
+      {
+       if (empty($array))
+       {
+           echo "No result";
+       }
+      
+      }
+
+      function Student()
+      {
+          $array="";
+          $a = array("Dataingeniør","Anvendt Data","Kjemi","Maskin");
+          foreach($a as $e)
+          {
+              $array=$array. "<option value='".$e."'>".$e."</option>";
+          }
+          echo "  <div class=\"form_div\">
+                    <form method=\"post\">
+                        <input class=\"dblock\" type=\"Text\" name='name'>
+                        <input class=\"dblock\" type=\"Text\" name='email'>
+                        <select>".$array."</select>
+                        <input class=\"dblock\" type=\"Submit\" value=\"BOOM\">
+                    </form>
+                </div>";
+
+      }
+      function Course()
+      {
+          echo " <div class=\"form_div\">
+                    <form method=\"post\">
+                        <input class=\"dblock\" type=\"Text\" placeholder=\"Course name\" >
+                        <input class=\"dblock\" type=\"Text\" placeholder=\"Course code\" >
+                        <input class=\"dblock\" type=\"Submit\" value=\"BOOM\">
+                    </form>
+                </div>";
+      }
+      if (isset($_GET["selectInfo"]))
+      {
+          $info = $_GET["selectInfo"];
+          if ($info=="1") Student();
+          if ($info=="2") Course();
+      }
+      ?>
   </div>
--->
 </body>
 
 <footer class="bottomofpage">

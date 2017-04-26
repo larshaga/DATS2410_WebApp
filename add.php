@@ -26,8 +26,8 @@
   <div class="form_div">
       <form id="selectForm" method="get">
         <select name="selectInfo">
-          <option value="1" selected="selected" <?php $info = "1" ?>>Student</option>
-          <option value="2" <?php $info ?>>Course</option>
+          <option value="1" selected="selected">Student</option>
+          <option value="2" >Course</option>
         </select>
 
           <input class="dblock" type="Submit" value="BOOM">
