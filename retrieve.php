@@ -19,7 +19,7 @@
   </div>
 
   <div class="siteinformation">
-    <p>Retrive</p>
+    <p>Retrieve</p>
   </div>
 
   <div class="form_div">
