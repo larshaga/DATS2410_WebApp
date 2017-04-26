@@ -10,6 +10,18 @@
     <h1>HiOA student information system</h1>
   </div>
 
+  <?php
+  ob_start();
+  /*
+  // Connection to dats04-dbproxy
+  $host="10.1.1.130";
+  $user="webuser";
+  $pw="welcomeunclebuild";
+  $db="studentinfosys";
+  $dbconn = new mysqli($host, $user, $pw, $db);
+  */
+  ?>
+
   <div>
       <b class="navigation">Home</b>
       <a class="navigation" href="add.php">Add</a>
@@ -21,7 +33,14 @@
   <div class="siteinformation">
     <p>Above you can go to another site, from there you can follow your intuition</p>
   </div>
-
+  /*
+  $host="10.1.1.130";
+  $user="webuser";
+  $pw="welcomeunclebuild";
+  $db="studentinfosys";
+  $dbconn = new mysqli($host, $user, $pw, $db);
+  echo "The database server IP:" . $dbconn->host_info . "<br>";
+  */
 
   <div class="form_div">
     <form action="handleinput.php" method="GET">
@@ -38,17 +57,10 @@
 </body>
 
 <footer class="bottomofpage">
-<?php
-echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
-/*
-$host="10.1.1.130";
-$user="webuser";
-$pw="welcomeunclebuild";
-$db="studentinfosys";
-$dbconn = new mysqli($host, $user, $pw, $db);
-echo "The database server IP:" . $dbconn->host_info . "<br>";
-*/
-?>
-<p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
+    <?php
+    echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
+    echo "The database server IP:" . $dbconn->host_info . "<br>";
+    ?>
+    <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
 </html>
