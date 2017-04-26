@@ -19,60 +19,94 @@
   </div>
 
   <div class="siteinformation">
-    <p>Delete</p>
+    <p>What do you want to delete?</p>
   </div>
-
+  <?php
+  ob_start();
+  /*
+  // Connection to dats04-dbproxy
+  $host="10.1.1.130";
+  $user="webuser";
+  $pw="welcomeunclebuild";
+  $db="studentinfosys";
+  $dbconn = new mysqli($host, $user, $pw, $db);
+  */
+  ?>
   <div class="form_div">
       <form id="selectForm" method="get">
-          <select name="deleteInfo">
-              <option value="1">Student</option>
-              <option value="2">Course</option>
-              <option value="3">Study Program</option>
-              <option value="4">Enrollment</option>
-              <option value="5">Grade</option>
+
+          <select name="selectInfo">
+              <option value="student" <?php $info = "1" ?>>Student</option>
+              <option value="course" <?php $info ?>>Course</option>
+              <option value="study_program" <?php $info ?>>Study program</option>
           </select>
-          <input class="dblock" type="submit" value="Submit">
+
+          <input class="dblock" type="Submit">
       </form>
       <?php
-      function delete($delete)
+      function search($info)
       {
-          echo "<input placeholder='$delete'>";
+          ob_clean();
+          echo "
+            <form>
+                <input name='selectS' type='search' placeholder='$info'>
+            </form>
+           ";
       }
 
-      function result($array)
+      function result($info)
       {
-          if (empty($array))
+
+          if ($info=="")
           {
+              ob_clean();
               echo "No result";
+          }
+          else
+          {
+              var_dump(ob_get_clean());
           }
       }
 
       function Student()
       {
+          $array="";
+          $a = array("Dataingeniør","Anvendt Data","Kjemi","Maskin");
+          foreach($a as $e)
+          {
+              $array=$array. "<option value='".$e."'>".$e."</option>";
+          }
+          echo "  <div class=\"form_div\">
+                    <form method=\"post\">
+                        <input class=\"dblock\" type=\"Text\" name='name'>
+                        <input class=\"dblock\" type=\"Text\" name='email'>
+                        <select>".$array."</select>
+                        <input class=\"dblock\" type=\"Submit\" value=\"BOOM\">
+                    </form>
+                </div>";
 
       }
-
       function Course()
       {
-
+          echo " <div class=\"form_div\">
+                    <form method=\"post\">
+                        <input class=\"dblock\" type=\"Text\" placeholder=\"Course name\" >
+                        <input class=\"dblock\" type=\"Text\" placeholder=\"Course code\" >
+                        <input class=\"dblock\" type=\"Submit\" value=\"BOOM\">
+                    </form>
+                </div>";
       }
-
-      function Study_Program()
+      $i="test";
+      if (isset($_GET["selectInfo"]))
       {
-
+          $info = $_GET["selectInfo"];
+          search($info);
       }
-
-      function Enrollment()
+      if (isset($_GET["selectS"]))
       {
-
+          $info = $_GET["selectS"];
+          result($info);
       }
-
-      function Grade()
-      {
-
-      }
-
-
       ?>
   </div>
 </body>
@@ -80,14 +114,7 @@
 <footer class="bottomofpage">
     <?php
     echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
-    /*
-    $host="10.1.1.130";
-    $user="webuser";
-    $pw="welcomeunclebuild";
-    $db="studentinfosys";
-    $dbconn = new mysqli($host, $user, $pw, $db);
     echo "The database server IP:" . $dbconn->host_info . "<br>";
-    */
     ?>
     <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
