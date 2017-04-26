@@ -13,7 +13,7 @@
   <div>
       <b class="navigation">Home</b>
       <a class="navigation" href="add.php">Add</a>
-      <a class="navigation" href="retrive.php">Retrive</a>
+      <a class="navigation" href="retrieve.php">Retrieve</a>
       <a class="navigation" href="update.php">Update</a>
       <a class="navigation" href="delete.php">Delete</a>
   </div>
