@@ -11,9 +11,7 @@
   </div>
 
   <?php
-  ob_start();
-  /*
-  // Connection to dats04-dbproxy
+  /* Connection to dats04-dbproxy
   $host="10.1.1.130";
   $user="webuser";
   $pw="welcomeunclebuild";
@@ -34,17 +32,6 @@
     <p>Above you can go to another site, from there you can follow your intuition</p>
   </div>
 
-  <?php
-  /*
-  // Connection to dats04-dbproxy
-  $host="10.1.1.130";
-  $user="webuser";
-  $pw="welcomeunclebuild";
-  $db="studentinfosys";
-  $dbconn = new mysqli($host, $user, $pw, $db);
-  */
-  ?>
-
   <div class="form_div">
     <form action="handleinput.php" method="GET">
         <input class="dblock" type="Text" placeholder="1" name="fname">
@@ -56,7 +43,6 @@
         -->
     </form>
   </div>
-
 </body>
 
 <footer class="bottomofpage">

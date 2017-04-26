@@ -9,6 +9,7 @@
   <div class="title">
     <h1>HiOA student information system</h1>
   </div>
+  
   <?php
   ob_start();
   /*
@@ -20,6 +21,7 @@
   $dbconn = new mysqli($host, $user, $pw, $db);
   */
   ?>
+
   <div>
       <a class="navigation" href="index.php">Home</a>
       <b class="navigation">Add</b>

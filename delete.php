@@ -10,17 +10,6 @@
     <h1>HiOA student information system</h1>
   </div>
 
-  <div>
-      <a class="navigation" href="index.php">Home</a>
-      <a class="navigation" href="add.php">Add</a>
-      <a class="navigation" href="retrieve.php">Retrieve</a>
-      <a class="navigation" href="update.php">Update</a>
-      <b class="navigation">Delete</b>
-  </div>
-
-  <div class="siteinformation">
-    <p>What do you want to delete?</p>
-  </div>
   <?php
   ob_start();
   /*
@@ -32,6 +21,19 @@
   $dbconn = new mysqli($host, $user, $pw, $db);
   */
   ?>
+
+  <div>
+      <a class="navigation" href="index.php">Home</a>
+      <a class="navigation" href="add.php">Add</a>
+      <a class="navigation" href="retrieve.php">Retrieve</a>
+      <a class="navigation" href="update.php">Update</a>
+      <b class="navigation">Delete</b>
+  </div>
+
+  <div class="siteinformation">
+    <p>What do you want to delete?</p>
+  </div>
+
   <div class="form_div">
       <form id="selectForm" method="get">
 
