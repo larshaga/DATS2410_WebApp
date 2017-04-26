@@ -38,14 +38,15 @@
 </body>
 
 <footer class="bottomofpage">
-    <!-- PHP -->
 <?php
-echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . "<br>";
-echo "The database server IP:" . $_SERVER['SERVER_ADDR'] . "<br>";
-/*if(isset($_GET)) {
-    echo "Name: " . $_GET["name"] . "<br>";
-}*/
+echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
+$host="10.1.1.130";
+$user="webuser";
+$pw="welcomeunclebuild";
+$db="studentinfosys";
+$dbconn = new mysqli($host, $user, $pw, $db);
+echo "The database server IP:" . $dbconn->host_info . "<br>";
 ?>
-<p>A webpage by students at Oslo and Akershus university college of applied sciences</p>
+<p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
 </html>
