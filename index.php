@@ -33,14 +33,17 @@
   <div class="siteinformation">
     <p>Above you can go to another site, from there you can follow your intuition</p>
   </div>
+
+  <?php
   /*
+  // Connection to dats04-dbproxy
   $host="10.1.1.130";
   $user="webuser";
   $pw="welcomeunclebuild";
   $db="studentinfosys";
   $dbconn = new mysqli($host, $user, $pw, $db);
-  echo "The database server IP:" . $dbconn->host_info . "<br>";
   */
+  ?>
 
   <div class="form_div">
     <form action="handleinput.php" method="GET">
