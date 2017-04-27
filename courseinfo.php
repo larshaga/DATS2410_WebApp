@@ -19,12 +19,13 @@
 
 <div class="form_div">
     <?php
+
     $host="10.1.1.130";
     $db="studentinfosys";
     $user="webuser"; $pw="welcomeunclebuild";
     $dbconn = new mysqli($host, $user, $pw, $db);
 
-    $sql = "SELECT * from Course ORDER BY year";
+    $sql = "SELECT * FROM Course;";
     $retult = $dbconn->query($sql);
 
     echo "<table class='form_div'>";
