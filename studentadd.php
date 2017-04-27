@@ -40,19 +40,12 @@ $db="studentinfosys";
 $user="webuser"; $pw="welcomeunclebuild";
 $dbconn = new mysqli($host, $user, $pw, $db);
 
-if(isset($_GET['stID']))
-{
-    $id = $_GET['stID'];
-    $sql = "SELECT * from Student WHERE studentID=".$id;
-    $result = $dbconn->query($sql);
-
-}
 ?>
 
 <div class="form_div">
     <form action="old_version/handleinput.php" method="GET">
-        <input class="dblock" type="Text" placeholder="1" name="fname">
-        <input class="dblock" type="Text" placeholder="2" name="name">
+        <input class="dblock" type="Text" placeholder="name" name="name">
+        <input class="dblock" type="Text" placeholder="email" name="email">
         <!--<input class="dblock" type="Text" placeholder="3" >
         <input class="dblock" type="Text" placeholder="4" > -->
         <input class="dblock" type="Submit" value="BOOM">
