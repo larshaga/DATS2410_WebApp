@@ -65,7 +65,11 @@
         $result = $dbconn->query($sql);
 
     echo "<table border='1'>";
-    echo "<tr><td>Study Program</td><td>Enrolled (Year)</td><tr>";
+    echo "<tr><td>Study Program</td><td>Enrolled (Year)</td><td>
+                <form action=\"studentedit.php\" method=\"GET\">
+                    <input type=\"hidden\" name=\"stID\" value=$stID>
+                    <input type=\"submit\" value=\"Add\">
+                </form></td><tr>";
 
     while ($row = $result->fetch_assoc()) {
         echo "<tr><td>{$row['title']}</td><td>{$row['Start Year']}</td>
@@ -81,7 +85,11 @@
     $result = $dbconn->query($sql);
 
     echo "<table border='1'>";
-    echo "<tr><td>Course Name</td><td>Year</td><td>Grade</td></tr>";
+    echo "<tr><td>Course Name</td><td>Year</td><td>Grade</td><td>
+                <form action=\"studentedit.php\" method=\"GET\">
+                    <input type=\"hidden\" name=\"stID\" value=$stID>
+                    <input type=\"submit\" value=\"Add\">
+                </form></td></tr>";
 
     while ($row = $result->fetch_assoc()) {
         echo "<tr><td>{$row['Course name']}</td><td>{$row['year']}</td> <td>{$row['grade']}</td>
