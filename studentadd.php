@@ -21,11 +21,10 @@ $dbconn = new mysqli($host, $user, $pw, $db);
 ?>
 
 <div>
-    <b class="navigation">Home</b>
-    <a class="navigation" href="old_version/add.php">Add</a>
-    <a class="navigation" href="old_version/retrieve.php">Retrieve</a>
-    <a class="navigation" href="old_version/update.php">Update</a>
-    <a class="navigation" href="old_version/delete.php">Delete</a>
+    <a class="navigation" href="index.php">Home</a>
+    <a class="currentpage">Student</a>
+    <a class="navigation" href="course.php">Course</a>
+    <a class="navigation" href="studyprogram.php">Study Program</a>
 </div>
 
 <div class="siteinformation">

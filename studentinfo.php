@@ -12,7 +12,7 @@
 
 <div>
     <a class="navigation" href="index.php">Home</a>
-    <a class="navigation" href="student.php">Student</a>
+    <a class="currentpage">Student</a>
     <a class="navigation" href="course.php">Course</a>
     <a class="navigation" href="studyprogram.php">Study Program</a>
 </div>
