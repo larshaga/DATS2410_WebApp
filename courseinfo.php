@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Web</title>
+    <title>Dats04 - Course</title>
 </head>
 
 <body>
@@ -19,14 +19,14 @@
 
 <div class="form_div">
     <?php
-
+    //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $db="studentinfosys";
     $user="webuser"; $pw="welcomeunclebuild";
     $dbconn = new mysqli($host, $user, $pw, $db);
 
     $sql = "SELECT * FROM Course;";
-    $retult = $dbconn->query($sql);
+    $result = $dbconn->query($sql);
 
     echo "<table class='form_div'>";
     echo "<tr><td>Course code</td><td>Year</td><td>Title</td><td>Action</td></tr>";

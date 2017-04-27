@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Web</title>
+    <title>Dats04 - Course</title>
 </head>
 
 <body>
@@ -19,13 +19,14 @@
 
 <div class="form_div">
     <?php
+    //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $db="studentinfosys";
     $user="webuser"; $pw="welcomeunclebuild";
     $dbconn = new mysqli($host, $user, $pw, $db);
 
-    $sql = "SELECT * from Course ORDER BY year";
-    $retult = $dbconn->query($sql);
+    $sql = "SELECT * from Course ORDER BY year DESC";
+    $result = $dbconn->query($sql);
 
     echo "<table class='form_div'>";
     echo "<tr><td>Course code</td><td>Year</td><td>Title</td><td>Action</td></tr>";
@@ -34,7 +35,6 @@
         echo "<tr><td>{$row['coursecode']}</td><td>{$row['year']}</td><td>{$row['title']}</td>
             <td>
                 <form action=\"courseinfo.php\" method=\"GET\">
-                    <input type=\"hidden\" name=\"coursecode\" value={$row['title']}>
                     <input type=\"submit\" value=\"Show courseinfo\">
                 </form>
             </td></tr>";
