@@ -37,7 +37,7 @@
 //    $db="studentinfosys";
 //    $dbconn = new mysqli($host, $user, $pw, $db);
 
-//    $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=XXXXXXXX;
+//    $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=$stID";
 //    $result = $dbconn->query($sql);
 
     echo "<table border='1'>";
@@ -48,14 +48,14 @@
 //    }
     echo "</table>";
 
-    //    $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=XXXXXXXX;
+    //    $sql = "select p.title, e.startyear as 'Start Year' from Student s, Enrollment e, Study_program p where s.stID=e.stID and e.progcode=p.progcode and s.stID=$stID";
     //    $result = $dbconn->query($sql);
 
     echo "<table border='1'>";
     echo "<tr><td>Study Program</td><td>Enrolled (Year)</td><tr>";
 
 //    while ($row = $result->fetch_assoc()) {
-//        echo "<tr><td>{$row['title']}</td><td>{$row['year']}</td></tr>";
+//        echo "<tr><td>{$row['Start Year']}</td><td>{$row['year']}</td></tr>";
 //    }
     echo "</table>";
 
@@ -67,7 +67,7 @@
     echo "<tr><td>Course Name</td><td>Year</td><td>Grade</td></tr>";
 
 //    while ($row = $result->fetch_assoc()) {
-//        echo "<tr><td>{$row['title']}</td><td>{$row['year']}</td> <td>{$row['grade']}</td></tr>";
+//        echo "<tr><td>{$row['Course name']}</td><td>{$row['year']}</td> <td>{$row['grade']}</td></tr>";
 //    }
     echo "</table>";
 
