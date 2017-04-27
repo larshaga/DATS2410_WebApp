@@ -1,8 +1,8 @@
 <!doctype HTML>
 <html>
 <head>
-    <link rel="stylesheet" href="old_version/stylesheet.css">
-    <title>Dats04 - Web</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Dats04 - Student</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <a class="navigation" href="studyprogram.php">Study Program</a>
 </div>
 
-<div class="siteinformation">
+<div class="siteinfo">
     <p>Student info:</p>
     <a class="goBack" href="student.php">Back</a>
 

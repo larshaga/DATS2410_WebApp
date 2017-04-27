@@ -1,8 +1,8 @@
 <!doctype HTML>
 <html>
 <head>
-    <link rel="stylesheet" href="old_version/stylesheet.css">
-    <title>Dats04 - a</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Dats04 - Student</title>
 </head>
 
 <body>
@@ -22,18 +22,17 @@ $dbconn = new mysqli($host, $user, $pw, $db);
 
 <div>
     <a class="navigation" href="index.php">Home</a>
-    <a class="currentpage" href="student.php">Student</a>
+    <a class="currentpage">Student</a>
     <a class="navigation" href="course.php">Course</a>
     <a class="navigation" href="studyprogram.php">Study Program</a>
 </div>
 
-<div class="siteinformation">
+<div class="siteinfo">
     <p>Above you can go to another site, from there you can follow your intuition</p>
 </div>
 
 <?php
-
-
+//Connection to dats04-dbproxy
 $host="10.1.1.130";
 $db="studentinfosys";
 $user="webuser"; $pw="welcomeunclebuild";

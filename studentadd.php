@@ -1,24 +1,14 @@
 <!doctype HTML>
 <html>
 <head>
-    <link rel="stylesheet" href="old_version/stylesheet.css">
-    <title>Dats04 - a</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Dats04 - Student</title>
 </head>
 
 <body>
 <div class="title">
     <h1>HiOA student information system</h1>
 </div>
-
-<?php
-/* Connection to dats04-dbproxy
-$host="10.1.1.130";
-$user="webuser";
-$pw="welcomeunclebuild";
-$db="studentinfosys";
-$dbconn = new mysqli($host, $user, $pw, $db);
-*/
-?>
 
 <div>
     <a class="navigation" href="index.php">Home</a>
@@ -27,18 +17,16 @@ $dbconn = new mysqli($host, $user, $pw, $db);
     <a class="navigation" href="studyprogram.php">Study Program</a>
 </div>
 
-<div class="siteinformation">
+<div class="siteinfo">
     <p>Above you can go to another site, from there you can follow your intuition</p>
 </div>
 
 <?php
-
-
+//Connection to dats04-dbproxy
 $host="10.1.1.130";
 $db="studentinfosys";
 $user="webuser"; $pw="welcomeunclebuild";
 $dbconn = new mysqli($host, $user, $pw, $db);
-
 ?>
 
 <div class="form_div">

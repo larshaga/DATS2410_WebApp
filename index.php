@@ -26,7 +26,7 @@
       <a class="navigation" href="studyprogram.php">Study program</a>
   </div>
 
-  <div class="siteinformation">
+  <div class="siteinfo">
     <p>From here you can access all the other sites</p>
   </div>
 </body>
