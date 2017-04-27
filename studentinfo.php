@@ -55,7 +55,7 @@
     echo "<tr><td>Study Program</td><td>Enrolled (Year)</td><tr>";
 
     while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>{$row['Start Year']}</td><td>{$row['year']}</td></tr>";
+        echo "<tr><td>{$row['title']}</td><td>{$row['Start Year']}</td></tr>";
     }
     echo "</table>";
 
