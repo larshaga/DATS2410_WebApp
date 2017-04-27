@@ -45,20 +45,25 @@ if(isset($_GET['stID']))
     $id = $_GET['stID'];
     $sql = "SELECT * from Student WHERE studentID=".$id;
     $result = $dbconn->query($sql);
+
+}
+
+
+function showStudent($name,$email,$program)
+{
+    $s = "<div class='form_div'>
+            <form action='old_version/handleinput.php' method='GET'>
+                <input class='dblock' type='Text' name='name' value='$name'>
+                <input class='dblock' type='Text' name='email' value='$email'>
+            </form>
+          </div>";
 }
 
 
 
 ?>
 
-<div class="form_div">
-    <form action="old_version/handleinput.php" method="GET">
-        <input class="dblock" type="Text" placeholder="1" name="name">
-        <input class="dblock" type="Text" placeholder="2" name="email">
-        <!-- Add aditional fields here
-        -->
-    </form>
-</div>
+
 </body>
 
 <footer class="bottomofpage">
