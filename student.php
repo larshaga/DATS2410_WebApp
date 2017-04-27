@@ -11,6 +11,13 @@
 </div>
 
 <div>
+    <b class="navigation" href="index.php">Home</b>
+    <a class="navigation">Student</a>
+    <a class="navigation" href="course.php">Course</a>
+    <a class="navigation" href="studyprogram.php">Study Program</a>
+</div>
+
+<div>
     <?php
     $host="10.1.1.130";
     $db="studentinfosys";
@@ -20,7 +27,7 @@
     $sql = "SELECT stID AS 'Student number', CONCAT(lastname, ', ', firstname) as Name, email as 'Email' from Student ORDER BY Name";
     $result = $dbconn->query($sql);
 
-    echo "<table>";
+    echo "<table class='form_div'>";
     echo "<tr><td>Student number</td><td>Name</td><td>Email</td><td>Action</td></tr>";
     while ($row = $result->fetch_assoc())
     {
@@ -36,12 +43,6 @@
     ?>
 </div>
 
-<div>
-    <b class="navigation" href="index.php">Home</b>
-    <a class="navigation">Student</a>
-    <a class="navigation" href="course.php">Course</a>
-    <a class="navigation" href="studyprogram.php">Study Program</a>
-</div>
 </body>
 
 <footer class="bottomofpage">
