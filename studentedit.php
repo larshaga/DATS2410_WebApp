@@ -22,7 +22,7 @@ $dbconn = new mysqli($host, $user, $pw, $db);
 
 <div>
     <a class="navigation" href="index.php">Home</a>
-    <a class="currentpage">Student</a>
+    <a class="currentpage" href="student.php">Student</a>
     <a class="navigation" href="course.php">Course</a>
     <a class="navigation" href="studyprogram.php">Study Program</a>
 </div>

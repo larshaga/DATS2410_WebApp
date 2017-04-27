@@ -44,7 +44,15 @@
     echo "<tr><td>StudentID</td><td>Name</td><td>E-mail</td></tr>";
 
     while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td> <td>{$row['email']}</td></tr>";
+        echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td> <td>{$row['email']}</td>
+            <td><form action=\"studentedit.php\" method=\"GET\">
+                    <input type=\"hidden\" name=\"stID\" value=$stID>
+                    <input type=\"submit\" value=\"Edit\">
+                </form></td>
+            <td><form action=\"studentedit.php\" method=\"GET\">
+                    <input type=\"hidden\" name=\"stID\" value=$stID>
+                    <input type=\"submit\" value=\"Delete\">
+                </form></td></tr>";
     }
     echo "</table>";
 
@@ -55,7 +63,12 @@
     echo "<tr><td>Study Program</td><td>Enrolled (Year)</td><tr>";
 
     while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>{$row['title']}</td><td>{$row['Start Year']}</td></tr>";
+        echo "<tr><td>{$row['title']}</td><td>{$row['Start Year']}</td>
+                <td><form action=\"studentedit.php\" method=\"GET\">
+                    <input type=\"hidden\" name=\"progtitle\" value={$row['title']}>
+                    <input type=\"hidden\" name=\"stID\" value=$stID>
+                    <input type=\"submit\" value=\"Edit\">
+                </form></td></tr>";
     }
     echo "</table>";
 
@@ -66,7 +79,12 @@
     echo "<tr><td>Course Name</td><td>Year</td><td>Grade</td></tr>";
 
     while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>{$row['Course name']}</td><td>{$row['year']}</td> <td>{$row['grade']}</td></tr>";
+        echo "<tr><td>{$row['Course name']}</td><td>{$row['year']}</td> <td>{$row['grade']}</td>
+                <td><form action=\"studentedit.php\" method=\"GET\">
+                    <input type=\"hidden\" name=\"coursename\" value={$row['Course name']}>
+                    <input type=\"hidden\" name=\"stID\" value=$stID>
+                    <input type=\"submit\" value=\"Edit\">
+                </form></td></tr>";
     }
     echo "</table>";
 
@@ -79,7 +97,7 @@
 <footer class="bottomofpage">
     <?php
     echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
-//    echo "The database server IP:" . $dbconn->host_info . "<br>";
+    echo "The database server IP:" . $dbconn->host_info . "<br>";
     ?>
     <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
