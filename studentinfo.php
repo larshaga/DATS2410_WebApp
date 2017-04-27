@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Student3</title>
+    <title>Dats04 - Student</title>
 </head>
 
 <body>

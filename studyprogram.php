@@ -19,11 +19,11 @@
 
 <?php
   //Connection to dats04-dbproxy
-  $host="10.1.1.130";
-  $user="webuser";
-  $pw="welcomeunclebuild";
-  $db="studentinfosys";
-  $dbconn = new mysqli($host, $user, $pw, $db);
+$host="10.1.1.130";
+$user="webuser";
+$pw="welcomeunclebuild";
+$db="studentinfosys";
+$dbconn = new mysqli($host, $user, $pw, $db);
 ?>
 </body>
 

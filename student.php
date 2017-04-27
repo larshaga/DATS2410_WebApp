@@ -28,63 +28,64 @@
     </form>
 <!-- Could be that we should close div tag here, open php tag, ob_start(), then new div tag -->
     <?php
-    ob_start();
-    //Connection to dats04-dbproxy
-    $host="10.1.1.130";
-    $db="studentinfosys";
-    $user="webuser"; $pw="welcomeunclebuild";
-    $dbconn = new mysqli($host, $user, $pw, $db);
+        ob_start();
+        //Connection to dats04-dbproxy
+        $host="10.1.1.130";
+        $user="webuser";
+        $pw="welcomeunclebuild";
+        $db="studentinfosys";
+        $dbconn = new mysqli($host, $user, $pw, $db);
 
-    function ListAll($dbconn)
-    {
-        ob_clean();
-        $sql = "SELECT stID AS 'Student number', CONCAT(lastname, ', ', firstname) as Name, email as 'Email' from Student ORDER BY Name";
-        $result = $dbconn->query($sql);
+        function ListAll($dbconn)
+        {
+            ob_clean();
+            $sql = "SELECT stID AS 'Student number', CONCAT(lastname, ', ', firstname) as Name, email as 'Email' from Student ORDER BY Name";
+            $result = $dbconn->query($sql);
 
-        echo "<table class='form_div'>";
-        echo "<tr><td>Student number</td><td>Name</td><td>Email</td><td>Action</td></tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr><td>{$row['Student number']}</td><td>{$row['Name']}</td><td>{$row['Email']}</td>
-            <td>
-                <form action=\"studentinfo.php\" method=\"GET\">
-                    <input type=\"hidden\" name=\"stID\" value={$row['Student number']}>
-                    <input type=\"submit\" value=\"Show Studentpage\">
-                </form>
-            </td></tr>";
+            echo "<table class='form_div'>";
+            echo "<tr><td>Student number</td><td>Name</td><td>Email</td><td>Action</td></tr>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr><td>{$row['Student number']}</td><td>{$row['Name']}</td><td>{$row['Email']}</td>
+                <td>
+                    <form action=\"studentinfo.php\" method=\"GET\">
+                        <input type=\"hidden\" name=\"stID\" value={$row['Student number']}>
+                        <input type=\"submit\" value=\"Show Studentpage\">
+                    </form>
+                </td></tr>";
+            }
+            echo "</table>";
         }
-        echo "</table>";
-    }
 
-    function Search()
-    {
-        ob_clean();
-        echo "
-            <form method='GET'>
-                <p>Search by student number:</p><br>
-                <input name='stID' type='search'>
-                <input type='submit' value='Search'>
-            </form>
-        ";
-    }
-    
-    function SearchResult($id, $dbconn)
-    {
-        $sql = "SELECT stID AS 'Student number', CONCAT(lastname, ', ', firstname) as Name, email as 'Email' from Student WHERE stID='$id' ORDER BY Name";
-        $result = $dbconn->query($sql);
-
-        echo "<table class='form_div'>";
-        echo "<tr><td>Student number</td><td>Name</td><td>Email</td><td>Action</td></tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr><td>{$row['Student number']}</td><td>{$row['Name']}</td><td>{$row['Email']}</td>
-            <td>
-                <form action=\"studentinfo.php\" method=\"GET\">
-                    <input type=\"hidden\" name=\"stID\" value={$row['Student number']}>
-                    <input type=\"submit\" value=\"Show Studentpage\">
+        function Search()
+        {
+            ob_clean();
+            echo "
+                <form method='GET'>
+                    <p>Search by student number:</p><br>
+                    <input name='stID' type='search'>
+                    <input type='submit' value='Search'>
                 </form>
-            </td></tr>";
+            ";
         }
-        echo "</table>";
-    }
+
+        function SearchResult($id, $dbconn)
+        {
+            $sql = "SELECT stID AS 'Student number', CONCAT(lastname, ', ', firstname) as Name, email as 'Email' from Student WHERE stID='$id' ORDER BY Name";
+            $result = $dbconn->query($sql);
+
+            echo "<table class='form_div'>";
+            echo "<tr><td>Student number</td><td>Name</td><td>Email</td><td>Action</td></tr>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr><td>{$row['Student number']}</td><td>{$row['Name']}</td><td>{$row['Email']}</td>
+                <td>
+                    <form action=\"studentinfo.php\" method=\"GET\">
+                        <input type=\"hidden\" name=\"stID\" value={$row['Student number']}>
+                        <input type=\"submit\" value=\"Show Studentpage\">
+                    </form>
+                </td></tr>";
+            }
+            echo "</table>";
+        }
 
     /*
      * Checking if you are to search for single student, or list every student
@@ -103,12 +104,13 @@
     {
       SearchResult($_GET['stID'],$dbconn);
     }
+    //TODO: Cannot close result, else footer dosent display correct
+    //$result->close();
+    //TODO: Cannot close dbconn, else footer dosent display correct
+    //$dbconn->close();
 
-    $result->close();
-    $dbconn->close();
     ?>
 </div>
-
 </body>
 
 <footer class="bottomofpage">

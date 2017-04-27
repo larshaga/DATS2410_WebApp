@@ -24,8 +24,9 @@
 <?php
 //Connection to dats04-dbproxy
 $host="10.1.1.130";
+$user="webuser";
+$pw="welcomeunclebuild";
 $db="studentinfosys";
-$user="webuser"; $pw="welcomeunclebuild";
 $dbconn = new mysqli($host, $user, $pw, $db);
 ?>
 

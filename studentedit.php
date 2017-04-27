@@ -10,16 +10,6 @@
     <h1>HiOA student information system</h1>
 </div>
 
-<?php
-/* Connection to dats04-dbproxy
-$host="10.1.1.130";
-$user="webuser";
-$pw="welcomeunclebuild";
-$db="studentinfosys";
-$dbconn = new mysqli($host, $user, $pw, $db);
-*/
-?>
-
 <div>
     <a class="navigation" href="index.php">Home</a>
     <a class="currentpage">Student</a>
@@ -34,8 +24,9 @@ $dbconn = new mysqli($host, $user, $pw, $db);
 <?php
 //Connection to dats04-dbproxy
 $host="10.1.1.130";
+$user="webuser";
+$pw="welcomeunclebuild";
 $db="studentinfosys";
-$user="webuser"; $pw="welcomeunclebuild";
 $dbconn = new mysqli($host, $user, $pw, $db);
 
 if(isset($_GET['stID']))
