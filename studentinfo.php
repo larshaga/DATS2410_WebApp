@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Student</title>
+    <title>Dats04 - Student3</title>
 </head>
 
 <body>
@@ -28,15 +28,15 @@
 
 <div>
     <?php
-
-    $stID=$_GET['stID'];
-
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $user="webuser";
     $pw="welcomeunclebuild";
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
+
+    $stID=$_GET['stID'];
+
     if (isset($_GET['deleteBool'])){
         $sql = "Delete from Enrollment where stID = $stID;Delete from Grade where stID = $stID;Delete from Student where stID = $stID;";
     }
@@ -103,7 +103,8 @@
     echo "</table>";
 
     $result->close();
-    $dbconn->close();
+    //TODO: Cannot close dbconn, else footer dosent display correct
+    //$dbconn->close();
     ?>
 </div>
 </body>
