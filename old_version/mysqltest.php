@@ -7,11 +7,11 @@
  */
 
 $host="10.1.1.130";
-$db="testdb";
-$user="testuser"; $pw="dats04";
+$db="studentinfosys";
+$user="webuser"; $pw="welcomeunclebuild";
 $dbconn = new mysqli($host, $user, $pw, $db);
 
-$sql = "SELECT * from test1";
+$sql = "SELECT * from Student";
 $result = $dbconn->query($sql);
 
 echo "Student navn:<br />";

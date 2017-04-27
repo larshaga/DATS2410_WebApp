@@ -1,7 +1,7 @@
 <!doctype HTML>
 <html>
 <head>
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="old_version/stylesheet.css">
     <title>Dats04 - Web</title>
 </head>
 
@@ -22,10 +22,10 @@
 
   <div>
       <b class="navigation">Home</b>
-      <a class="navigation" href="add.php">Add</a>
-      <a class="navigation" href="retrieve.php">Retrieve</a>
-      <a class="navigation" href="update.php">Update</a>
-      <a class="navigation" href="delete.php">Delete</a>
+      <a class="navigation" href="old_version/add.php">Add</a>
+      <a class="navigation" href="old_version/retrieve.php">Retrieve</a>
+      <a class="navigation" href="old_version/update.php">Update</a>
+      <a class="navigation" href="old_version/delete.php">Delete</a>
   </div>
 
   <div class="siteinformation">
@@ -33,7 +33,7 @@
   </div>
 
   <div class="form_div">
-    <form action="handleinput.php" method="GET">
+    <form action="old_version/handleinput.php" method="GET">
         <input class="dblock" type="Text" placeholder="1" name="fname">
         <input class="dblock" type="Text" placeholder="2" name="lname">
         <!--<input class="dblock" type="Text" placeholder="3" >

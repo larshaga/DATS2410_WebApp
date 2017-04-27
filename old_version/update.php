@@ -11,7 +11,7 @@
   </div>
 
   <div>
-      <a class="navigation" href="index.php">Home</a>
+      <a class="navigation" href="../index.php">Home</a>
       <a class="navigation" href="add.php">Add</a>
       <a class="navigation" href="retrieve.php">Retrieve</a>
       <b class="navigation">Update</b>
