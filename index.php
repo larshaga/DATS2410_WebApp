@@ -11,14 +11,12 @@
   </div>
 
   <?php
-  /*
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $user="webuser";
     $pw="welcomeunclebuild";
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
-    */
   ?>
 
   <div>
@@ -29,19 +27,7 @@
   </div>
 
   <div class="siteinformation">
-    <p>Above you can go to another site, from there you can follow your intuition</p>
-  </div>
-
-  <div class="form_div">
-    <form action="old_version/handleinput.php" method="GET">
-        <input class="dblock" type="Text" placeholder="1" name="fname">
-        <input class="dblock" type="Text" placeholder="2" name="lname">
-        <!--<input class="dblock" type="Text" placeholder="3" >
-        <input class="dblock" type="Text" placeholder="4" > -->
-        <input class="dblock" type="Submit" value="BOOM">
-        <!-- Add aditional fields here
-        -->
-    </form>
+    <p>From here you can access all the other sites</p>
   </div>
 </body>
 
