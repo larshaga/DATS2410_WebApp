@@ -36,10 +36,13 @@ $dbconn = new mysqli($host, $user, $pw, $db);
 
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($_REQUEST["selectB"])
-        echo $_POST["selectB"];
-    else echo "No result";
+if (!isset($_GET['search']))
+{
+    echo "<p>No result</p>";
+}
+else
+{
+    echo "<p>Success!</p>";
 }
 ?>
 
@@ -47,8 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <footer class="bottomofpage">
     <?php
-    echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
-    echo "The database server IP:" . $dbconn->host_info . "<br>";
+    //echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
+    //echo "The database server IP:" . $dbconn->host_info . "<br>";
     ?>
     <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>

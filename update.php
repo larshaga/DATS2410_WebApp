@@ -40,8 +40,8 @@
       {
           ob_clean();
           echo "
-            <form action='result.php' method='POST'>
-                <input name='selectS' type='search' placeholder='$info'>
+            <form action='result.php?go' method='GET'>
+                <input name='search' type='search' placeholder='$info'>
             </form>            
            ";
       }
