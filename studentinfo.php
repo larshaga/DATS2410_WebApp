@@ -38,10 +38,10 @@
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
     if (isset($_GET['deleteBool'])){
-        $sql = "Delete from Student, Grade, Enrollment where stID = $stID";
+        $sql = "Delete from Enrollment where stID = $stID;Delete from Grade where stID = $stID;Delete from Student where stID = $stID;";
     }
 
-    $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=$stID";
+    $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=$stID;";
     $result = $dbconn->query($sql);
 
     echo "<table border='1'>";
@@ -61,7 +61,7 @@
     }
     echo "</table>";
 
-        $sql = "select p.title, e.startyear as 'Start Year' from Student s, Enrollment e, Study_program p where s.stID=e.stID and e.progcode=p.progcode and s.stID=$stID";
+        $sql = "select p.title, e.startyear as 'Start Year' from Student s, Enrollment e, Study_program p where s.stID=e.stID and e.progcode=p.progcode and s.stID=$stID;";
         $result = $dbconn->query($sql);
 
     echo "<table border='1'>";
@@ -77,7 +77,7 @@
     }
     echo "</table>";
 
-    $sql = "select c.title as 'Course name', g.year, g.grade from Student s, Grade g, Course c where s.stID=g.stID and g.coursecode=c.coursecode and g.year=c.year and s.stID=$stID";
+    $sql = "select c.title as 'Course name', g.year, g.grade from Student s, Grade g, Course c where s.stID=g.stID and g.coursecode=c.coursecode and g.year=c.year and s.stID=$stID;";
     $result = $dbconn->query($sql);
 
     echo "<table border='1'>";
