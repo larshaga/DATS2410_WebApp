@@ -36,6 +36,12 @@ body
 
 }
 
+.currentpage
+{
+  padding: 20px;
+  font-weight: bold;
+}
+
 .form_div
 {
   margin: 0 auto;

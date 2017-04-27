@@ -1,7 +1,7 @@
 <!doctype HTML>
 <html>
 <head>
-    <link rel="stylesheet" href="old_version/stylesheet.css">
+    <link rel="stylesheet" href="stylesheet.css">
     <title>Dats04 - Web</title>
 </head>
 
@@ -11,21 +11,21 @@
   </div>
 
   <?php
-  /* Connection to dats04-dbproxy
-  $host="10.1.1.130";
-  $user="webuser";
-  $pw="welcomeunclebuild";
-  $db="studentinfosys";
-  $dbconn = new mysqli($host, $user, $pw, $db);
-  */
+  /*
+    //Connection to dats04-dbproxy
+    $host="10.1.1.130";
+    $user="webuser";
+    $pw="welcomeunclebuild";
+    $db="studentinfosys";
+    $dbconn = new mysqli($host, $user, $pw, $db);
+    */
   ?>
 
   <div>
-      <b class="navigation">Home</b>
-      <a class="navigation" href="old_version/add.php">Add</a>
-      <a class="navigation" href="old_version/retrieve.php">Retrieve</a>
-      <a class="navigation" href="old_version/update.php">Update</a>
-      <a class="navigation" href="old_version/delete.php">Delete</a>
+      <a class="currentpage">Home</a>
+      <a class="navigation" href="student.php">Student</a>
+      <a class="navigation" href="course.php">Course</a>
+      <a class="navigation" href="studyprogram.php">Study program</a>
   </div>
 
   <div class="siteinformation">
