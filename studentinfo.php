@@ -30,12 +30,16 @@
     <?php
 
     $stID=$_GET['stID'];
+
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $user="webuser";
     $pw="welcomeunclebuild";
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
+    if (isset($_GET['deleteBool'])){
+        $sql = "Delete from Student, Grade, Enrollment where stID = $stID";
+    }
 
     $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=$stID";
     $result = $dbconn->query($sql);
@@ -49,8 +53,9 @@
                     <input type=\"hidden\" name=\"stID\" value=$stID>
                     <input type=\"submit\" value=\"Edit\">
                 </form></td>
-            <td><form action=\"studentedit.php\" method=\"GET\">
+            <td><form action=\"studentinfo.php\" method=\"GET\">
                     <input type=\"hidden\" name=\"stID\" value=$stID>
+                    <input type=\"hidden\" name=\"deleteBool\" value=1>
                     <input type=\"submit\" value=\"Delete\">
                 </form></td></tr>";
     }
@@ -82,6 +87,7 @@
         echo "<tr><td>{$row['Course name']}</td><td>{$row['year']}</td> <td>{$row['grade']}</td>
                 <td><form action=\"studentedit.php\" method=\"GET\">
                     <input type=\"hidden\" name=\"coursename\" value={$row['Course name']}>
+                    <input type=\"hidden\" name=\"courseyear\" value={$row['year']}>
                     <input type=\"hidden\" name=\"stID\" value=$stID>
                     <input type=\"submit\" value=\"Edit\">
                 </form></td></tr>";
