@@ -7,19 +7,8 @@
 
 <body>
 <div class="title">
-    <h1>HiOA student information system</h1>
+    <h1>Every course in the database</h1>
 </div>
-
-<?php
-/*
-//Connection to dats04-dbproxy
-$host="10.1.1.130";
-$user="webuser";
-$pw="welcomeunclebuild";
-$db="studentinfosys";
-$dbconn = new mysqli($host, $user, $pw, $db);
-*/
-?>
 
 <div>
     <a class="navigation" href="index.php">Home</a>
@@ -28,42 +17,28 @@ $dbconn = new mysqli($host, $user, $pw, $db);
     <a class="navigation" href="studyprogram.php">Study program</a>
 </div>
 
-<div class="siteinformation">
-    <p>What to you want to retrive about course?</p>
-</div>
-
 <div class="form_div">
-    <form id="selectForm" method="get">
-        <select name="course">
-            <option value="1">Show all courses</option>
-            <option value="2">Update a course</option>
-            <option value="3">Delete a course</option>
-            <option value="4"></option>
-        </select>
-    </form>
-    <input class="dblock" type="submit">
     <?php
-        function showAllCourses()
-        {
+    $host="10.1.1.130";
+    $db="studentinfosys";
+    $user="webuser"; $pw="welcomeunclebuild";
+    $dbconn = new mysqli($host, $user, $pw, $db);
 
-        }
+    $sql = "SELECT * from Course ORDER BY year";
+    $retult = $dbconn->query($sql);
 
-        function updateCourse()
-        {
-
-        }
-
-        function deleteCourse()
-        {
-
-        }
-
-        function testing()
-        {
-
-        }
-
-
+    echo "<table class='form_div'>";
+    echo "<tr><td>Course code</td><td>Year</td><td>Title</td><td>Action</td></tr>";
+    while ($row = $result->fetch_assoc())
+    {
+        echo "<tr><td>{$row['coursecode']}</td><td>{$row['year']}</td><td>{$row['title']}</td>
+            <td>
+                <form action=\"courseinfo.php\" method=\"GET\">
+                    <input type=\"submit\" value=\"Show courseinfo\">
+                </form>
+            </td></tr>";
+    }
+    echo "</table>";
     ?>
 </div>
 </body>
