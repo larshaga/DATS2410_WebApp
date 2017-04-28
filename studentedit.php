@@ -66,10 +66,10 @@ function showStudent($fname,$lname,$email,$id)
 
 function updateStudent($fname,$lname,$email,$id,$dbconn)
 {
-    $namepattern = "[a-zA-Z]+";
+    /*$namepattern = "[a-zA-Z]+";
     $emailpattern = "[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+";
         if(sizeof(preg_match($namepattern, $lname)) == 1 && sizeof(preg_match($namepattern, $fname)) == 1 && sizeof(preg_match($emailpattern, $email)) == 1)
-            {
+            {*/
 
                 $dbconn;
                 $sql2 = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE studentID='$id'";
@@ -80,7 +80,7 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
                 } else {
                     echo "Fail: 2";
                 }
-            } else echo "wrong login";
+            //} else echo "wrong login";
 }
 if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']) && isset($_GET['stID']))
 {
