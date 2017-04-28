@@ -39,6 +39,7 @@
 
     if (isset($_GET['deleteBool'])){
         $sql = "Delete from Enrollment where stID = $stID;Delete from Grade where stID = $stID;Delete from Student where stID = $stID;";
+        $dbconn->query($sql);
     }
 
     $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=$stID;";
