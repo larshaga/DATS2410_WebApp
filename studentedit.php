@@ -28,9 +28,9 @@ $user="webuser";
 $pw="welcomeunclebuild";
 $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
-$studentInfo = array("fname"=>"", "lname"=>"", "email"=>"");
 if(isset($_GET['stID']))
 {
+    ob_start();
     $id = $_GET['stID'];
     $sql = "SELECT firstname AS fname, lastname AS lname, email from Student WHERE studentID=$id;";
     $result = $dbconn->query($sql);
@@ -41,7 +41,7 @@ if(isset($_GET['stID']))
 
 }
 
-
+showStudent("Gustav","Berggren","test@test.com");
 function showStudent($fname,$lname,$email)
 {
     echo "<div class='form_div'>
@@ -53,17 +53,23 @@ function showStudent($fname,$lname,$email)
             </form>
           </div>";
 }
-if(isset($_GET['fname']))
+
+function updateStudent($fname,$lname,$email)
 {
-    echo $_GET['fname'];
+    global $id, $dbconn;
+    $sql = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE studentID=".$id;
+    if (mysqli_query($dbconn,$sql)){
+        ob_clean();
+        showStudent($fname,$lname,$email);
+    }else{
+        echo "Fail!!!!!!!!!";
+    }
+
 }
-if(isset($_GET['lname']))
+if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']))
 {
-    echo $_GET['lname'];
-}
-if(isset($_GET['email']))
-{
-    echo $_GET['email'];
+    global $firstName,$lastName,$email;
+    updateStudent($_GET['fname'],$_GET['lname'],$_GET['email']);
 }
 
 
@@ -77,8 +83,8 @@ if(isset($_GET['email']))
     <?php
     echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
     echo "The database server IP:" . $dbconn->host_info . "<br>";
-    $result->close();
-    $dbconn->close();
+    //$result->close();
+    //$dbconn->close();
     ?>
     <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
