@@ -61,7 +61,7 @@ function selectYear($stID,$progcode){
 }
 
 function insertProgram($dbconn, $stID, $progcode, $year){
-    $insert="insert into Grade values ($stID,'$progcode',$year);";
+    $insert="insert into Enrollment values ($stID,'$progcode',$year);";
     if ($dbconn->query($insert)===TRUE){
         echo "<p>Succesfully added the course to student $stID</p>";
     }else {
