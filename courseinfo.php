@@ -29,11 +29,15 @@
     $coursecode=$_GET['coursecode'];
     $year=$_GET['year'];
 
-    $sql = "SELECT s.stID, Concat(s.lastname,', ', s.firstname) as name, g.grade FROM Student s, Grade g where g.year=$year and g.coursecode=$coursecode Order by name asc;";
+    $sql = "SELECT s.stID, Concat(s.lastname,', ', s.firstname) as name, g.grade FROM Student s, Grade g where g.year=$year and g.coursecode='$coursecode' Order by name asc;";
     $result = $dbconn->query($sql);
 
     echo "<table class='form_div'>";
     echo "<tr><td>StudentID</td><td>Name</td><td>Grade</td><td>Student info</td></tr>";
+    if (empty($result)){
+
+    }else{
+
     while ($row = $result->fetch_assoc())
     {
         echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td><td>{$row['grade']}</td>
@@ -45,6 +49,7 @@
             </td></tr>";
     }
     echo "</table>";
+    }
     ?>
 </div>
 </body>

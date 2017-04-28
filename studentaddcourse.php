@@ -49,7 +49,7 @@ echo "<form id=\"selectCourse\" method=\"GET\">
 function selectYear($dbconn){
 //    ob_clean();
     global $coursecode;
-    $getYear="Select year from Course where coursecode=$coursecode;";
+    $getYear="Select year from Course where coursecode='$coursecode';";
     $getYearcourse = $dbconn->query($getYear);
 
     $row =[];
@@ -81,7 +81,7 @@ function chooseGrade(){
 
 function insertGrade($dbconn){
     global $stID,$coursecode, $year, $grade;
-    $insert="insert into Grade VALUES ($stID, $coursecode, $year, $grade)";
+    $insert="insert into Grade VALUES ('$coursecode', $year, '$grade')";
     $dbconn->query($insert);
 }
 
