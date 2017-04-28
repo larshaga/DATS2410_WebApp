@@ -23,6 +23,7 @@
         <select name="selectInfo">
             <option value="1">Search for student by studentnumber</option>
             <option value="2">Show every student in database</option>
+            <option value="3">Add new student</option>
         </select>
         <input class="dblock" type="Submit" value="Submit">
     </form>
@@ -87,6 +88,61 @@
             echo "</table>";
         }
 
+        function Add($dbconn)
+        {
+            ob_clean();
+            $result = $dbconn->query("SELECT * from Study_program");
+            $row = [];
+            echo "
+                <form method='GET'>
+                    <p>Last name of student:</p>
+                    <input name='lastname' type='text'>
+                    <p>First name of student:</p>
+                    <input name='firstname' type='text'>
+                    <p>Email of student:</p>
+                    <input name='email' type='text'>
+                    <p>Study program student attends:</p>
+                    <select name='addStudyProg'>
+                        
+                    while ($row = $result->fetch_assoc())
+                    {
+                        <option value='{$result['progcode']}'>{$result['title']}</option>
+                    }
+                    
+                    </select>
+                    <p>Startyear of student</p>
+                    <input name='startyear' type='text'>
+                    <input type='submit' value='Add student'>
+                </form>
+                ";
+
+        }
+
+        function AddNew($lastname, $firstname, $email, $studyprogram, $startyear, $dbconn)
+        {
+            /*
+             * Regular expressions to check if input is valid.
+             */
+            $namepattern = "[a-zA-Z]+";
+            $emailpattern = "[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+";
+            $yearpattern = "[1-2][0-9]{3}";
+
+            if (preg_match($namepattern, $lastname) && preg_match($namepattern, $firstname) && preg_match($emailpattern, $email) && preg_match($yearpattern, $startyear))
+            {
+                $sql = "INSERT INTO Student(lastname, firstname, email) VALUES ('$lastname', '$firstname', '$email')";
+                $result = $dbconn->query($sql);
+                if ($result)
+                {
+                    $stID = $dbconn->query("SELECT stID from Student WHERE firstname='$firstname' and lastname='$lastname' and email='$email'");
+                    $result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES (end($stID), '$studyprogram', $startyear)");
+                }
+            } else
+            {
+                echo "<div>
+                        <p>Invalid input. Names can only be normal characters, Email can only be on the form \"foo@bar.baz\" and only valid years are accepted.</p>
+                        </div>";
+            }
+        }
     /*
      * Checking if you are to search for single student, or list every student
      */
@@ -94,7 +150,8 @@
     {
         $info = $_GET["selectInfo"];
         if ($info=="1") Search();
-        else ListAll($dbconn);
+        elseif ($info=="2") ListAll($dbconn);
+        else Add();
     }
 
     /*
@@ -103,7 +160,11 @@
     if (isset($_GET['stID']))
     {
       SearchResult($_GET['stID'],$dbconn);
+    } elseif (isset($_GET['lastname']) && isset($_GET['firstname']) && isset($_GET['email']) && isset($_GET['startyear']))
+    {
+        AddNew($_GET['lastname'], $_GET['firstname'], $_GET['email'], $_GET['progcode'], $_GET['startyear'], $dbconn);
     }
+    
     ?>
 </div>
 </body>
