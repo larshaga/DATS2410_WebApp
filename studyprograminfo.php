@@ -28,14 +28,14 @@
 
     $progcode=$_GET['progcode'];
 
-    $sql = " select s.stID, concat(s.lastname,', ','s.firstname') as name, p.title, e.startyear from Student s, Enrollment e, Study_program p where p.progcode='$progcode';";
+    $sql = " select s.stID, concat(s.lastname,', ',s.firstname) as name, p.title, e.startyear from Student s, Enrollment e, Study_program p where p.progcode='$progcode';";
     $result = $dbconn->query($sql);
 
     echo "<table class='form_div'>";
     echo "<tr><td>StudentID</td><td>Name</td><td>Title</td><td>Year</td><td>Show more info</td></tr>";
     while ($row = $result->fetch_assoc())
     {
-        echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td><td>{$row['title']}</td><td>{$row['year']}</td>
+        echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td><td>{$row['title']}</td><td>{$row['startyear']}</td>
             <td>
                 <form action=\"studentinfo.php\" method=\"GET\">
                     <input type='hidden' name='stID' value={$row['stID']}>

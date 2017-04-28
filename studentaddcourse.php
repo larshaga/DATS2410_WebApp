@@ -37,14 +37,14 @@ $getTitlecourse = $dbconn->query($getTitle);
 echo "<form id=\"selectCourse\" method=\"GET\">
         <select name=\"selectCourse\">";
             while($row=$getTitlecourse->fetch_assoc()){
-                echo "<option value=\"{$row['coursecode']}\">{$row['title']}</option>";
+                echo "<option value=\"{$row['coursecode']}\" name='coursecode'>{$row['title']}</option>";
             }
         echo "</select>
         <input type='hidden' name='stID' value='$stID'>
         <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
     </form>";
 
-function selectYear($dbconn,$coursecode,$stID){
+function selectYear($dbconn,$stID,$coursecode){
 //    ob_clean();
     $getYear="Select year from Course where coursecode='$coursecode';";
     $getYearcourse = $dbconn->query($getYear);
@@ -52,7 +52,7 @@ function selectYear($dbconn,$coursecode,$stID){
     echo "<form id=\"selectYear\" method=\"GET\">
         <select name=\"selectYear\">";
             while($row=$getYearcourse->fetch_assoc()){
-                echo "<option value=\"{$row['year']}\">{$row['year']}</option>";
+                echo "<option value=\"{$row['year']}\" name='year'>{$row['year']}</option>";
             }
         echo "</select>
         <input type='hidden' name='coursecode' value='$coursecode'>
