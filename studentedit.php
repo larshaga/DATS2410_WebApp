@@ -29,7 +29,7 @@ $user="webuser";
 $pw="welcomeunclebuild";
 $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
-$id = $_GET['stID'];
+if(isset($_GET['stID']))$id = $_GET['stID'];
 ob_start();
 $sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE stID='$id'";
 $result = $dbconn->query($sql);
@@ -41,13 +41,12 @@ else
 {
     while ($row = $result->fetch_assoc())
     {
-        showStudent($row['fname'], $row['lname'], $row['email']);
+        showStudent($row['fname'], $row['lname'], $row['email'],$id);
     }
 }
 
-function showStudent($fname,$lname,$email)
+function showStudent($fname,$lname,$email,$id)
 {
-    global $id;
     echo "<div class='form_div'>
             <form method='GET'>
                 <p>ID: '$id'</p>
@@ -59,9 +58,9 @@ function showStudent($fname,$lname,$email)
           </div>";
 }
 
-function updateStudent($fname,$lname,$email)
+function updateStudent($fname,$lname,$email,$id,$dbconn)
 {
-    global $id, $dbconn;
+    $dbconn;
     $sql = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE studentID='$id'";
     if (mysqli_query($dbconn,$sql)){
         ob_clean();
@@ -73,7 +72,7 @@ function updateStudent($fname,$lname,$email)
 if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']))
 {
     global $firstName,$lastName,$email;
-    updateStudent($_GET['fname'],$_GET['lname'],$_GET['email']);
+    updateStudent($_GET['fname'],$_GET['lname'],$_GET['email'],$dbconn);
 }
 
 
