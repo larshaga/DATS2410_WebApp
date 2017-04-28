@@ -33,14 +33,13 @@ $id = $_GET['stID'];
 ob_start();
 $sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE studentID='$id'";
 $result = $dbconn->query($sql);
-if($result->num_rows >0)
+if(mysqli_num_rows($result) > 0)
 {
     while ($row = $result->fetch_assoc()) {
         showStudent($row['fname'], $row['lname'], $row['email']);
     }
 }
 else echo "Fail: 1";
-showStudent("Gustav","Berggren","test@test.com");
 function showStudent($fname,$lname,$email)
 {
     global $id;
