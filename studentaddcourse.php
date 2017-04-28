@@ -82,10 +82,8 @@ function chooseGrade($stID,$coursecode,$year){
 }
 
 function insertGrade($dbconn, $stID, $coursecode, $year, $grade){
-    global $stID,$coursecode, $year, $grade;
-
     $insert="insert into Grade values ($stID,'$coursecode',$year,'$grade');";
-    echo "$insert";
+    echo "<p>$insert</p>";
     $dbconn->query($insert);
 }
 
