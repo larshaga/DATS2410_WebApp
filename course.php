@@ -41,7 +41,8 @@
                     <input type=\"submit\" value=\"Show courseinfo\">
                 </form>
                 <form action=\"courseedit.php\" method=\"GET\">
-                <input name='editCourse' value={$row['coursecode']}>
+                    <input type='hidden' name='editCourse' value={$row['coursecode']}>
+                    <input type='submit' value=\"Edit\">                
                 </form>
             </td></tr>";
     }
