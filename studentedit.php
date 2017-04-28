@@ -72,7 +72,7 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
             {*/
 
                 $dbconn;
-                $sql2 = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE studentID='$id'";
+                $sql2 = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE stID='$id'";
                 if ($dbconn->query($sql2) === TRUE) {
 
                     ob_clean();
