@@ -134,7 +134,7 @@
                 $sql = "INSERT INTO Student(lastname, firstname, email) VALUES ('$lastname', '$firstname', '$email')";
                 $result = $dbconn->query($sql);
                 echo "Result: " . $result;
-                if ($result)
+                if ($result->rowCount() > 0) //Larger than 0 means it was added successfully
                 {
                     $qr = $dbconn->query("SELECT stID from Student WHERE firstname='$firstname' and lastname='$lastname' and email='$email'");
                     $stID = 0;
