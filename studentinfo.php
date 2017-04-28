@@ -138,7 +138,7 @@
                     <input type=\"submit\" value=\"Edit\">
                 </form></td>
                 <td><form method=\"GET\">
-                    <input type=\"hidden\" name=\"coursecoude\" value={$row['coursecode']}>
+                    <input type=\"hidden\" name=\"coursecode\" value={$row['coursecode']}>
                     <input type=\"hidden\" name=\"courseyear\" value={$row['year']}>
                     <input type=\"hidden\" name=\"stID\" value=$stID>
                     <input type='hidden' name='deletecourse' value='1'>

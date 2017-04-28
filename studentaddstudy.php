@@ -50,8 +50,7 @@ function selectYear($stID,$progcode){
         <select name=\"year\">";
     $i=2017;
     while($i>1900){
-        echo "<option value=\"$i\" name='year'>$i<option>";
-        $i--;
+        echo "<option value=\"$i\" name='year'>$i--<option>";
     }
     echo "</select>
         <input type='hidden' name='progcode' value='$progcode'>
