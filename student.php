@@ -134,13 +134,15 @@
                 $sql = "INSERT INTO Student(lastname, firstname, email) VALUES ('$lastname', '$firstname', '$email')";
                 $result = $dbconn->query($sql);
                 echo "Result: " . $result;
-                if ($result->rowCount() > 0) //Larger than 0 means it was added successfully
+                if (sizeof($result) > 0) //Larger than 0 means it was added successfully
                 {
                     $qr = $dbconn->query("SELECT stID from Student WHERE firstname='$firstname' and lastname='$lastname' and email='$email'");
                     $stID = 0;
                     while ($row = $qr->fetch_assoc())
                     {$stID = $row['stID'];} // Get the last studentnumber, if qr has more than one.
+                    
                     $result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES $stID, '$studyprogram', $startyear)");
+                    if (sizeof($result) > 0) echo "Added student successfully.";
                 }
             } else
             {
