@@ -18,7 +18,7 @@
 </div>
 
 <div class="siteinfo">
-    <p>Above you can go to another site, from there you can follow your intuition</p>
+    <p></p>
 </div>
 
 <?php
@@ -83,7 +83,7 @@ function chooseGrade(){
 
 function insertGrade($dbconn){
     global $stID,$coursecode, $year, $grade;
-    $insert="insert into Grade VALUES ('$coursecode', $year, '$grade')";
+    $insert="insert into Grade VALUES ($stID,'$coursecode', $year, '$grade')";
     $dbconn->query($insert);
 }
 
