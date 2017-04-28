@@ -151,7 +151,7 @@
         $info = $_GET["selectInfo"];
         if ($info=="1") Search();
         elseif ($info=="2") ListAll($dbconn);
-        else Add();
+        else Add($dbconn);
     }
 
     /*
