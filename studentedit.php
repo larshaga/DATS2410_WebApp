@@ -49,7 +49,7 @@ function showStudent($fname,$lname,$email,$id)
 {
     echo "<div class='form_div'>
             <form method='GET'>
-                <p>ID: '$id'</p>
+                <input type='hidden' name='sid' value='$id'>
                 <input class='dblock' type='Text' name='fname' value='$fname'>
                 <input class='dblock' type='Text' name='lname' value='$lname'>
                 <input class='dblock' type='Text' name='email' value='$email'>
@@ -61,18 +61,19 @@ function showStudent($fname,$lname,$email,$id)
 function updateStudent($fname,$lname,$email,$id,$dbconn)
 {
     $dbconn;
-    $sql = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE studentID='$id'";
-    if (mysqli_query($dbconn,$sql)){
+    $sql2 = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE studentID='$id'";
+    if ($dbconn->query($sql2) === TRUE){
+
         ob_clean();
         showStudent($fname,$lname,$email);
     }else{
         echo "Fail: 2";
     }
 }
-if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']))
+if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']) && isset($_GET['sid']))
 {
     global $firstName,$lastName,$email;
-    updateStudent($_GET['fname'],$_GET['lname'],$_GET['email'],$dbconn);
+    updateStudent($_GET['fname'],$_GET['lname'],$_GET['email'],$_GET['sid'],$dbconn);
 }
 
 
