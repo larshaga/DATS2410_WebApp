@@ -22,7 +22,11 @@
 </div>
 
 <?php
+ob_start();
 $stID=$_GET['stID'];
+$coursecode;
+$grade;
+$year;
 //Connection to dats04-dbproxy
 $host="10.1.1.130";
 $user="webuser";
@@ -30,19 +34,77 @@ $pw="welcomeunclebuild";
 $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
 
-$getTitle="select title from Course group BY title;";
+$getTitle="select coursecode, title from Course group BY title;";
 $getTitlecourse = $dbconn->query($getTitle);
 
-echo "<form id=\"selectForm\" method=\"get\">
-        <select name=\"selectInfo\">
-            $i=1;
+echo "<form id=\"selectCourse\" method=\"GET\">
+        <select name=\"selectCourse\">
             while($row=$getTitlecourse->fetch_assoc()){
-                <option value=\"$i\">{$row['title']}</option>
-                $i++;
+                <option value=\"{$row['coursecode']}\">{$row['title']}</option>
             }
         </select>
         <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
     </form>";
+
+
+
+
+
+function selectYear($dbconn){
+//    ob_clean();
+    global $coursecode;
+    $getYear="Select year from Course where coursecode=$coursecode;";
+    $getYearcourse = $dbconn->query($getYear);
+
+    $row =[];
+    echo "<form id=\"selectYear\" method=\"GET\">
+        <select name=\"selectYear\">
+            while($row=$getYearcourse->fetch_assoc()){
+                <option value=\"{$row['year']}\">{$row['year']}</option>
+            }
+        </select>
+        <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
+    </form>";
+}
+
+function chooseGrade(){
+
+    echo "<form id=\"selectGrade\" method=\"GET\">
+        <select name=\"selectGrade\">
+            <option value='A'>A</option>
+            <option value='B'>B</option>
+            <option value='C'>C</option>
+            <option value='D'>D</option>
+            <option value='E'>E</option>
+            <option value='F'>F</option>
+            <option value=''>Not finished</option>
+        </select>
+        <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
+    </form>";
+}
+
+function insertGrade($dbconn){
+    global $stID,$coursecode, $year, $grade;
+    $insert="insert into Grade VALUES ($stID, $coursecode, $year, $grade)";
+    $dbconn->query($insert);
+}
+
+
+if (isset($_GET["selectCourse"]))
+{
+    $coursecode = $_GET["selectCourse"];
+    selectYear($dbconn);
+}
+if (isset($_GET["selectYear"])){
+    global $year;
+    $year=$_GET["selectYear"];
+    chooseGrade();
+}
+if (isset($_GET["selectGrade"])){
+    $grade=$_GET["selectGrade"];
+    insertGrade($dbconn);
+}
+
 ?>
 
 
