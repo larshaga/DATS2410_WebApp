@@ -52,7 +52,7 @@
         }
     }
     if (isset($_GET['deletecourse'])){
-        $sql4 = "Delete from Grade where stID = $stID and coursecode = {$_GET['coursecode']};";
+        $sql4 = "Delete from Grade where stID = $stID and coursecode = '{$_GET['coursecode']}' and year = '{$_GET['year']}';";
         if ($dbconn->query($sql4)===TRUE){
             echo "<p>Succesfully deleted student from course</p>";
         }else {
@@ -61,7 +61,7 @@
     }
 
     if (isset($_GET['deleteprog'])){
-        $sql5 = "Delete from Enrollment where stID = $stID and progcode = {$_GET['progcode']};";
+        $sql5 = "Delete from Enrollment where stID = $stID and progcode = '{$_GET['progcode']}';";
         if ($dbconn->query($sql5)===TRUE){
             echo "<p>Succesfully deleted student from program</p>";
         }else {
@@ -101,7 +101,7 @@
                 </form></td><tr>";
 
     while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>{$row['title']}</td><td>{$row['Start Year']}</td>
+        echo "<tr><td>{$row['progcode']}</td><td>{$row['title']}</td><td>{$row['Start Year']}</td>
                 <td><form action=\"studentedit.php\" method=\"GET\">
                     <input type='hidden' name='progcode' value={$row['progcode']}>
                     <input type=\"hidden\" name=\"progtitle\" value={$row['title']}>
