@@ -29,27 +29,33 @@ $user="webuser";
 $pw="welcomeunclebuild";
 $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
-if(isset($_GET['stID']))$id = $_GET['stID'];
 ob_start();
-$sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE stID='$id'";
-$result = $dbconn->query($sql);
-if(!$result)
+if(isset($_GET['stID']))
 {
-    echo "Fail: 1";
-}
-else
-{
-    while ($row = $result->fetch_assoc())
+    $id = $_GET['stID'];
+
+    $sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE stID='$id'";
+    $result = $dbconn->query($sql);
+    if(!$result)
     {
-        showStudent($row['fname'], $row['lname'], $row['email'],$id);
+        echo "Fail: 1";
+    }
+    else
+    {
+        while ($row = $result->fetch_assoc())
+        {
+            showStudent($row['fname'], $row['lname'], $row['email'],$id);
+        }
     }
 }
+
+
 
 function showStudent($fname,$lname,$email,$id)
 {
     echo "<div class='form_div'>
             <form method='GET'>
-                <input type='hidden' name='sid' value='$id'>
+                <input type='hidden' name='stID' value='$id'>
                 <input class='dblock' type='Text' name='fname' value='$fname'>
                 <input class='dblock' type='Text' name='lname' value='$lname'>
                 <input class='dblock' type='Text' name='email' value='$email'>
@@ -70,7 +76,7 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
         echo "Fail: 2";
     }
 }
-if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']) && isset($_GET['sid']))
+if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']) && isset($_GET['stID']))
 {
     global $firstName,$lastName,$email;
     updateStudent($_GET['fname'],$_GET['lname'],$_GET['email'],$_GET['sid'],$dbconn);
