@@ -108,7 +108,7 @@
                         
                     while ($row = $result->fetch_assoc())
                     {
-                        echo "<option value='{$result['progcode']}'>'{$result['title']}'</option>";
+                        echo '<option value="'.$result['progcode'].'">'.$result['title'].'</option>';
                     }
                     
                     echo "</select>
