@@ -83,7 +83,9 @@ function chooseGrade($stID,$coursecode,$year){
 
 function insertGrade($dbconn, $stID, $coursecode, $year, $grade){
     global $stID,$coursecode, $year, $grade;
-    $insert="insert into Grade VALUES ($stID,'$coursecode', $year, '$grade')";
+
+    $insert="insert into Grade values ($stID,'$coursecode',$year,'$grade');";
+    echo "$insert";
     $dbconn->query($insert);
 }
 
@@ -102,11 +104,6 @@ if (isset($_GET["year"])){
     chooseGrade($_GET['stID'],$_GET['coursecode'],$_GET['year']);
 }
 if (isset($_GET["grade"])){
-    $q=$_GET['stID'];
-    $w=$_GET['coursecode'];
-    $e=$_GET['year'];
-    $r=$_GET['grade'];
-    echo "$q, $w, $e, $r";
     insertGrade($dbconn, $_GET['stID'],$_GET['coursecode'],$_GET['year'],$_GET['grade']);
 }
 
