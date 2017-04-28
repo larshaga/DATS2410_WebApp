@@ -29,7 +29,7 @@
     {
         $id = $_GET['editCource'];
 
-        $sql = "\"SELECT title, year from Course WHERE coursecode='$courceCode'";
+        $sql = "SELECT title, year from Course WHERE coursecode='$courceCode'";
         $result = $dbconn->query($sql);
         if(!$result)
         {
@@ -44,6 +44,17 @@
         }
     }
 
+
+    function showCourse($courseCode,$title)
+    {
+        echo "<div class='form_div'>
+            <form method='GET'>
+                <input type='hidden' name='editCourse' value='$courseCode'>
+                <input class='dblock' type='Text' name='title' value='$title'>
+                <input class='dblock' type='submit'>
+            </form>
+          </div>";
+    }
 
 
     ?>
