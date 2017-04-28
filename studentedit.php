@@ -43,8 +43,10 @@ else echo "Fail: 1";
 showStudent("Gustav","Berggren","test@test.com");
 function showStudent($fname,$lname,$email)
 {
+    global $id;
     echo "<div class='form_div'>
             <form method='GET'>
+                <p>ID: '$id'</p>
                 <input class='dblock' type='Text' name='fname' value='$fname'>
                 <input class='dblock' type='Text' name='lname' value='$lname'>
                 <input class='dblock' type='Text' name='email' value='$email'>
