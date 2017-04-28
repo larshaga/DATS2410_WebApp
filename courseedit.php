@@ -24,10 +24,11 @@
     $user="webuser";
     $pw="welcomeunclebuild";
     $db="studentinfosys";
+    ob_start();
     $dbconn = new mysqli($host, $user, $pw, $db);
     if(isset($_GET['editCource']))
     {
-        $id = $_GET['editCource'];
+        $courseCode = $_GET['editCource'];
 
         $sql = "SELECT title, year from Course WHERE coursecode='$courceCode'";
         $result = $dbconn->query($sql);
@@ -54,6 +55,18 @@
                 <input class='dblock' type='submit'>
             </form>
           </div>";
+    }
+
+    function updateCourse($courseCode,$title,$dbconn)
+    {
+        $sql2 = "UPDATE Course SET title='$title' WHERE coursecode='$courseCode'";
+        if ($dbconn->query($sql2) === TRUE) {
+
+            ob_clean();
+            showCourse($courseCode,$title);
+        } else {
+            echo "Fail: 2";
+        }
     }
 
 
