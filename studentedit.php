@@ -66,20 +66,26 @@ function showStudent($fname,$lname,$email,$id)
 
 function updateStudent($fname,$lname,$email,$id,$dbconn)
 {
-    $dbconn;
-    $sql2 = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE studentID='$id'";
-    if ($dbconn->query($sql2) === TRUE){
+    $namepattern = "[a-zA-Z]+";
+    $emailpattern = "[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+";
+        if(sizeof(preg_match($namepattern, $lname)) == 1 && sizeof(preg_match($namepattern, $fname)) == 1 && sizeof(preg_match($emailpattern, $email)) == 1)
+            {
 
-        ob_clean();
-        showStudent($fname,$lname,$email);
-    }else{
-        echo "Fail: 2";
-    }
+                $dbconn;
+                $sql2 = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE studentID='$id'";
+                if ($dbconn->query($sql2) === TRUE) {
+
+                    ob_clean();
+                    showStudent($fname, $lname, $email);
+                } else {
+                    echo "Fail: 2";
+                }
+            } else echo "wrong login";
 }
 if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']) && isset($_GET['stID']))
 {
     global $firstName,$lastName,$email;
-    updateStudent($_GET['fname'],$_GET['lname'],$_GET['email'],$_GET['sid'],$dbconn);
+    updateStudent($_GET['fname'],$_GET['lname'],$_GET['email'],$_GET['stID'],$dbconn);
 }
 
 
