@@ -92,7 +92,6 @@
         {
             ob_clean();
             $result = $dbconn->query("SELECT * from Study_program");
-            $row = [];
             echo "
                 <form method='GET'>
                     <p>Last name of student:</p>
@@ -109,7 +108,7 @@
                         
                     while ($row = $result->fetch_assoc())
                     {
-                        echo "<option value='{$result['progcode']}'>{$result['title']}</option>";
+                        echo "<option value='{$result['progcode']}'>'{$result['title']}'</option>";
                     }
                     
                     echo "</select>
