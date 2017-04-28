@@ -138,7 +138,7 @@
                 {
                     $qr = $dbconn->query("SELECT stID from Student WHERE firstname='$firstname' and lastname='$lastname' and email='$email'");
                     $stID = end($qr)['stID'];
-                    echo "<br>stID: " . $stID
+                    echo "<br>stID: " . $stID;
                     //$result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES $stID, '$studyprogram', $startyear)");
                     if ($result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES $stID, '$studyprogram', $startyear)") === TRUE) echo "Added student successfully.";
                 }
