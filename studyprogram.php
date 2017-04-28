@@ -24,6 +24,25 @@ $user="webuser";
 $pw="welcomeunclebuild";
 $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
+
+$sql="select * from Study_program";
+$result=$dbconn->query($sql);
+
+echo "<table class='form_div'>";
+echo "<tr><td>Program Code</td><td>Title</td><td>Show more info</td></tr>";
+while ($row = $result->fetch_assoc())
+{
+    echo "<tr><td>{$row['progcode']}</td><td>{$row['title']}</td>
+            <td>
+                <form action=\"studyprograminfo.php\" method=\"GET\">
+                    <input type='hidden' name='progcode' value={$row['progcode']}>
+                    <input type=\"submit\" value=\"Show\">
+                </form>
+            </td></tr>";
+}
+echo "</table>";
+
+
 ?>
 </body>
 
