@@ -89,7 +89,7 @@
     }
     echo "</table>";
 
-        $sql = "select p.progcode p.title, e.startyear as 'Start Year' from Student s, Enrollment e, Study_program p where s.stID=e.stID and e.progcode=p.progcode and s.stID=$stID;";
+        $sql = "select p.progcode, p.title, e.startyear as 'Start Year' from Student s, Enrollment e, Study_program p where s.stID=e.stID and e.progcode=p.progcode and s.stID=$stID;";
         $result = $dbconn->query($sql);
 
     echo "<table border='1'>";
