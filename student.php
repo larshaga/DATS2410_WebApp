@@ -162,7 +162,7 @@
       SearchResult($_GET['stID'],$dbconn);
     } elseif (isset($_GET['lastname']) && isset($_GET['firstname']) && isset($_GET['email']) && isset($_GET['startyear']))
     {
-        AddNew($_GET['lastname'], $_GET['firstname'], $_GET['email'], $_GET['progcode'], $_GET['startyear'], $dbconn);
+        AddNew($_GET['lastname'], $_GET['firstname'], $_GET['email'], $_GET['addStudyProg'], $_GET['startyear'], $dbconn);
     }
 
     ?>
