@@ -29,7 +29,7 @@
     $coursecode=$_GET['coursecode'];
     $year=$_GET['year'];
 
-    $sql = "SELECT s.stID, Concat(s.lastname,', ', s.firstname) as name, g.grade FROM Student s, Grade g where g.year=$year and g.coursecode='$coursecode' Order by name asc;";
+    $sql = "SELECT s.stID, Concat(s.lastname,', ', s.firstname) as name, g.grade FROM Student s, Grade g where g.year=$year and s.stID=g.stID and g.coursecode='$coursecode' Order by name asc;";
     $result = $dbconn->query($sql);
 
     echo "<table class='form_div'>";
