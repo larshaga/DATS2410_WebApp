@@ -91,7 +91,7 @@
         function Add($dbconn)
         {
             ob_clean();
-            $result = $dbconn->query("SELECT * from Study_program");
+            $result = $dbconn->query("SELECT * FROM Study_program");
             echo "
                 <form method='GET'>
                     <p>Last name of student:</p>
@@ -105,10 +105,10 @@
                     
                     <p>Study program student attends:</p>
                     <select name='addStudyProg'>";
-                    
+
                     while ($row = $result->fetch_assoc())
                     {
-                        echo "<option value=\"{$result['progcode']}\">{$result['title']}</option>";
+                        echo "<option value=\"{$row['progcode']}\">{$row['title']}</option>";
                     }
 
                     echo "</select>
