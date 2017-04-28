@@ -121,11 +121,13 @@
 
         function AddNew($lastname, $firstname, $email, $studyprogram, $startyear, $dbconn)
         {
-            echo "Lastname: " . $lastname . ", firstname: " . $firstname . ", email: " . $email . ", studyprogram: " . $studyprogram . ", startyear: " . $startyear;
              /* Regular expressions to check if input is valid. */
             $namepattern = "[a-zA-Z]+";
             $emailpattern = "[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+";
             $yearpattern = "[1-2][0-9]{3}";
+
+            echo "Lastname: " . $lastname . ", firstname: " . $firstname . ", email: " . $email . ", studyprogram: " . $studyprogram . ", startyear: " . $startyear;
+            echo "Lastname: " . preg_match($namepattern, $lastname) . ", firstname: " . preg_match($namepattern, $firstname) . ", email: " . preg_match($emailpattern, $email) . ", studyprogram: " . $studyprogram . ", startyear: " . preg_match($yearpattern, $startyear);
 
             if (preg_match($namepattern, $lastname) && preg_match($namepattern, $firstname) && preg_match($emailpattern, $email) && preg_match($yearpattern, $startyear))
             {
