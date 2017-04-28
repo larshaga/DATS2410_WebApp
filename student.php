@@ -137,7 +137,10 @@
                 if ($result = $dbconn->query($sql) === TRUE) //Larger than 0 means it was added successfully
                 {
                     $qr = $dbconn->query("SELECT stID from Student WHERE firstname='$firstname' and lastname='$lastname' and email='$email'");
-                    $stID = end($qr)['stID'];
+                    $stID = 0;
+
+                    while ($row = $qr->fetch_assoc()){$stID=$row['stID'];}
+                    
                     echo "<br>stID: " . $stID;
                     //$result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES $stID, '$studyprogram', $startyear)");
                     if ($result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES $stID, '$studyprogram', $startyear)") === TRUE) echo "Added student successfully.";
