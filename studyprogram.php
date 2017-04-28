@@ -31,6 +31,8 @@ $dbconn = new mysqli($host, $user, $pw, $db);
     <?php
     echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
     echo "The database server IP:" . $dbconn->host_info . "<br>";
+    $result->close();
+    $dbconn->close();
     ?>
     <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
