@@ -32,13 +32,15 @@ $dbconn = new mysqli($host, $user, $pw, $db);
 
 ob_start();
 $id = $_GET['stID'];
-$sql = "SELECT firstname AS fname, lastname AS lname, email from Student WHERE studentID=$id;";
+$sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE studentID='$id';";
 $result = $dbconn->query($sql);
-while ($row=$result->fetch_assoc())
-    {
-        showStudent($row['fname'],$row['lname'],$row['email']);
+if($result->num_rows >0)
+{
+    while ($row = $result->fetch_assoc()) {
+        showStudent($row['fname'], $row['lname'], $row['email']);
     }
-
+}
+else echo "Fail: 1";
 showStudent("Gustav","Berggren","test@test.com");
 function showStudent($fname,$lname,$email)
 {
@@ -60,7 +62,7 @@ function updateStudent($fname,$lname,$email)
         ob_clean();
         showStudent($fname,$lname,$email);
     }else{
-        echo "Fail!!!!!!!!!";
+        echo "Fail: 2";
     }
 }
 if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']))
