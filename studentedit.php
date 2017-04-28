@@ -28,24 +28,42 @@ $user="webuser";
 $pw="welcomeunclebuild";
 $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
-
+$studentInfo = array("fname"=>"", "lname"=>"", "email"=>"");
 if(isset($_GET['stID']))
 {
     $id = $_GET['stID'];
-    $sql = "SELECT * from Student WHERE studentID=".$id;
+    $sql = "SELECT firstname AS fname, lastname AS lname, email from Student WHERE studentID=".$id;
     $result = $dbconn->query($sql);
+    while ($row=$result->fetch_assoc())
+    {
+        showStudent($row['fname'],$row['lname'],$row['email']);
+    }
 
 }
 
 
-function showStudent($name,$email,$program)
+function showStudent($fname,$lname,$email)
 {
     $s = "<div class='form_div'>
-            <form action='old_version/handleinput.php' method='GET'>
-                <input class='dblock' type='Text' name='name' value='$name'>
+            <form method='GET'>
+                <input class='dblock' type='Text' name='fname' value='$fname'>
+                <input class='dblock' type='Text' name='lname' value='$lname'>
                 <input class='dblock' type='Text' name='email' value='$email'>
+                <input class='dblock' type='submit'>
             </form>
           </div>";
+}
+if(isset($_GET['fname']))
+{
+    echo $_GET['fname'];
+}
+if(isset($_GET['lname']))
+{
+    echo $_GET['lname'];
+}
+if(isset($_GET['email']))
+{
+    echo $_GET['email'];
 }
 
 
