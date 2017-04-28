@@ -44,7 +44,7 @@ if(isset($_GET['stID']))
 
 function showStudent($fname,$lname,$email)
 {
-    $s = "<div class='form_div'>
+    echo "<div class='form_div'>
             <form method='GET'>
                 <input class='dblock' type='Text' name='fname' value='$fname'>
                 <input class='dblock' type='Text' name='lname' value='$lname'>
