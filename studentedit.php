@@ -31,7 +31,7 @@ $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
 $id = $_GET['stID'];
 ob_start();
-$sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE studentID='$id'";
+$sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE stID='$id'";
 $result = $dbconn->query($sql);
 if(sizeof($result) > 0)
 {
