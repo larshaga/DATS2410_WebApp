@@ -33,7 +33,7 @@ $id = $_GET['stID'];
 ob_start();
 $sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE studentID='$id'";
 $result = $dbconn->query($sql);
-if(mysqli_num_rows($result) > 0)
+if(sizeof($result) > 0)
 {
     while ($row = $result->fetch_assoc()) {
         showStudent($row['fname'], $row['lname'], $row['email']);
