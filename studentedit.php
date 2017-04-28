@@ -22,24 +22,22 @@
 </div>
 
 <?php
+ini_set('display_errors',1);
 //Connection to dats04-dbproxy
 $host="10.1.1.130";
 $user="webuser";
 $pw="welcomeunclebuild";
 $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
-if(isset($_GET['stID']))
-{
-    ob_start();
-    $id = $_GET['stID'];
-    $sql = "SELECT firstname AS fname, lastname AS lname, email from Student WHERE studentID=$id;";
-    $result = $dbconn->query($sql);
-    while ($row=$result->fetch_assoc())
+
+ob_start();
+$id = $_GET['stID'];
+$sql = "SELECT firstname AS fname, lastname AS lname, email from Student WHERE studentID=$id;";
+$result = $dbconn->query($sql);
+while ($row=$result->fetch_assoc())
     {
         showStudent($row['fname'],$row['lname'],$row['email']);
     }
-
-}
 
 showStudent("Gustav","Berggren","test@test.com");
 function showStudent($fname,$lname,$email)
@@ -64,14 +62,12 @@ function updateStudent($fname,$lname,$email)
     }else{
         echo "Fail!!!!!!!!!";
     }
-
 }
 if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']))
 {
     global $firstName,$lastName,$email;
     updateStudent($_GET['fname'],$_GET['lname'],$_GET['email']);
 }
-
 
 
 ?>
