@@ -33,13 +33,18 @@ $id = $_GET['stID'];
 ob_start();
 $sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE stID='$id'";
 $result = $dbconn->query($sql);
-if(sizeof($result) > 0)
+if(!$result)
 {
-    while ($row = $result->fetch_assoc()) {
+    echo "Fail: 1";
+}
+else
+{
+    while ($row = $result->fetch_assoc())
+    {
         showStudent($row['fname'], $row['lname'], $row['email']);
     }
 }
-else echo "Fail: 1";
+
 function showStudent($fname,$lname,$email)
 {
     global $id;
