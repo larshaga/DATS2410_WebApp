@@ -25,27 +25,27 @@
     $pw="welcomeunclebuild";
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
-
-    $sql = "SELECT * from Course ORDER BY year DESC";
-    $result = $dbconn->query($sql);
-
-    echo "<table class='form_div'>";
-    echo "<tr><td>Course code</td><td>Year</td><td>Title</td><td>Action</td></tr>";
-    while ($row = $result->fetch_assoc())
+    if(isset($_GET['editCource']))
     {
-        echo "<tr><td>{$row['coursecode']}</td><td>{$row['year']}</td><td>{$row['title']}</td>
-            <td>
-                <form action=\"courseinfo.php\" method=\"GET\">
-                    <input type='hidden' name='coursecode' value={$row['coursecode']}>
-                    <input type='hidden' name='year' value={$row['year']}>
-                    <input type=\"submit\" value=\"Show courseinfo\">
-                </form>
-                <form action=\"courseedit.php\" method=\"GET\">
-                <input name='editCourse' value={$row['coursecode']}>
-                </form>
-            </td></tr>";
+        $id = $_GET['editCource'];
+
+        $sql = "\"SELECT title, year from Course WHERE coursecode='$courceCode'";
+        $result = $dbconn->query($sql);
+        if(!$result)
+        {
+            echo "Fail: 1";
+        }
+        else
+        {
+            while ($row = $result->fetch_assoc())
+            {
+                //TODO: Method call
+            }
+        }
     }
-    echo "</table>";
+
+
+
     ?>
 </div>
 </body>
