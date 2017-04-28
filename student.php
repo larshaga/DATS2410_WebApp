@@ -127,9 +127,9 @@
             $yearpattern = "[1-2][0-9]{3}";
 
             echo "Lastname: " . $lastname . ", firstname: " . $firstname . ", email: " . $email . ", studyprogram: " . $studyprogram . ", startyear: " . $startyear;
-            echo "Lastname: " . preg_match($namepattern, $lastname) . ", firstname: " . preg_match($namepattern, $firstname) . ", email: " . preg_match($emailpattern, $email) . ", studyprogram: " . $studyprogram . ", startyear: " . preg_match($yearpattern, $startyear);
+            echo "Lastname: " . sizeof(preg_match($namepattern, $lastname)) . ", firstname: " . sizeof(preg_match($namepattern, $firstname)) . ", email: " . sizeof(preg_match($emailpattern, $email)) . ", studyprogram: " . $studyprogram . ", startyear: " . sizeof(preg_match($yearpattern, $startyear));
 
-            if (preg_match($namepattern, $lastname) && preg_match($namepattern, $firstname) && preg_match($emailpattern, $email) && preg_match($yearpattern, $startyear))
+            if (sizeof(preg_match($namepattern, $lastname)) == 1 && sizeof(preg_match($namepattern, $firstname)) == 1 && sizeof(preg_match($emailpattern, $email)) == 1 && sizeof(preg_match($yearpattern, $startyear)) == 1)
             {
                 $sql = "INSERT INTO Student(lastname, firstname, email) VALUES ('$lastname', '$firstname', '$email')";
                 $result = $dbconn->query($sql);
