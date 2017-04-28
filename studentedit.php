@@ -32,7 +32,7 @@ $dbconn = new mysqli($host, $user, $pw, $db);
 
 ob_start();
 $id = $_GET['stID'];
-$sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE studentID='$id';";
+$sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE studentID='$id'";
 $result = $dbconn->query($sql);
 if($result->num_rows >0)
 {
@@ -57,7 +57,7 @@ function showStudent($fname,$lname,$email)
 function updateStudent($fname,$lname,$email)
 {
     global $id, $dbconn;
-    $sql = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE studentID=".$id;
+    $sql = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE studentID='$id'";
     if (mysqli_query($dbconn,$sql)){
         ob_clean();
         showStudent($fname,$lname,$email);
