@@ -132,17 +132,16 @@
             if (sizeof(preg_match($namepattern, $lastname)) == 1 && sizeof(preg_match($namepattern, $firstname)) == 1 && sizeof(preg_match($emailpattern, $email)) == 1 && sizeof(preg_match($yearpattern, $startyear)) == 1)
             {
                 $sql = "INSERT INTO Student(lastname, firstname, email) VALUES ('$lastname', '$firstname', '$email')";
-                $result = $dbconn->query($sql);
-                echo "Result: " . $result;
-                if (sizeof($result) > 0) //Larger than 0 means it was added successfully
+                //$result = $dbconn->query($sql);
+                if ($result = $dbconn->query($sql) === true) //Larger than 0 means it was added successfully
                 {
                     $qr = $dbconn->query("SELECT stID from Student WHERE firstname='$firstname' and lastname='$lastname' and email='$email'");
                     $stID = 0;
                     while ($row = $qr->fetch_assoc())
                     {$stID = $row['stID'];} // Get the last studentnumber, if qr has more than one.
-                    
+
                     $result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES $stID, '$studyprogram', $startyear)");
-                    if (sizeof($result) > 0) echo "Added student successfully.";
+                    if ($result === true) echo "Added student successfully.";
                 }
             } else
             {
