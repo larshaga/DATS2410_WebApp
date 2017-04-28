@@ -108,6 +108,11 @@ if (isset($_GET["year"])){
     chooseGrade($_GET['stID'],$_GET['coursecode'],$_GET['year']);
 }
 if (isset($_GET["grade"])){
+    $q=$_GET['stID'];
+    $w=$_GET['coursecode'];
+    $e=$_GET['year'];
+    $r=$_GET['grade'];
+    echo "$q, $w, $e, $r";
     insertGrade($dbconn, $_GET['stID'],$_GET['coursecode'],$_GET['year'],$_GET['grade']);
 }
 
