@@ -133,10 +133,14 @@
             {
                 $sql = "INSERT INTO Student(lastname, firstname, email) VALUES ('$lastname', '$firstname', '$email')";
                 $result = $dbconn->query($sql);
+                echo "Result: " . $result;
                 if ($result)
                 {
-                    $stID = $dbconn->query("SELECT stID from Student WHERE firstname='$firstname' and lastname='$lastname' and email='$email'");
-                    $result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES (end($stID), '$studyprogram', $startyear)");
+                    $qr = $dbconn->query("SELECT stID from Student WHERE firstname='$firstname' and lastname='$lastname' and email='$email'");
+                    $stID = 0;
+                    while ($row = $qr->fetch_assoc())
+                    {$stID = $row['stID'];} // Get the last studentnumber, if qr has more than one.
+                    $result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES $stID, '$studyprogram', $startyear)");
                 }
             } else
             {
