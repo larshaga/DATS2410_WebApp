@@ -76,7 +76,7 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
                 if ($dbconn->query($sql2) === TRUE) {
 
                     ob_clean();
-                    showStudent($fname, $lname, $email);
+                    showStudent($fname, $lname, $email,$id);
                 } else {
                     echo "Fail: 2";
                 }
