@@ -83,18 +83,24 @@ function chooseGrade($stID,$coursecode,$year){
 
 function insertGrade($dbconn, $stID, $coursecode, $year, $grade){
     $insert="insert into Grade values ($stID,'$coursecode',$year,'$grade');";
-    echo "<p>$insert</p>";
-    $dbconn->query($insert);
+    echo "<p>$insert</p>"; //TODO: remove once finished
+    if ($dbconn->query($insert)===TRUE){
+        echo "<p>Succesfully added the course to student $stID</p>";
+    }else {
+        echo "<p>Something went wrong. The course was not added to student $stID</p>";
+    }
 }
 
 
 if (isset($_GET["coursecode"])){
+    //TODO:remove once finished
     $q=$_GET['stID'];
     $w=$_GET['coursecode'];
     echo "$q, $w";
     selectYear($dbconn,$_GET['stID'],$_GET['coursecode']);
 }
 if (isset($_GET["year"])){
+    //TODO:remove once finished
     $q=$_GET['stID'];
     $w=$_GET['coursecode'];
     $e=$_GET['year'];
