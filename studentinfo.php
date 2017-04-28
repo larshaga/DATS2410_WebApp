@@ -52,7 +52,7 @@
         }
     }
     if (isset($_GET['deletecourse'])){
-        $sql4 = "Delete from Grade where stID = $stID and coursecode = '{$_GET['coursecode']}' and year = '{$_GET['year']}';";
+        $sql4 = "Delete from Grade where stID = $stID and coursecode = '{$_GET['coursecode']}' and year = '{$_GET['courseyear']}';";
         if ($dbconn->query($sql4)===TRUE){
             echo "<p>Succesfully deleted student from course</p>";
         }else {
