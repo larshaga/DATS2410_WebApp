@@ -46,10 +46,6 @@ echo "<form id=\"selectCourse\" method=\"GET\">
         <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
     </form>";
 
-
-
-
-
 function selectYear($dbconn){
 //    ob_clean();
     global $coursecode;
