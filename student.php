@@ -121,6 +121,7 @@
 
         function AddNew($lastname, $firstname, $email, $studyprogram, $startyear, $dbconn)
         {
+            echo "Lastname: " . $lastname . ", firstname: " . $firstname . ", email: " . $email . ", studyprogram: " . $studyprogram . ", startyear: " . $startyear;
              /* Regular expressions to check if input is valid. */
             $namepattern = "[a-zA-Z]+";
             $emailpattern = "[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+";
