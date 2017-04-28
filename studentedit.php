@@ -29,9 +29,8 @@ $user="webuser";
 $pw="welcomeunclebuild";
 $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
-
-ob_start();
 $id = $_GET['stID'];
+ob_start();
 $sql = "SELECT firstname AS 'fname', lastname AS 'lname', email AS 'email' from Student WHERE studentID='$id'";
 $result = $dbconn->query($sql);
 if($result->num_rows >0)
