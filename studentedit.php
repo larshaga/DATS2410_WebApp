@@ -32,7 +32,7 @@ $studentInfo = array("fname"=>"", "lname"=>"", "email"=>"");
 if(isset($_GET['stID']))
 {
     $id = $_GET['stID'];
-    $sql = "SELECT firstname AS fname, lastname AS lname, email from Student WHERE studentID=".$id;
+    $sql = "SELECT firstname AS fname, lastname AS lname, email from Student WHERE studentID=$id;";
     $result = $dbconn->query($sql);
     while ($row=$result->fetch_assoc())
     {
