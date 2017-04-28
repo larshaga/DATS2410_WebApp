@@ -35,7 +35,7 @@ $getTitle="select coursecode, title from Course group BY title;";
 $getTitlecourse = $dbconn->query($getTitle);
 
 echo "<form id=\"selectCourse\" method=\"GET\">
-        <select name=\"selectCourse\">";
+        <select name=\"coursecode\">";
             while($row=$getTitlecourse->fetch_assoc()){
                 echo "<option value=\"{$row['coursecode']}\" name='coursecode'>{$row['title']}</option>";
             }
@@ -50,7 +50,7 @@ function selectYear($dbconn,$stID,$coursecode){
     $getYearcourse = $dbconn->query($getYear);
     $row =[];
     echo "<form id=\"selectYear\" method=\"GET\">
-        <select name=\"selectYear\">";
+        <select name=\"year\">";
             while($row=$getYearcourse->fetch_assoc()){
                 echo "<option value=\"{$row['year']}\" name='year'>{$row['year']}</option>";
             }
@@ -64,7 +64,7 @@ function selectYear($dbconn,$stID,$coursecode){
 function chooseGrade($stID,$coursecode,$year){
 
     echo "<form id=\"selectGrade\" method=\"GET\">
-        <select name=\"selectGrade\">
+        <select name=\"grade\">
             <option value='A'>A</option>
             <option value='B'>B</option>
             <option value='C'>C</option>
