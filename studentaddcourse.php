@@ -23,6 +23,7 @@
 
 <?php
 ob_start();
+ini_set('display_errors',1);
 $stID=$_GET['stID'];
 //Connection to dats04-dbproxy
 $host="10.1.1.130";
@@ -87,20 +88,20 @@ function insertGrade($dbconn, $stID, $coursecode, $year, $grade){
 }
 
 
-if (isset($_GET["selectCourse"])){
+if (isset($_GET["coursecode"])){
     $q=$_GET['stID'];
     $w=$_GET['coursecode'];
     echo "$q, $w";
     selectYear($dbconn,$_GET['stID'],$_GET['coursecode']);
 }
-if (isset($_GET["selectYear"])){
+if (isset($_GET["year"])){
     $q=$_GET['stID'];
     $w=$_GET['coursecode'];
     $e=$_GET['year'];
     echo "$q, $w, $e";
     chooseGrade($_GET['stID'],$_GET['coursecode'],$_GET['year']);
 }
-if (isset($_GET["selectGrade"])){
+if (isset($_GET["grade"])){
     $q=$_GET['stID'];
     $w=$_GET['coursecode'];
     $e=$_GET['year'];
