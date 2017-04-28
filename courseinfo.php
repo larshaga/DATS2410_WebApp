@@ -26,17 +26,21 @@
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
 
-    $sql = "SELECT * FROM Course;";
+    $coursecode=$_GET['coursecode'];
+    $year=$_GET['year'];
+
+    $sql = "SELECT s.stID, Concat(s.lastname,', ', s.firstname) as name, g.grade FROM Student s, Grade g where g.year=$year and g.coursecode=$coursecode Order by name asc;";
     $result = $dbconn->query($sql);
 
     echo "<table class='form_div'>";
-    echo "<tr><td>Course code</td><td>Year</td><td>Title</td><td>Action</td></tr>";
+    echo "<tr><td>StudentID</td><td>Name</td><td>Grade</td><td>Student info</td></tr>";
     while ($row = $result->fetch_assoc())
     {
-        echo "<tr><td>{$row['coursecode']}</td><td>{$row['year']}</td><td>{$row['title']}</td>
+        echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td><td>{$row['grade']}</td>
             <td>
-                <form action=\"courseinfo.php\" method=\"GET\">
-                    <input type=\"submit\" value=\"Show courseinfo\">
+                <form action=\"studentinfo.php\" method=\"GET\">
+                    <input type='hidden' name='stID' value={$row['stID']}>
+                    <input type=\"submit\" value=\"Show\">
                 </form>
             </td></tr>";
     }
