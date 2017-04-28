@@ -136,12 +136,9 @@
                 //$dbconn->affected_rows >= 1
                 if ($result = $dbconn->query($sql) === TRUE) //Larger than 0 means it was added successfully
                 {
-                    echo "GOT IN HERE YOLO";
                     $qr = $dbconn->query("SELECT stID from Student WHERE firstname='$firstname' and lastname='$lastname' and email='$email'");
-                    $stID = 0;
-                    while ($row = $qr->fetch_assoc())
-                    {$stID = $row['stID'];} // Get the last studentnumber, if qr has more than one.
-
+                    $stID = end($qr)['stID'];
+                    echo "<br>stID: " . $stID
                     //$result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES $stID, '$studyprogram', $startyear)");
                     if ($result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES $stID, '$studyprogram', $startyear)") === TRUE) echo "Added student successfully.";
                 }
