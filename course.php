@@ -39,8 +39,8 @@
                     <input type='hidden' name='coursecode' value={$row['coursecode']}>
                     <input type='hidden' name='year' value={$row['year']}>
                     <input type=\"submit\" value=\"Show courseinfo\">
-                </form>
-                <form action=\"courseedit.php\" method=\"GET\">
+                </form></td>
+                <td><form action=\"courseedit.php\" method=\"GET\">
                     <input type='hidden' name='editCourse' value={$row['coursecode']}>
                     <input type='submit' value=\"Edit\">                
                 </form>

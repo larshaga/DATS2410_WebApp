@@ -147,7 +147,7 @@
     if (isset($_GET['stID']))
     {
       SearchResult($_GET['stID'],$dbconn);
-    } elseif (isset($_GET['lastname']) && isset($_GET['firstname']) && isset($_GET['email']) && isset($_GET['startyear']))
+    } elseif (isset($_GET['lastname']) && isset($_GET['firstname']) && isset($_GET['email']))
     {
         AddNew($_GET['lastname'], $_GET['firstname'], $_GET['email'], $dbconn);
     }
