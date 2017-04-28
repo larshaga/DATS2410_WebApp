@@ -97,19 +97,22 @@
                 <form method='GET'>
                     <p>Last name of student:</p>
                     <input name='lastname' type='text'>
+                    
                     <p>First name of student:</p>
                     <input name='firstname' type='text'>
+                    
                     <p>Email of student:</p>
                     <input name='email' type='text'>
+                    
                     <p>Study program student attends:</p>
-                    <select name='addStudyProg'>
+                    <select name='addStudyProg'>";
                         
                     while ($row = $result->fetch_assoc())
                     {
-                        <option value='{$result['progcode']}'>{$result['title']}</option>
+                        echo "<option value='{$result['progcode']}'>{$result['title']}</option>";
                     }
                     
-                    </select>
+                    echo "</select>
                     <p>Startyear of student</p>
                     <input name='startyear' type='text'>
                     <input type='submit' value='Add student'>
@@ -120,9 +123,7 @@
 
         function AddNew($lastname, $firstname, $email, $studyprogram, $startyear, $dbconn)
         {
-            /*
-             * Regular expressions to check if input is valid.
-             */
+             /* Regular expressions to check if input is valid. */
             $namepattern = "[a-zA-Z]+";
             $emailpattern = "[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+";
             $yearpattern = "[1-2][0-9]{3}";
@@ -164,7 +165,7 @@
     {
         AddNew($_GET['lastname'], $_GET['firstname'], $_GET['email'], $_GET['progcode'], $_GET['startyear'], $dbconn);
     }
-    
+
     ?>
 </div>
 </body>
