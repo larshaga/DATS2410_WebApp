@@ -46,14 +46,10 @@ echo "<form id=\"selectCourse\" method=\"GET\">
         <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
     </form>";
 
-function selectYear($dbconn){
+function selectYear($dbconn,$coursecode,$stID){
 //    ob_clean();
-    global $coursecode;
     $getYear="Select year from Course where coursecode='$coursecode';";
     $getYearcourse = $dbconn->query($getYear);
-
-
-
     $row =[];
     echo "<form id=\"selectYear\" method=\"GET\">
         <select name=\"selectYear\">";
@@ -61,11 +57,13 @@ function selectYear($dbconn){
                 echo "<option value=\"{$row['year']}\">{$row['year']}</option>";
             }
         echo "</select>
+        <input type='hidden' name='coursecode' value='$coursecode'>
+        <input type='hidden' name='stID' value='$stID'>
         <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
     </form>";
 }
 
-function chooseGrade(){
+function chooseGrade($stID,$coursecode,$year){
 
     echo "<form id=\"selectGrade\" method=\"GET\">
         <select name=\"selectGrade\">
@@ -77,35 +75,40 @@ function chooseGrade(){
             <option value='F'>F</option>
             <option value=''>Not finished</option>
         </select>
+        <input type='hidden' name='coursecode' value='$coursecode'>
+        <input type='hidden' name='stID' value='$stID'>
+        <input type='hidden' name='year' value='$year'>
         <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
     </form>";
 }
 
-function insertGrade($dbconn){
+function insertGrade($dbconn, $stID, $coursecode, $year, $grade){
     global $stID,$coursecode, $year, $grade;
     $insert="insert into Grade VALUES ($stID,'$coursecode', $year, '$grade')";
     $dbconn->query($insert);
 }
 
 
-if (isset($_GET["selectCourse"]))
-{
-    global $coursecode;
-    $coursecode = $_GET["selectCourse"];
-    echo"$coursecode";
-    selectYear($dbconn);
+if (isset($_GET["selectCourse"])){
+    $q=$_GET['stID'];
+    $w=$_GET['coursecode'];
+    echo "$q, $w";
+    selectYear($dbconn,$_GET['stID'],$_GET['coursecode']);
 }
 if (isset($_GET["selectYear"])){
-    global $year, $coursecode;
-    $year=$_GET["selectYear"];
-    echo"$coursecode, $year";
-    chooseGrade();
+    $q=$_GET['stID'];
+    $w=$_GET['coursecode'];
+    $e=$_GET['year'];
+    echo "$q, $w, $e";
+    chooseGrade($_GET['stID'],$_GET['coursecode'],$_GET['year']);
 }
 if (isset($_GET["selectGrade"])){
-    global $grade,$year,$coursecode;
-    $grade=$_GET["selectGrade"];
-    echo "$coursecode, $year, $grade";
-    insertGrade($dbconn);
+    $q=$_GET['stID'];
+    $w=$_GET['coursecode'];
+    $e=$_GET['year'];
+    $r=$_GET['grade'];
+    echo "$q, $w, $e, $r";
+    insertGrade($dbconn, $_GET['stID'],$_GET['coursecode'],$_GET['year'],$_GET['grade']);
 }
 
 ?>
