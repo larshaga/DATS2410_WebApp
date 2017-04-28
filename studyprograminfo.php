@@ -28,7 +28,7 @@
 
     $progcode=$_GET['progcode'];
 
-    $sql = " select s.stID, concat(s.lastname,', ',s.firstname) as name, p.title, e.startyear from Student s, Enrollment e, Study_program p where p.progcode='$progcode';";
+    $sql = " select s.stID, concat(s.lastname,', ',s.firstname) as name, p.title, e.startyear from Student s, Enrollment e, Study_program p where p.progcode=e.progcode and e.progcode='$progcode' and s.stID=e.stID;";
     $result = $dbconn->query($sql);
 
     echo "<table class='form_div'>";
