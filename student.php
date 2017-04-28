@@ -103,53 +103,31 @@
                     <p>Email of student:</p>
                     <input name='email' type='text'>
                     
-                    <p>Study program student attends:</p>
-                    <select name='addStudyProg'>";
-
-                    while ($row = $result->fetch_assoc())
-                    {
-                        echo "<option value=\"{$row['progcode']}\">{$row['title']}</option>";
-                    }
-
-                    echo "</select>
-                    <p>Startyear of student</p>
-                    <input name='startyear' type='text'>
                     <input type='submit' value='Add student'>
                 </form>";
 
         }
 
-        function AddNew($lastname, $firstname, $email, $studyprogram, $startyear, $dbconn)
+        function AddNew($lastname, $firstname, $email, $dbconn)
         {
              /* Regular expressions to check if input is valid. */
             $namepattern = "[a-zA-Z]+";
             $emailpattern = "[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+";
-            $yearpattern = "[1-2][0-9]{3}";
 
-            echo "Lastname: " . $lastname . ", firstname: " . $firstname . ", email: " . $email . ", studyprogram: " . $studyprogram . ", startyear: " . $startyear;
-            echo "Lastname: " . sizeof(preg_match($namepattern, $lastname)) . ", firstname: " . sizeof(preg_match($namepattern, $firstname)) . ", email: " . sizeof(preg_match($emailpattern, $email)) . ", studyprogram: " . $studyprogram . ", startyear: " . sizeof(preg_match($yearpattern, $startyear));
-
-            if (sizeof(preg_match($namepattern, $lastname)) == 1 && sizeof(preg_match($namepattern, $firstname)) == 1 && sizeof(preg_match($emailpattern, $email)) == 1 && sizeof(preg_match($yearpattern, $startyear)) == 1)
+            if (sizeof(preg_match($namepattern, $lastname)) == 1 && sizeof(preg_match($namepattern, $firstname)) == 1 && sizeof(preg_match($emailpattern, $email)) == 1)
             {
                 $sql = "INSERT INTO Student(lastname, firstname, email) VALUES ('$lastname', '$firstname', '$email')";
-                //$result = $dbconn->query($sql);
-                //$dbconn->affected_rows >= 1
-                if ($result = $dbconn->query($sql) === TRUE) //Larger than 0 means it was added successfully
-                {
-                    $qr = $dbconn->query("SELECT stID from Student WHERE firstname='$firstname' and lastname='$lastname' and email='$email'");
-                    $stID = 0;
 
-                    while ($row = $qr->fetch_assoc()){$stID=$row['stID'];}
-                    
-                    echo "<br>stID: " . $stID;
-                    //$result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES $stID, '$studyprogram', $startyear)");
-                    if ($result = $dbconn->query("INSERT INTO Enrollment (stID, progcode, startyear) VALUES $stID, '$studyprogram', $startyear)") === TRUE) echo "Added student successfully.";
+                if ($result = $dbconn->query($sql) === TRUE)
+                {
+                    echo "<p>Student was successcully added.</p>";
+                } else
+                {
+                    echo "<p>There was a problem adding the new student.</p>";
                 }
             } else
             {
-                echo "<div>
-                        <p>Invalid input. Names can only be normal characters, Email can only be on the form \"foo@bar.baz\" and only valid years are accepted.</p>
-                        </div>";
+                echo "<p>Invalid input. Names can only be normal characters, Email can only be on the form \"foo@bar.baz\".</p>";
             }
         }
     /*
@@ -171,7 +149,7 @@
       SearchResult($_GET['stID'],$dbconn);
     } elseif (isset($_GET['lastname']) && isset($_GET['firstname']) && isset($_GET['email']) && isset($_GET['startyear']))
     {
-        AddNew($_GET['lastname'], $_GET['firstname'], $_GET['email'], $_GET['addStudyProg'], $_GET['startyear'], $dbconn);
+        AddNew($_GET['lastname'], $_GET['firstname'], $_GET['email'], $dbconn);
     }
 
     ?>
