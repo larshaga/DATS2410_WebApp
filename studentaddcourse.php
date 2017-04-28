@@ -90,16 +90,21 @@ function insertGrade($dbconn){
 
 if (isset($_GET["selectCourse"]))
 {
+    global $coursecode;
     $coursecode = $_GET["selectCourse"];
+    echo"$coursecode";
     selectYear($dbconn);
 }
 if (isset($_GET["selectYear"])){
-    global $year;
+    global $year, $coursecode;
     $year=$_GET["selectYear"];
+    echo"$coursecode, $year";
     chooseGrade();
 }
 if (isset($_GET["selectGrade"])){
+    global $grade,$year,$coursecode;
     $grade=$_GET["selectGrade"];
+    echo "$coursecode, $year, $grade";
     insertGrade($dbconn);
 }
 
