@@ -24,9 +24,6 @@
 <?php
 ob_start();
 $stID=$_GET['stID'];
-$coursecode;
-$grade;
-$year;
 //Connection to dats04-dbproxy
 $host="10.1.1.130";
 $user="webuser";
@@ -43,6 +40,7 @@ echo "<form id=\"selectCourse\" method=\"GET\">
                 echo "<option value=\"{$row['coursecode']}\">{$row['title']}</option>";
             }
         echo "</select>
+        <input type='hidden' name='stID' value='$stID'>
         <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
     </form>";
 
