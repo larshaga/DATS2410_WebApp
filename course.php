@@ -26,6 +26,19 @@
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
 
+    if (isset($_GET['deletecourse'])){ //TODO:fix transaction with rollback?
+        $sql = "Delete from Grade where coursecode='{$_GET['coursecode']}' and year='{$_GET['year']}';";
+        if ($dbconn->query($sql1)===TRUE){
+            $sql2="Delete from Course where coursecode='{$_GET['coursecode']}' and year='{$_GET['year']}';";
+            if ($dbconn->query($sql2)===TRUE){
+                echo "<p>Succesfully deleted the course!</p>";
+            }
+        }else {
+            echo "<p>Something went wrong. The course was not deleted.</p>";
+        }
+    }
+
+
     $sql = "SELECT * from Course ORDER BY year DESC";
     $result = $dbconn->query($sql);
 
@@ -43,6 +56,12 @@
                 <td><form action=\"courseedit.php\" method=\"GET\">
                     <input type='hidden' name='editCourse' value={$row['coursecode']}>
                     <input type='submit' value=\"Edit\">                
+                </form>
+            </td><td><form method=\"GET\">
+                    <input type='hidden' name='deletecourse' value='1'>
+                    <input type='hidden' name='coursecode' value={$row['coursecode']}>
+                    <input type='hidden' name='year' value={$_GET['year']}>
+                    <input type='submit' value=\"Delete\">                
                 </form>
             </td></tr>";
     }
