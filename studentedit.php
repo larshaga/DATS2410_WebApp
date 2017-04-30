@@ -17,10 +17,7 @@
     <a class="navigation" href="studyprogram.php">Study Program</a>
 </div>
 
-<div class="siteinfo">
-    <p>Above you can go to another site, from there you can follow your intuition</p>
-</div>
-
+<div class="siteinfo"
 <?php
 ini_set('display_errors',1);
 //Connection to dats04-dbproxy
@@ -90,7 +87,7 @@ if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']) && is
 
 
 ?>
-
+</div>
 
 </body>
 
@@ -101,6 +98,5 @@ if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']) && is
     $result->close();
     $dbconn->close();
     ?>
-    <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
 </html>

@@ -30,7 +30,7 @@ $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
 ?>
 
-<div class="form_div">
+<div class="siteinfo">
     <form action="old_version/handleinput.php" method="GET">
         <input class="dblock" type="Text" placeholder="name" name="name">
         <input class="dblock" type="Text" placeholder="email" name="email">
@@ -50,6 +50,5 @@ $dbconn = new mysqli($host, $user, $pw, $db);
 //    $result->close();
     $dbconn->close();
     ?>
-    <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
 </html>

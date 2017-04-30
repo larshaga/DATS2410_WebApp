@@ -17,8 +17,7 @@
     <a class="navigation" href="studyprogram.php">Study Program</a>
 </div>
 
-<div>
-
+<div class="siteinfo">
     <form id="selectForm" method="get">
         <select name="selectInfo">
             <option value="1">Search for student by studentnumber</option>
@@ -36,7 +35,7 @@
         $pw="welcomeunclebuild";
         $db="studentinfosys";
         $dbconn = new mysqli($host, $user, $pw, $db);
-
+        ListAll($dbconn);
         function ListAll($dbconn)
         {
             ob_clean();
@@ -95,13 +94,13 @@
             echo "
                 <form method='GET'>
                     <p>Last name of student:</p>
-                    <input name='lastname' type='text'>
+                    <input name='lastname' type='text' required>
                     
                     <p>First name of student:</p>
-                    <input name='firstname' type='text'>
+                    <input name='firstname' type='text' required>
                     
                     <p>Email of student:</p>
-                    <input name='email' type='text'>
+                    <input name='email' type='text' required>
                     
                     <input type='submit' value='Add student'>
                 </form>";
@@ -163,6 +162,5 @@
     $result->close();
     $dbconn->close();
     ?>
-    <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
 </html>

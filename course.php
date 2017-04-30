@@ -27,6 +27,7 @@
         <input class="dblock" type="Submit" value="Submit">
     </form>
 
+<div class="siteinfo">
     <?php
     ob_start();
 
@@ -201,6 +202,5 @@
     $result->close();
     $dbconn->close();
     ?>
-    <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
 </html>
