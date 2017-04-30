@@ -170,13 +170,12 @@
     if (isset($_GET['deletecourse'])){
         $dbconn->query("START TRANSACTION");
 
-        $sql = "Delete from Grade where coursecode='{$_GET['coursecode']}' and year='{$_GET['year']}';";
+        $sql = "Delete from Grade where coursecode='{$_GET['coursecode']}' and year={$_GET['year']};";
         if ($dbconn->query($sql1)===TRUE){
-            $sql2="Delete from Course where coursecode='{$_GET['coursecode']}' and year='{$_GET['year']}';";
+            $sql2="Delete from Course where coursecode='{$_GET['coursecode']}' and year={$_GET['year']};";
             if ($dbconn->query($sql2)===TRUE){
-                if ($dbconn->query("COMMIT")){
-                    echo "<p>Succesfully deleted the course!</p>";
-                }
+                $dbconn->query("COMMIT");
+                echo "<p>Succesfully deleted the course!</p>";
             }
         }else {
             $dbconn->query("ROLLBACK");
