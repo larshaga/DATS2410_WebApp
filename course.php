@@ -17,7 +17,7 @@
     <a class="navigation" href="studyprogram.php">Study program</a>
 </div>
 
-<div class="form_div">
+<div class="siteinfo">
     <form id="selectForm" method="get">
         <select name="selectInfo">
             <option value="1">Search for course by coursecode</option>
@@ -27,7 +27,7 @@
         <input class="dblock" type="Submit" value="Submit">
     </form>
 
-<div class="siteinfo">
+
     <?php
     ob_start();
 
