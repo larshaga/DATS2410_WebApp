@@ -28,7 +28,8 @@
 
     $coursecode=$_GET['coursecode'];
     $coursetitle=$_GET['coursetitle'];
-    $year=$_GET['year'];
+    $yearstring=$_GET['year'];
+    $year=urldecode($yearstring);
 
     $sql = "SELECT s.stID, Concat(s.lastname,', ', s.firstname) as name, g.grade FROM Student s, Grade g where g.year=$year and s.stID=g.stID and g.coursecode='$coursecode' Order by name asc;";
     $result = $dbconn->query($sql);
