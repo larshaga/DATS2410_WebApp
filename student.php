@@ -36,7 +36,7 @@
         $pw="welcomeunclebuild";
         $db="studentinfosys";
         $dbconn = new mysqli($host, $user, $pw, $db);
-
+        ListAll($dbconn);
         function ListAll($dbconn)
         {
             ob_clean();
