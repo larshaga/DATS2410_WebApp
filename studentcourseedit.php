@@ -62,7 +62,8 @@
     }
 
     if(isset($_GET['grade'])){
-        $sqlUpdate="update set grade='{$_GET['grade']}' where stID={$_GET['stID']} and coursecode='{$_GET['coursecode']}' and year={$_GET['year']};";
+        $sqlUpdate="update Grade set grade='{$_GET['grade']}' where stID={$_GET['stID']} and coursecode='{$_GET['coursecode']}' and year={$_GET['year']};";
+        echo "$sqlUpdate";
         if ($dbconn->query($sqlUpdate)){
             echo "<p>Update was successfull!";
         }else{
