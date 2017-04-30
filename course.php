@@ -97,6 +97,7 @@
         $codepattern = "[a-zA-Z]{4}";
         $titlepattern = "[a-zA-Z]+";
         $yearpattern = "[1-2][0-9]{3}";
+        $coursecode = strtoupper($coursecode); //Makes sure course-code is uppercase.
 
         if (sizeof(preg_match($codepattern, $coursecode)) == 1 && sizeof(preg_match($titlepattern, $coursetitle)) == 1 && sizeof(preg_match($yearpattern, $courseyear)) == 1)
         {
