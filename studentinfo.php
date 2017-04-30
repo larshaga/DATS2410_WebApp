@@ -17,13 +17,6 @@
     <a class="navigation" href="studyprogram.php">Study Program</a>
 </div>
 
-<div class="siteinfo">
-    <p>Student info:</p>
-</div>
-<div class="editdelete">
-
-</div>
-
 <div>
     <?php
     //Connection to dats04-dbproxy
@@ -80,7 +73,7 @@
             <h2>Name: {$name}</h2>
             <h3>Student ID: {$stID}</h3>    
             <h3>E-mail: {$email}</h3>
-            <table>
+            <table><tr>
             <td>
             <form action=\"studentedit.php\" method=\"GET\">
                 <input type=\"hidden\" name=\"stID\" value=$stID>
@@ -93,7 +86,7 @@
                     <input type=\"hidden\" name=\"deleteBool\" value=1>
                     <input type=\"submit\" value=\"Delete\">
                 </form>
-            </td></table>
+            </td></tr></table>
         </div>";
     /*
     echo "<table border='1'>";
