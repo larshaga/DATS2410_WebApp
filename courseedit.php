@@ -19,6 +19,7 @@
 
 <div class="siteinfo">
     <?php
+    ini_set('display_errors',1);
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $user="webuser";
@@ -71,7 +72,7 @@
 
     if(isset($_GET['editCource']) && isset($_GET['title']))
     {
-        updateStudent($_GET['editCource'],$_GET['title']);
+        updateCourse($_GET['editCource'],$_GET['title']);
     }
 
     ?>
