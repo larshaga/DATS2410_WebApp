@@ -41,7 +41,6 @@
     echo "<p>Course Title: $title<p/>";
     echo "<p>Couse Code: $coursecode</p>";
     echo "<p>Year: $year</p>";
-    echo "<p>People who attended course: </p>";
     echo "<p>People who attended this course: </p>";
     echo "<table class='form_div'>";
     echo "<tr><td>StudentID</td><td>Name</td><td>Grade</td><td>Student info</td></tr>";
