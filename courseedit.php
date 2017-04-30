@@ -30,7 +30,7 @@
     {
         $courseCode = $_GET['editCource'];
 
-        $sql = "SELECT title, year from Course WHERE coursecode='$courceCode'";
+        $sql = "SELECT DISTINCT title FROM Course WHERE coursecode='$courceCode'";
         $result = $dbconn->query($sql);
         if(!$result)
         {
@@ -40,7 +40,7 @@
         {
             while ($row = $result->fetch_assoc())
             {
-                //TODO: Method call
+                showCourse($courseCode,$row['title']);
             }
         }
     }
