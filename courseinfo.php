@@ -27,18 +27,20 @@
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
 
-    $coursecode=str_replace("'","",$_GET['coursecode']);
-    $year=str_replace("'","",$_GET['year']);
+    $coursecode=$_GET['coursecode'];
+    $year=$_GET['year'];
     $titleSQL = "SELECT DISTINCT title FROM Course WHERE coursecode='$coursecode'";
-    $coursetitleresult=($dbconn->query($titleSQL))->fetch_assoc();
-    $coursetitle = str_replace("'","",$courstitleresult['title']);
+    $result=$dbconn->query($titleSQL);
+    while ($row=$result->fetch_assoc()){
+        $title=$row['title'];
+    }
 
     $sql = "SELECT s.stID, Concat(s.lastname,', ', s.firstname) as name, g.grade FROM Student s, Grade g where g.year=$year and s.stID=g.stID and g.coursecode='$coursecode' Order by name asc;";
     $result = $dbconn->query($sql);
 
-    echo "<p>Course Title: '$coursetitle'<p/>";
-    echo "<p>Couse Code: '$coursecode'</p>";
-    echo "<p>Year: '$year'</p>";
+    echo "<p>Course Title: $title<p/>";
+    echo "<p>Couse Code: $coursecode</p>";
+    echo "<p>Year: $year</p>";
     echo "<p>People who attended course: </p>";
     echo "<label for='studentInfo'>People who attended this course: </label>";
     echo "<table name='studentInfo' class='form_div'>";
