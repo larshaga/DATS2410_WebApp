@@ -47,7 +47,7 @@
             echo "<tr><td>{$row['stID']}</td><td>{$row['progcode']}</td><td>{$row['title']}</td>";
         }
         echo "<td><form method=\"GET\">
-                <input type='number' min='1000' max='".date("Y")."' value='".date("Y")."' required>
+                <input type='number' name='year' min='1000' max='".date("Y")."' value='".date("Y")."' required>
                 <input type='hidden' name='stID' value='$stID'>
                 <input type='hidden' name='progcode' value='$progcode'>
                 </td><form><input type='submit' value='Change'>
