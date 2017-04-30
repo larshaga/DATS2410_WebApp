@@ -27,9 +27,10 @@
     $dbconn = new mysqli($host, $user, $pw, $db);
 
     $coursecode=$_GET['coursecode'];
-    $coursetitle=$_GET['coursetitle'];
-    $yearstring=$_GET['year'];
-    $year=urldecode($yearstring);
+    $year=$_GET['year'];
+
+    $coursetitlestring=$_GET['coursetitle'];
+    $coursetitle=urldecode($coursetitlestring);
 
     $sql = "SELECT s.stID, Concat(s.lastname,', ', s.firstname) as name, g.grade FROM Student s, Grade g where g.year=$year and s.stID=g.stID and g.coursecode='$coursecode' Order by name asc;";
     $result = $dbconn->query($sql);

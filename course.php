@@ -142,8 +142,8 @@
             echo "<tr><td>{$row['coursecode']}</td><td>{$row['year']}</td><td>{$row['title']}</td>
                 <td>
                     <form action=\"courseinfo.php\" method=\"GET\">
-                        <input type='hidden' name='coursecode' value={$row['coursecode']}>
-                        <input type='hidden' name='coursetitle' value='$courseTitle'>
+                        <input type='hidden' name='coursecode' value='$courseTitle'>
+                        <input type='hidden' name='coursetitle' value={$row['title']}>
                         <input type='hidden' name='year' value={$row['year']}>
                         <input type=\"submit\" value=\"Show courseinfo\">
                     </form></td>
