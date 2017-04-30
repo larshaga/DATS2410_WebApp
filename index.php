@@ -7,7 +7,7 @@
 
 <body>
   <div class="title">
-    <h1>HiOA student information system</h1>
+    <h1 id="indextitle">HiOA student information system</h1>
   </div>
 
   <?php
@@ -19,7 +19,7 @@
     $dbconn = new mysqli($host, $user, $pw, $db);
   ?>
 
-  <div>
+  <div id="indexnav">
       <a class="currentpage">Home</a>
       <a class="navigation" href="student.php">Student</a>
       <a class="navigation" href="course.php">Course</a>
@@ -27,7 +27,7 @@
   </div>
 
   <div id="welcomemessage" class="siteinfo">
-    <p>From here you can access all the other sites</p>
+    <p>Welcome to Student information system. In each site from the navigation-bar you can either retrieve, add new, update, or delete information.</p>
   </div>
 </body>
 
