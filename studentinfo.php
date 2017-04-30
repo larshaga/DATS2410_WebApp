@@ -76,7 +76,7 @@
                 <input type=\"hidden\" name=\"stID\" value=$stID>
                 <input type=\"submit\" value=\"Edit\">
           </form>
-          <form action=\"studentinfo.php\" method=\"GET\">
+          <form id='deletebuttonSI' action=\"studentinfo.php\" method=\"GET\">
                 <input type=\"hidden\" name=\"stID\" value=$stID>
                 <input type=\"hidden\" name=\"deleteBool\" value=1>
                 <input type=\"submit\" value=\"Delete\">
