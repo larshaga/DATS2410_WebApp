@@ -39,7 +39,7 @@
     }
 
     function chooseYear($dbconn, $stID, $progcode){
-        $sql="select e.stID, p.progcode, p.title from Enrollment e, Study_program p where e.stID=$stID, e.progcode=p.progcode and e.progcode=$progcode";
+        $sql="select e.stID, p.progcode, p.title from Enrollment e, Study_program p where e.stID=$stID and e.progcode=p.progcode and e.progcode='$progcode'";
         $result=$dbconn->query($sql);
 
         echo "<table><tr><td>Student ID</td><td>Program Code</td><td>Program Name</td><td>Year</td></tr>";
