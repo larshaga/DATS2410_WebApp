@@ -53,6 +53,7 @@
                 <td>
                     <form action=\"courseinfo.php\" method=\"GET\">
                         <input type='hidden' name='coursecode' value={$row['coursecode']}>
+                        <input type='hidden' name='coursetitle' value={$row['title']}>
                         <input type='hidden' name='year' value={$row['year']}>
                         <input type=\"submit\" value=\"Show courseinfo\">
                     </form></td>
@@ -63,7 +64,7 @@
                 </td><td><form method=\"GET\">
                         <input type='hidden' name='deletecourse' value='1'>
                         <input type='hidden' name='coursecode' value={$row['coursecode']}>
-                        <input type='hidden' name='year' value={$_GET['year']}>
+                        <input type='hidden' name='year' value={$row['year']}>
                         <input type='submit' value=\"Delete\">                
                     </form>
                 </td></tr>";
@@ -141,6 +142,7 @@
                 <td>
                     <form action=\"courseinfo.php\" method=\"GET\">
                         <input type='hidden' name='coursecode' value={$row['coursecode']}>
+                        <input type='hidden' name='coursetitle' value={$row['title']}>
                         <input type='hidden' name='year' value={$row['year']}>
                         <input type=\"submit\" value=\"Show courseinfo\">
                     </form></td>
@@ -172,7 +174,7 @@
 
         $dbconn->query("START TRANSACTION");
 
-        $sql = "Delete from Grade where coursecode='{$_GET['coursecode']}' and year={$_GET['year']};";
+        $sql1 = "Delete from Grade where coursecode='{$_GET['coursecode']}' and year={$_GET['year']};";
         if ($dbconn->query($sql1)===TRUE){
             echo "Kom meg forbi første delete.";
             $sql2="Delete from Course where coursecode='{$_GET['coursecode']}' and year={$_GET['year']};";
