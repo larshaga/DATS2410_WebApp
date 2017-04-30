@@ -159,7 +159,7 @@
     if (isset($_GET['deleteprog'])){
         $dbconn->query("START TRANSACTION");
 
-        $sql = "Delete from Enrollment where progcode='{$_GET['progcode']}';";
+        $sql1 = "Delete from Enrollment where progcode='{$_GET['progcode']}';";
         if ($dbconn->query($sql1)===TRUE){
             $sql2="Delete from Study_program where progcode='{$_GET['progcode']}';";
             if ($dbconn->query($sql2)===TRUE){
