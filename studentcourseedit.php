@@ -22,7 +22,7 @@
     ini_set('display_errors',1);
     $stID=$_GET['stID'];
     $coursecode=$_GET['coursecode'];
-    $year=$_GET['year'];
+    $year=$_GET['courseyear'];
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $user="webuser";
