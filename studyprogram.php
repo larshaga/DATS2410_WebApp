@@ -25,14 +25,19 @@ $pw="welcomeunclebuild";
 $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
 
-if (isset($_GET['deleteprog'])){ //TODO:fix transaction with rollback?
+if (isset($_GET['deleteprog'])){
+    $dbconn->query("START TRANSACTION");
+
     $sql = "Delete from Enrollment where progcode='{$_GET['progcode']}';";
     if ($dbconn->query($sql1)===TRUE){
         $sql2="Delete from Study_program where progcode='{$_GET['progcode']}';";
         if ($dbconn->query($sql2)===TRUE){
-            echo "<p>Succesfully deleted the study program!</p>";
+            if ($dbconn->query("COMMIT")){
+                echo "<p>Succesfully deleted the study program!</p>";
+            }
         }
     }else {
+        $dbconn->query("ROLLBACK");
         echo "<p>Something went wrong. The study program was not deleted.</p>";
     }
 }

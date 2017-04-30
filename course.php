@@ -26,14 +26,19 @@
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
 
-    if (isset($_GET['deletecourse'])){ //TODO:fix transaction with rollback?
+    if (isset($_GET['deletecourse'])){
+        $dbconn->query("START TRANSACTION");
+
         $sql = "Delete from Grade where coursecode='{$_GET['coursecode']}' and year='{$_GET['year']}';";
         if ($dbconn->query($sql1)===TRUE){
             $sql2="Delete from Course where coursecode='{$_GET['coursecode']}' and year='{$_GET['year']}';";
             if ($dbconn->query($sql2)===TRUE){
-                echo "<p>Succesfully deleted the course!</p>";
+                if ($dbconn->query("COMMIT")){
+                    echo "<p>Succesfully deleted the course!</p>";
+                }
             }
         }else {
+            $dbconn->query("ROLLBACK");
             echo "<p>Something went wrong. The course was not deleted.</p>";
         }
     }
