@@ -69,6 +69,10 @@
         }
     }
 
+    if(isset($_GET['editCource']) && isset($_GET['title']))
+    {
+        updateStudent($_GET['editCource'],$_GET['title']);
+    }
 
     ?>
 </div>
