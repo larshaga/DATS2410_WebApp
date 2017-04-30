@@ -87,11 +87,11 @@
                     <p>Title of course:</p>
                     <input name='coursetitle' type='text' required>
                     
-                    <input type='submit' value='Add student'>
+                    <input type='submit' value='Add course'>
                 </form>";
     }
 
-    function AddNew($coursecode, $courseyear, $coursetitle, $dbconn)
+    function AddNewCourse($coursecode, $courseyear, $coursetitle, $dbconn)
     {
         /* Regular expressions to check if input is valid. */
         $codepattern = "[a-zA-Z]{4}";
@@ -129,6 +129,7 @@
 
     function SearchResult($id, $dbconn)
     {
+        ob_clean();
         $sql = "SELECT * from Course WHERE coursecode='$id' ORDER BY year DESC";
         $result = $dbconn->query($sql);
 
@@ -183,7 +184,7 @@
         }
     } elseif (isset($_GET["coursecode"]) && isset($_GET["courseyear"]) && isset($_GET["coursetitle"]))
     {
-
+        AddNewCourse($_GET["coursecode"], $_GET["courseyear"], $_GET["coursetitle"], $dbconn);
     } elseif (isset($_GET["searchcode"]))
     {
         SearchResult($_GET["searchcode"], $dbconn);
