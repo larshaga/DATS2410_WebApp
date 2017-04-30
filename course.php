@@ -168,10 +168,13 @@
     }
 
     if (isset($_GET['deletecourse'])){
+        ob_clean();
+
         $dbconn->query("START TRANSACTION");
 
         $sql = "Delete from Grade where coursecode='{$_GET['coursecode']}' and year={$_GET['year']};";
         if ($dbconn->query($sql1)===TRUE){
+            echo "Kom meg forbi første delete.";
             $sql2="Delete from Course where coursecode='{$_GET['coursecode']}' and year={$_GET['year']};";
             if ($dbconn->query($sql2)===TRUE){
                 $dbconn->query("COMMIT");
