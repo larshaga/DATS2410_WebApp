@@ -7,7 +7,7 @@
 
 <body>
   <div class="title">
-    <h1 id="indextitle">HiOA student information system</h1>
+    <h1>HiOA student information system</h1>
   </div>
 
   <?php
@@ -19,7 +19,7 @@
     $dbconn = new mysqli($host, $user, $pw, $db);
   ?>
 
-  <div id="indexnav">
+  <div>
       <a class="currentpage">Home</a>
       <a class="navigation" href="student.php">Student</a>
       <a class="navigation" href="course.php">Course</a>
