@@ -75,8 +75,7 @@
 
     if(isset($_GET['title']) && isset($_GET['editCource']))
     {
-
-        updateCourse($_GET['editCource'],$_GET['title']);
+        updateCourse($_GET['editCource'],$_GET['title'], $dbconn);
     }
 
     ?>
