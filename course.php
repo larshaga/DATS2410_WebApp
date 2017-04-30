@@ -138,11 +138,12 @@
         echo "<tr><td>Course code</td><td>Year</td><td>Title</td><td>Action</td></tr>";
         while ($row = $result->fetch_assoc())
         {
+            $courseTitle=urlencode($row['title']);
             echo "<tr><td>{$row['coursecode']}</td><td>{$row['year']}</td><td>{$row['title']}</td>
                 <td>
                     <form action=\"courseinfo.php\" method=\"GET\">
                         <input type='hidden' name='coursecode' value={$row['coursecode']}>
-                        <input type='hidden' name='coursetitle' value={$row['title']}>
+                        <input type='hidden' name='coursetitle' value='$courseTitle'>
                         <input type='hidden' name='year' value={$row['year']}>
                         <input type=\"submit\" value=\"Show courseinfo\">
                     </form></td>
