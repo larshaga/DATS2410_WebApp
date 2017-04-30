@@ -34,7 +34,7 @@
         $result = $dbconn->query($sql);
         if(!$result)
         {
-            echo "Failed to find seleced Program in Database";
+            echo "Failed to find selected program in the database";
         }
         else
         {
@@ -60,15 +60,20 @@
 
     function updateCourse($progCode,$title,$dbconn)
     {
-        dbconn;
         $sql2 = "UPDATE Study_program SET title='$title' WHERE progcode='$progCode'";
         if ($dbconn->query($sql2) === TRUE) {
 
             ob_clean();
             showCourse($progCode,$title);
-            echo "<p>Edit successfull!</p>";
+            echo "<p>Edit successfull!
+                    <form action='studyprogram.php' method='get'>
+                        <input type='submit' value='Back to study programs'>
+                    </form></p>";
         } else {
-            echo "<p>Failed to save changes</p>";
+            echo "<p>Failed to save changes</p>
+                    <form action='studyprogram.php' method='get'>
+                        <input type='submit' value='Back to study programs'>
+                    </form>";
         }
     }
 
