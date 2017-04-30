@@ -53,8 +53,11 @@ function showStudent($fname,$lname,$email,$id)
     echo "<div class='form_div'>
             <form method='GET'>
                 <input type='hidden' name='stID' value='$id'>
+                <label for='fname'> Firstname: </label>
                 <input class='dblock' type='Text' name='fname' value='$fname'>
+                <label for='lname'> Lastname: </label>
                 <input class='dblock' type='Text' name='lname' value='$lname'>
+                <label for='email'> Email: </label>
                 <input class='dblock' type='Text' name='email' value='$email'>
                 <input class='dblock' type='submit' value='Save'>
             </form>
