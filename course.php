@@ -27,7 +27,6 @@
         <input class="dblock" type="Submit" value="Submit">
     </form>
 
-
     <?php
     ob_start();
 
@@ -78,7 +77,7 @@
 
         echo "
                 <form method='GET'>
-                    <p>Course code:</p>
+                    <p>Course code (four letteres):</p>
                     <input name='coursecode' type='text' maxlength='4' required>
                     
                     <p>What year is this course run:</p>

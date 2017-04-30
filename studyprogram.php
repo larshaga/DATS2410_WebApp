@@ -18,54 +18,161 @@
 </div>
 
 <div class="siteinfo">
-<?php
-  //Connection to dats04-dbproxy
-$host="10.1.1.130";
-$user="webuser";
-$pw="welcomeunclebuild";
-$db="studentinfosys";
-$dbconn = new mysqli($host, $user, $pw, $db);
+    <form id="selectForm" method="get">
+        <select name="selectInfo">
+            <option value="1">Search for study program by program code</option>
+            <option value="2">Show every study program in database</option>
+            <option value="3">Add new study program</option>
+        </select>
+        <input class="dblock" type="Submit" value="Submit">
+    </form>
 
-if (isset($_GET['deleteprog'])){
-    $dbconn->query("START TRANSACTION");
+    <?php
+    ob_start();
+      //Connection to dats04-dbproxy
+    $host="10.1.1.130";
+    $user="webuser";
+    $pw="welcomeunclebuild";
+    $db="studentinfosys";
+    $dbconn = new mysqli($host, $user, $pw, $db);
 
-    $sql = "Delete from Enrollment where progcode='{$_GET['progcode']}';";
-    if ($dbconn->query($sql1)===TRUE){
-        $sql2="Delete from Study_program where progcode='{$_GET['progcode']}';";
-        if ($dbconn->query($sql2)===TRUE){
-            if ($dbconn->query("COMMIT")){
-                echo "<p>Succesfully deleted the study program!</p>";
-            }
+    EveryProgram($dbconn);
+
+    function EveryProgram($dbconn)
+    {
+        ob_clean();
+
+        $sql = "select * from Study_program";
+        $result = $dbconn->query($sql);
+
+        echo "<table class='form_div'>";
+        echo "<tr><td>Program Code</td><td>Title</td><td>Show more info</td></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td>{$row['progcode']}</td><td>{$row['title']}</td>
+                <td>
+                    <form action=\"studyprograminfo.php\" method=\"GET\">
+                        <input type='hidden' name='progcode' value={$row['progcode']}>
+                        <input type=\"submit\" value=\"Show\">
+                    </form>
+                </td><td>
+                    <form method='get'>
+                        <input type='hidden' name='progcode' value={$row['progcode']}>
+                        <input type='hidden' name='deleteprog' value='1'>
+                        <input type='submit' value='Delete'>
+                    </form>
+                </td></tr>";
         }
-    }else {
-        $dbconn->query("ROLLBACK");
-        echo "<p>Something went wrong. The study program was not deleted.</p>";
+        echo "</table>";
     }
-}
 
+    function AddProgram()
+    {
+        ob_clean();
 
-$sql="select * from Study_program";
-$result=$dbconn->query($sql);
+        echo "
+                <form method='GET'>
+                    <p>Program code (four letters):</p>
+                    <input name='progcode' type='text' maxlength='4' required>
+                    
+                    <p>Title of course:</p>
+                    <input name='progtitle' type='text' required>
+                    
+                    <input type='submit' value='Add program'>
+                </form>";
+    }
 
-echo "<table class='form_div'>";
-echo "<tr><td>Program Code</td><td>Title</td><td>Show more info</td></tr>";
-while ($row = $result->fetch_assoc())
-{
-    echo "<tr><td>{$row['progcode']}</td><td>{$row['title']}</td>
-            <td>
-                <form action=\"studyprograminfo.php\" method=\"GET\">
-                    <input type='hidden' name='progcode' value={$row['progcode']}>
-                    <input type=\"submit\" value=\"Show\">
-                </form>
-            </td><td>
-                <form method='get'>
-                    <input type='hidden' name='progcode' value={$row['progcode']}>
-                    <input type='hidden' name='deleteprog' value='1'>
-                    <input type='submit' value='Delete'>
-                </form>
-            </td></tr>";
-}
-echo "</table>";
+    function AddNewProgram($progcode, $progtitle, $dbconn)
+    {
+        /* Regular expressions to check if input is valid. */
+        $codepattern = "[a-zA-Z]{4}";
+        $titlepattern = "[a-zA-Z]+";
+        $progcode = strtoupper($progcode); //Makes sure program-code is uppercase.
+
+        if (sizeof(preg_match($codepattern, $progcode)) == 1 && sizeof(preg_match($titlepattern, $progtitle)) == 1)
+        {
+            $sql = "INSERT INTO Study_program VALUES ('$progcode', '$progtitle')";
+
+            if ($result = $dbconn->query($sql) === TRUE)
+            {
+                echo "<p>Program was successcully added.</p>";
+            } else
+            {
+                echo "<p>There was a problem adding the new program.</p>";
+            }
+        } else
+        {
+            echo "<p>Invalid input. Program-code must be exactly four characters, and none of the input-fields can be null.</p>";
+        }
+    }
+
+    function Search()
+    {
+        ob_clean();
+        echo "
+            <form method='GET'>
+                <p>Search by study-program code:</p><br>
+                <input name='searchcode' type='search'>
+                <input type='submit' value='Search'>
+            </form>
+            ";
+    }
+
+    function SearchResultProg($id, $dbconn)
+    {
+        ob_clean();
+        $sql = "SELECT * from Study_program WHERE progcode='$id' ORDER BY title";
+        $result = $dbconn->query($sql);
+
+        echo "<table class='form_div'>";
+        echo "<tr><td>Program Code</td><td>Title</td><td>Show more info</td></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td>{$row['progcode']}</td><td>{$row['title']}</td>
+                <td>
+                    <form action=\"studyprograminfo.php\" method=\"GET\">
+                        <input type='hidden' name='progcode' value={$row['progcode']}>
+                        <input type=\"submit\" value=\"Show\">
+                    </form>
+                </td><td>
+                    <form method='get'>
+                        <input type='hidden' name='progcode' value={$row['progcode']}>
+                        <input type='hidden' name='deleteprog' value='1'>
+                        <input type='submit' value='Delete'>
+                    </form>
+                </td></tr>";
+        }
+        echo "</table>";
+    }
+
+    if (isset($_GET["selectInfo"]))
+    {
+        $info = $_GET["selectInfo"];
+        if ($info=="1") Search();
+        elseif ($info=="2") EveryProgram($dbconn);
+        else AddProgram();
+    }
+
+    if (isset($_GET['deleteprog'])){
+        $dbconn->query("START TRANSACTION");
+
+        $sql = "Delete from Enrollment where progcode='{$_GET['progcode']}';";
+        if ($dbconn->query($sql1)===TRUE){
+            $sql2="Delete from Study_program where progcode='{$_GET['progcode']}';";
+            if ($dbconn->query($sql2)===TRUE){
+                if ($dbconn->query("COMMIT")){
+                    echo "<p>Succesfully deleted the study program!</p>";
+                }
+            }
+        }else {
+            $dbconn->query("ROLLBACK");
+            echo "<p>Something went wrong. The study program was not deleted.</p>";
+        }
+    } elseif (isset($_GET["progcode"]) && isset($_GET["progtitle"]))
+    {
+        AddNewProgram($_GET["progcode"], $_GET["progtitle"], $dbconn);
+    } elseif (isset($_GET["searchcode"]))
+    {
+        SearchResultProg($_GET["searchcode"], $dbconn);
+    }
 
 
 ?>
