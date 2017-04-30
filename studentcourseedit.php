@@ -30,12 +30,16 @@
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
 
-    $sql="select g.stID,g.coursecode,g.year,c.title from Grade g, Course c where g.stID=$stID and g.coursecode='$coursecode' and g.year=$year and g.coursecode=c.coursecode;";
-    $result=$dbconn->query($sql);
-    echo "<table><tr><td>Student ID</td><td>Course Code</td><td>Course Name</td><td>Grade</td></tr>";
-    while ($row=$result->fetch_assoc()){
-        echo "<tr><td>{$row['stID']}</td><td>{$row['coursecode']}</td><td>{$row['title']}</td>";
-    }
+
+
+    function chooseGrade($dbconn, $stID, $coursecode, $year)
+    {
+        $sql = "select g.stID,g.coursecode,g.year,c.title from Grade g, Course c where g.stID=$stID and g.coursecode='$coursecode' and g.year=$year and g.coursecode=c.coursecode and g.year=c.year;";
+        $result = $dbconn->query($sql);
+        echo "<table><tr><td>Student ID</td><td>Course Code</td><td>Course Name</td><td>Grade</td></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td>{$row['stID']}</td><td>{$row['coursecode']}</td><td>{$row['title']}</td>";
+        }
         echo "<td><form id=\"selectGrade\" method=\"GET\">
         <select name=\"grade\">
             <option value='A'>A</option>
@@ -51,6 +55,7 @@
         <input type='hidden' name='year' value='$year'>
         <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
     </form></td></tr></table>";
+    }
 
     if(isset($_GET['grade'])){
         $sqlUpdate="update set grade='{$_GET['grade']}' where stID={$_GET['stID']} and coursecode='{$_GET['coursecode']}' and year={$_GET['year']};";
@@ -59,6 +64,8 @@
         }else{
             echo "<p>Something went wrong. Update was not successfull.";
         }
+    }else{
+        chooseGrade($dbconn, $_GET['stID'], $_GET['coursecode'], $_GET['courseyear']);
     }
     ?>
 </div>
