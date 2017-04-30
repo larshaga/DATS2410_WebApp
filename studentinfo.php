@@ -14,7 +14,7 @@
     <a class="navigation" href="index.php">Home</a>
     <a class="currentpage" href="student.php">Student</a>
     <a class="navigation" href="course.php">Course</a>
-    <a class="navigation" href="studyprogram.php">Study Program</a>
+    <a class="navigation" href="studyprogram.php">Study program</a>
 </div>
 
 <div class="siteinfo">
@@ -104,7 +104,7 @@
     $result = $dbconn->query($sql);
 
     echo "<div class='form_div'><table border='1'>";
-    echo "<tr><td>Program Code</td><td>Study Program</td><td>Enrolled (Year)</td><td>
+    echo "<tr><td>Program Code</td><td>Study program</td><td>Enrolled (Year)</td><td>
                 <form action=\"studentaddstudy.php\" method=\"GET\">
                     <input type=\"hidden\" name=\"stID\" value=$stID>
                     <input type=\"hidden\" name=\"addstudy\" value=1>

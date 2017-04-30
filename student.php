@@ -14,7 +14,7 @@
     <a class="navigation" href="index.php">Home</a>
     <a class="currentpage">Student</a>
     <a class="navigation" href="course.php">Course</a>
-    <a class="navigation" href="studyprogram.php">Study Program</a>
+    <a class="navigation" href="studyprogram.php">Study program</a>
 </div>
 
 <div class="siteinfo">
