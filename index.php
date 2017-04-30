@@ -26,7 +26,7 @@
       <a class="navigation" href="studyprogram.php">Study program</a>
   </div>
 
-  <div class="siteinfo">
+  <div id="welcomemessage" class="siteinfo">
     <p>From here you can access all the other sites</p>
   </div>
 </body>
@@ -35,9 +35,7 @@
     <?php
     echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
     echo "The database server IP:" . $dbconn->host_info . "<br>";
-    $result->close();
     $dbconn->close();
     ?>
-    <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
 </html>

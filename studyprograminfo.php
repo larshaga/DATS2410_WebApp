@@ -17,7 +17,7 @@
     <a class="navigation" href="studyprogram.php">Study program</a>
 </div>
 
-<div class="form_div">
+<div class="siteinfo">
     <?php
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
@@ -55,6 +55,5 @@
     $result->close();
     $dbconn->close();
     ?>
-    <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
 </html>

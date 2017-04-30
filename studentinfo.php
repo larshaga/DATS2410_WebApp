@@ -26,7 +26,7 @@
 
 </div>
 
-<div>
+<div class="siteinfo">
     <?php
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
@@ -161,6 +161,5 @@
     echo "The database server IP:" . $dbconn->host_info . "<br>";
     $dbconn->close();
     ?>
-    <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
 </html>

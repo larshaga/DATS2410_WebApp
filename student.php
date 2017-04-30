@@ -17,8 +17,7 @@
     <a class="navigation" href="studyprogram.php">Study Program</a>
 </div>
 
-<div>
-
+<div class="siteinfo">
     <form id="selectForm" method="get">
         <select name="selectInfo">
             <option value="1">Search for student by studentnumber</option>
@@ -163,6 +162,5 @@
     $result->close();
     $dbconn->close();
     ?>
-    <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
 </html>

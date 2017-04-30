@@ -17,6 +17,7 @@
     <a class="currentpage">Study program</a>
 </div>
 
+<div class="siteinfo">
 <?php
   //Connection to dats04-dbproxy
 $host="10.1.1.130";
@@ -68,6 +69,7 @@ echo "</table>";
 
 
 ?>
+</div>
 </body>
 
 <footer class="bottomofpage">
@@ -77,6 +79,5 @@ echo "</table>";
     $result->close();
     $dbconn->close();
     ?>
-    <p>A webpage by students at Oslo and Akershus University College of Applied Sciences</p>
 </footer>
 </html>
