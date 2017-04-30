@@ -150,7 +150,6 @@
                     </form>
                 </td><td><form method=\"GET\">
                         <input type='hidden' name='deletecourse' value='1'>
-                        <input type='hidden' name='stID' value=$id>
                         <input type='hidden' name='coursecode' value={$row['coursecode']}>
                         <input type='hidden' name='year' value={$row['year']}>
                         <input type='submit' value=\"Delete\">                
