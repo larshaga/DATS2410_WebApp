@@ -35,7 +35,7 @@
 
     echo "<p>Couse Code: '$coursecode'</p>";
     echo "<p>Course Title: '$coursetitle'<p/>";
-    echo "<p>Year: '$year'";
+    echo "<p>Year: '$year'</p>";
     echo "<table class='form_div'>";
     echo "<tr><td>StudentID</td><td>Name</td><td>Grade</td><td>Student info</td></tr>";
     if (empty($result)){
