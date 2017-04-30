@@ -50,7 +50,7 @@
                 <input type='number' name='year' min='1000' max='".date("Y")."' value='".date("Y")."' required>
                 <input type='hidden' name='stID' value='$stID'>
                 <input type='hidden' name='progcode' value='$progcode'>
-                </td><form><input type='submit' value='Change'>
+                </td><td><input type='submit' value='Change'>
                 </form></td></tr></table>";
     }
 
