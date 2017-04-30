@@ -44,7 +44,7 @@
         while ($row = $result->fetch_assoc()) {
             echo "<tr><td>{$row['stID']}</td><td>{$row['coursecode']}</td><td>{$row['title']}</td>";
         }
-        echo "<td><form action='studentinfo.php' id=\"selectGrade\" method=\"GET\">
+        echo "<td><form id=\"selectGrade\" method=\"GET\">
         <select name=\"grade\">
             <option value='A'>A</option>
             <option value='B'>B</option>
