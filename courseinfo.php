@@ -27,11 +27,15 @@
     $dbconn = new mysqli($host, $user, $pw, $db);
 
     $coursecode=$_GET['coursecode'];
+    $coursetitle=$_GET['coursetitle'];
     $year=$_GET['year'];
 
     $sql = "SELECT s.stID, Concat(s.lastname,', ', s.firstname) as name, g.grade FROM Student s, Grade g where g.year=$year and s.stID=g.stID and g.coursecode='$coursecode' Order by name asc;";
     $result = $dbconn->query($sql);
 
+    echo "<p>Couse Code: '$coursecode'</p>";
+    echo "<p>Course Title: '$coursetitle'<p/>";
+    echo "<p>Year: '$year'";
     echo "<table class='form_div'>";
     echo "<tr><td>StudentID</td><td>Name</td><td>Grade</td><td>Student info</td></tr>";
     if (empty($result)){
