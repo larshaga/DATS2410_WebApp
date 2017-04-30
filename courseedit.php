@@ -60,6 +60,7 @@
 
     function updateCourse($courseCode,$title,$dbconn)
     {
+        dbconn;
         $sql2 = "UPDATE Course SET title='$title' WHERE coursecode='$courseCode'";
         if ($dbconn->query($sql2) === TRUE) {
 
@@ -70,8 +71,9 @@
         }
     }
 
-    if(isset($_GET['editCource']) && isset($_GET['title']))
+    if(isset($_GET['title']) && isset($_GET['editCource']))
     {
+
         updateCourse($_GET['editCource'],$_GET['title']);
     }
 

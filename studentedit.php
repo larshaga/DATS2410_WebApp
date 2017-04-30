@@ -81,7 +81,6 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
 }
 if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']) && isset($_GET['stID']))
 {
-    global $firstName,$lastName,$email;
     updateStudent($_GET['fname'],$_GET['lname'],$_GET['email'],$_GET['stID'],$dbconn);
 }
 
