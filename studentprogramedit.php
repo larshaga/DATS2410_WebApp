@@ -28,7 +28,7 @@
     $dbconn = new mysqli($host, $user, $pw, $db);
 
     if (isset($_GET['year'])){
-        $sqlUpdate="update Enrollment set year={$_GET['year']} where stID={$_GET['stID']} and progcode={$_GET['progcode']}";
+        $sqlUpdate="update Enrollment set year={$_GET['year']} where stID={$_GET['stID']} and progcode='{$_GET['progcode']}'";
         if ($dbconn->query($sqlUpdate)){
             echo "<p>Update was successfull!</p>";
         }else{
