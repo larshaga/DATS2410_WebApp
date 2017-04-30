@@ -55,6 +55,11 @@
                         <input type=\"submit\" value=\"Show\">
                     </form>
                 </td><td>
+                    <form action=\"studyprogramedit.php\" method='get'>
+                        <input type='hidden' name='editProg' value={$row['progcode']}>
+                        <input type='submit' value='Edit'>
+                    </form>
+                </td><td>
                     <form method='get'>
                         <input type='hidden' name='progcode' value={$row['progcode']}>
                         <input type='hidden' name='deleteprog' value='1'>
