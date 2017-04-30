@@ -163,9 +163,8 @@
         if ($dbconn->query($sql1)===TRUE){
             $sql2="Delete from Study_program where progcode='{$_GET['progcode']}';";
             if ($dbconn->query($sql2)===TRUE){
-                if ($dbconn->query("COMMIT")){
-                    echo "<p>Succesfully deleted the study program!</p>";
-                }
+                $dbconn->query("COMMIT");
+                echo "<p>Succesfully deleted the study program!</p>";
             }
         }else {
             $dbconn->query("ROLLBACK");

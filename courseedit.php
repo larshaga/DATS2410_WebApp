@@ -51,6 +51,7 @@
             <p>Edit: '$courseCode'</p>
             <form method='GET'>
                 <input type='hidden' name='editCourse' value='$courseCode'>
+                <label for='title'> Title: </label>
                 <input class='dblock' type='Text' name='title' value='$title'>
                 <input class='dblock' type='submit' value='Save'>
             </form>
