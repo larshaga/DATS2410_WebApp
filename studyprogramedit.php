@@ -51,6 +51,7 @@
             <p>Edit: '$progCode'</p>
             <form method='GET'>
                 <input type='hidden' name='editProg' value='$progCode'>
+                <label for='title'> Title: </label>
                 <input class='dblock' type='Text' name='title' value='$title'>
                 <input class='dblock' type='submit' value='Save'>
             </form>
