@@ -27,9 +27,9 @@
     $db="studentinfosys";
     ob_start();
     $dbconn = new mysqli($host, $user, $pw, $db);
-    if(isset($_GET['editCource']))
+    if(isset($_GET['editCourse']))
     {
-        $courseCode = $_GET['editCource'];
+        $courseCode = $_GET['editCourse'];
         echo $courseCode;
 
         $sql = "SELECT DISTINCT title FROM Course WHERE coursecode='$courceCode'";
@@ -61,21 +61,20 @@
 
     function updateCourse($courseCode,$title,$dbconn)
     {
-        //dbconn;
-        /*$sql2 = "UPDATE Course SET title='$title' WHERE coursecode='$courseCode'";
+        dbconn;
+        $sql2 = "UPDATE Course SET title='$title' WHERE coursecode='$courseCode'";
         if ($dbconn->query($sql2) === TRUE) {
 
             ob_clean();
             showCourse($courseCode,$title);
         } else {
             echo "Fail: 2";
-        }*/
-        echo "Funkforfaen";
+        }
     }
 
-    if(isset($_GET['title']) && isset($_GET['editCource']))
+    if(isset($_GET['title']) && isset($_GET['editCourse']))
     {
-        updateCourse($_GET['editCource'],$_GET['title'], $dbconn);
+        updateCourse($_GET['editCourse'],$_GET['title'], $dbconn);
     }
 
     ?>
