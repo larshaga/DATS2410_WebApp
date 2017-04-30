@@ -71,18 +71,26 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
         if(sizeof(preg_match($namepattern, $lname)) == 1 && sizeof(preg_match($namepattern, $fname)) == 1 && sizeof(preg_match($emailpattern, $email)) == 1)
             {*/
 
-                $dbconn;
-                $sql2 = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE stID='$id'";
-                if ($dbconn->query($sql2) === TRUE)
-                {
-                    ob_clean();
-                    showStudent($fname, $lname, $email,$id);
-                    echo "<p>Edit successfull!</p>";
-                }
-                else
-                {
-                    echo "<p>Failed to save changes</p>";
-                }
+    $dbconn;
+    $sql2 = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE stID='$id'";
+    if ($dbconn->query($sql2) === TRUE)
+    {
+        ob_clean();
+        showStudent($fname, $lname, $email,$id);
+        echo "<p>Edit successfull!</p>
+            <form action='studentinfo.php' method='get'>
+                <input type='hidden' name='stID' value=$id>
+                <input type='submit' value='Back to student'>
+            </form>";
+    }
+    else
+    {
+        echo "<p>Failed to save changes</p>
+            <form action='studentinfo.php' method='get'>
+                <input type='hidden' name='stID' value=$id>
+                <input type='submit' value='Back to student'>
+            </form>";
+    }
 }
 if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']) && isset($_GET['stID']))
 {

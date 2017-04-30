@@ -45,6 +45,17 @@
             echo "<p>Something went wrong. The student ($stID) was not deleted.</p>";
         }
     }
+
+
+    $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=$stID;";
+    $result = $dbconn->query($sql);
+    echo "
+        <div class='studentinfo'>";
+    while($row=$result->fetch_assoc()){
+        echo "<h2>Name: {$row['name']}</h2>
+            <h3>Student ID: {$row['stID']}</h3>    
+            <h3>E-mail: {$row['email']}</h3>";
+    }
     if (isset($_GET['deletecourse'])){
         $sql4 = "Delete from Grade where stID = $stID and coursecode = '{$_GET['coursecode']}' and year = '{$_GET['courseyear']}';";
         if ($dbconn->query($sql4)===TRUE){
@@ -61,16 +72,6 @@
         }else {
             echo "<p>Something went wrong. The program was not deleted.</p>";
         }
-    }
-
-    $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=$stID;";
-    $result = $dbconn->query($sql);
-    echo "
-        <div class='studentinfo'>";
-    while($row=$result->fetch_assoc()){
-        echo "<h2>Name: {$row['name']}</h2>
-            <h3>Student ID: {$row['stID']}</h3>    
-            <h3>E-mail: {$row['email']}</h3>";
     }
     echo "<form action=\"studentedit.php\" method=\"GET\">
                 <input type=\"hidden\" name=\"stID\" value=$stID>

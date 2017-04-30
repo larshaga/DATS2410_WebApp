@@ -80,9 +80,17 @@ function chooseGrade($stID,$coursecode,$year){
 function insertGrade($dbconn, $stID, $coursecode, $year, $grade){
     $insert="insert into Grade values ($stID,'$coursecode',$year,'$grade');";
     if ($dbconn->query($insert)===TRUE){
-        echo "<p>Succesfully added the course to student $stID</p>";
+        echo "<p>Succesfully added the course to student $stID</p>
+                <form action='studentinfo.php' method='get'>
+                    <input type='hidden' name='stID' value=$stID>
+                    <input type='submit' value='Back to student'>
+                </form>";
     }else {
-        echo "<p>Something went wrong. The course was not added to student $stID</p>";
+        echo "<p>Something went wrong. The course was not added to student $stID</p>
+                <form action='studentinfo.php' method='get'>
+                    <input type='hidden' name='stID' value=$stID>
+                    <input type='submit' value='Back to student'>
+                </form>";
     }
 }
 
