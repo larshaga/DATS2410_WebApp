@@ -113,9 +113,8 @@
 
     while ($row = $result->fetch_assoc()) {
         echo "<tr><td>{$row['progcode']}</td><td>{$row['title']}</td><td>{$row['Start Year']}</td>
-                <td><form action=\"studentedit.php\" method=\"GET\">
+                <td><form action=\"studentprogramedit.php\" method=\"GET\">
                     <input type='hidden' name='progcode' value={$row['progcode']}>
-                    <input type=\"hidden\" name=\"progtitle\" value={$row['title']}>
                     <input type=\"hidden\" name=\"stID\" value=$stID>
                     <input type=\"submit\" value=\"Edit\">
                 </form></td>
