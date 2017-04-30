@@ -30,6 +30,7 @@
     if(isset($_GET['editCource']))
     {
         $courseCode = $_GET['editCource'];
+        echo $courseCode;
 
         $sql = "SELECT DISTINCT title FROM Course WHERE coursecode='$courceCode'";
         $result = $dbconn->query($sql);
