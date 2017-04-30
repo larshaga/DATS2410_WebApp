@@ -94,13 +94,13 @@
             echo "
                 <form method='GET'>
                     <p>Last name of student:</p>
-                    <input name='lastname' type='text'>
+                    <input name='lastname' type='text' required>
                     
                     <p>First name of student:</p>
-                    <input name='firstname' type='text'>
+                    <input name='firstname' type='text' required>
                     
                     <p>Email of student:</p>
-                    <input name='email' type='text'>
+                    <input name='email' type='text' required>
                     
                     <input type='submit' value='Add student'>
                 </form>";
