@@ -12,18 +12,9 @@
 
 <div>
     <a class="navigation" href="index.php">Home</a>
-    <a class="currentpage">Student</a>
+    <a class="currentpage" href="student.php">Student</a>
     <a class="navigation" href="course.php">Course</a>
     <a class="navigation" href="studyprogram.php">Study Program</a>
-</div>
-
-<div class="siteinfo">
-    <p>Student info:</p>
-    <a class="goBack" href="student.php">Back</a>
-
-</div>
-<div class="editdelete">
-
 </div>
 
 <div class="siteinfo">
@@ -74,7 +65,30 @@
 
     $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=$stID;";
     $result = $dbconn->query($sql);
-
+    $stID=$result->fetch_assoc()['stID'];
+    $name=$result->fetch_assoc()['name'];
+    $email=$result->fetch_assoc()['email'];
+    echo "
+        <div class='studentinfo'>
+            <h2>Name: {$name}</h2>
+            <h3>Student ID: {$stID}</h3>    
+            <h3>E-mail: {$email}</h3>
+            <table><tr>
+            <td>
+            <form action=\"studentedit.php\" method=\"GET\">
+                <input type=\"hidden\" name=\"stID\" value=$stID>
+                <input type=\"submit\" value=\"Edit\">
+            </form>
+            </td>
+            <td>
+                <form action=\"studentinfo.php\" method=\"GET\">
+                    <input type=\"hidden\" name=\"stID\" value=$stID>
+                    <input type=\"hidden\" name=\"deleteBool\" value=1>
+                    <input type=\"submit\" value=\"Delete\">
+                </form>
+            </td></tr></table>
+        </div>";
+    /*
     echo "<table border='1'>";
     echo "<tr><td>StudentID</td><td>Name</td><td>E-mail</td></tr>";
 
@@ -91,9 +105,9 @@
                 </form></td></tr>";
     }
     echo "</table>";
-
-        $sql = "select p.progcode, p.title, e.startyear as 'Start Year' from Student s, Enrollment e, Study_program p where s.stID=e.stID and e.progcode=p.progcode and s.stID=$stID;";
-        $result = $dbconn->query($sql);
+*/
+    $sql = "select p.progcode, p.title, e.startyear as 'Start Year' from Student s, Enrollment e, Study_program p where s.stID=e.stID and e.progcode=p.progcode and s.stID=$stID;";
+    $result = $dbconn->query($sql);
 
     echo "<table border='1'>";
     echo "<tr><td>Program Code</td><td>Study Program</td><td>Enrolled (Year)</td><td>
