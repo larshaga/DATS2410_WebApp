@@ -19,6 +19,7 @@
 
 <div class="siteinfo">
     <?php
+    ini_set('display_errors',1);
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $user="webuser";
@@ -29,8 +30,8 @@
     $coursecode=str_replace("'","",$_GET['coursecode']);
     $year=str_replace("'","",$_GET['year']);
     $titleSQL = "SELECT DISTINCT title FROM Course WHERE coursecode='$coursecode'";
-    $coursetitleresult=mysqli_fetch_assoc($dbconn->query($titleSQL));
-    $coursetitle = $courstitleresult['title'];
+    $coursetitleresult=($dbconn->query($titleSQL))->fetch_assoc();
+    $coursetitle = str_replace("'","",$courstitleresult['title']);
 
     $sql = "SELECT s.stID, Concat(s.lastname,', ', s.firstname) as name, g.grade FROM Student s, Grade g where g.year=$year and s.stID=g.stID and g.coursecode='$coursecode' Order by name asc;";
     $result = $dbconn->query($sql);
