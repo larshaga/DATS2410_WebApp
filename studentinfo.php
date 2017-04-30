@@ -41,13 +41,16 @@
         $sql1 = "Delete from Enrollment where stID = $stID;";
         $sql2 = "Delete from Grade where stID = $stID;";
         $sql3 = "Delete from Student where stID = $stID;";
+        $dbconn->query("START TRANSACTION");
         if ($dbconn->query($sql1)===TRUE){
             if ($dbconn->query($sql2)===TRUE){
                 if ($dbconn->query($sql3)===TRUE){
+                    $dbconn->query("COMMIT");
                     echo "<p>Succesfully deleted student $stID</p>";
                 }
             }
         }else {
+            $dbconn->query("ROLLBACK");
             echo "<p>Something went wrong. The student ($stID) was not deleted.</p>";
         }
     }
