@@ -20,17 +20,21 @@
     <?php
     ob_start();
     ini_set('display_errors',1);
-    $stID=$_GET['stID'];
-    $coursecode=$_GET['coursecode'];
-    $year=$_GET['courseyear'];
+    if (isset($_GET['stID'])) {
+        $stID = $_GET['stID'];
+    }
+    if (isset($_GET['coursecode'])) {
+        $coursecode = $_GET['coursecode'];
+    }
+    if (isset($_GET['courseyear'])){
+        $year=$_GET['courseyear'];
+    }
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $user="webuser";
     $pw="welcomeunclebuild";
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
-
-
 
     function chooseGrade($dbconn, $stID, $coursecode, $year)
     {
@@ -53,7 +57,7 @@
         <input type='hidden' name='coursecode' value='$coursecode'>
         <input type='hidden' name='stID' value='$stID'>
         <input type='hidden' name='year' value='$year'>
-        <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
+        </td><td><input class=\"dblock\" type=\"Submit\" value=\"Submit\">
     </form></td></tr></table>";
     }
 
