@@ -35,7 +35,7 @@ if(isset($_GET['stID']))
     $result = $dbconn->query($sql);
     if(!$result)
     {
-        echo "Fail: 1";
+        echo "Failed to find selected Student in Database.";
     }
     else
     {
@@ -56,7 +56,7 @@ function showStudent($fname,$lname,$email,$id)
                 <input class='dblock' type='Text' name='fname' value='$fname'>
                 <input class='dblock' type='Text' name='lname' value='$lname'>
                 <input class='dblock' type='Text' name='email' value='$email'>
-                <input class='dblock' type='submit'>
+                <input class='dblock' type='submit' value='Save'>
             </form>
           </div>";
 }
@@ -70,14 +70,16 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
 
                 $dbconn;
                 $sql2 = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE stID='$id'";
-                if ($dbconn->query($sql2) === TRUE) {
-
+                if ($dbconn->query($sql2) === TRUE)
+                {
                     ob_clean();
                     showStudent($fname, $lname, $email,$id);
-                } else {
-                    echo "Fail: 2";
+                    echo "<p>Edit successfull!</p>";
                 }
-            //} else echo "wrong login";
+                else
+                {
+                    echo "<p>Failed to save changes</p>";
+                }
 }
 if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']) && isset($_GET['stID']))
 {
