@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Course</title>
+    <title>Dats04 - Study program</title>
 </head>
 
 <body>
