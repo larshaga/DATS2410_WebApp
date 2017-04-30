@@ -30,20 +30,17 @@
     if(isset($_GET['editCourse']))
     {
         $courseCode = $_GET['editCourse'];
-        echo $courseCode;
-
         $sql = "SELECT DISTINCT title FROM Course WHERE coursecode='$courseCode'";
         $result = $dbconn->query($sql);
         if(!$result)
         {
-            echo "Fail: 1";
+            echo "Failed to find selected Course in Database.";
         }
         else
         {
             while ($row = $result->fetch_assoc())
             {
                 showCourse($courseCode,$row['title']);
-                echo "Title: ".$row['title'];
             }
         }
     }
@@ -51,10 +48,11 @@
     function showCourse($courseCode,$title)
     {
         echo "<div class='form_div'>
+            <p>Edit: '$courseCode'</p>
             <form method='GET'>
                 <input type='hidden' name='editCourse' value='$courseCode'>
                 <input class='dblock' type='Text' name='title' value='$title'>
-                <input class='dblock' type='submit'>
+                <input class='dblock' type='submit' value='Save'>
             </form>
           </div>";
     }
@@ -67,8 +65,9 @@
 
             ob_clean();
             showCourse($courseCode,$title);
+            echo "<p>Edit successful!</p>";
         } else {
-            echo "Fail: 2";
+            echo "<p>Failed to save changes.</p>";
         }
     }
 

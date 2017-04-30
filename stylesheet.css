@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
 html
 {
   text-align: center;
@@ -8,6 +10,7 @@ html
 body
 {
   margin-bottom: 45px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .bottomofpage {
@@ -31,6 +34,17 @@ body
 {
     font-size: 30px;
     margin-top: 10%;
+}
+
+#indextitle
+{
+  font-size: 200%;
+}
+
+#indexnav, #indextitle
+{
+  top:50%;
+  left:50%;
 }
 
 .navigation
