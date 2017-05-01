@@ -107,7 +107,6 @@
             {
                 echo "<p>There was a problem adding the new program.</p>";
             }
-            EveryProgram($dbconn, FALSE);
         } else
         {
             echo "<p>Invalid input. Program-code must be exactly four characters, and none of the input-fields can be null.</p>";
@@ -174,7 +173,6 @@
             $dbconn->query("ROLLBACK");
             echo "<p>Something went wrong. The study program was not deleted.</p>";
         }
-        EveryProgram($dbconn, FALSE);
     } elseif (isset($_GET["progcode"]) && isset($_GET["progtitle"]))
     {
         AddNewProgram($_GET["progcode"], $_GET["progtitle"], $dbconn);
