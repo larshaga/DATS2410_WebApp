@@ -2,7 +2,8 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Student</title>
+    <title>DATS04 - Student</title>
+    <meta charset="UTF-8">
 </head>
 
 <body>

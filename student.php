@@ -2,12 +2,13 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Student</title>
+    <title>DATS04 - Student</title>
+    <meta charset="UTF-8">
 </head>
 
 <body>
 <div class="title">
-    <h1>Every student in the database</h1>
+    <h1>Student</h1>
 </div>
 
 <div>
@@ -19,7 +20,6 @@
 
 <div class="siteinfo">
 
-<!-- Could be that we should close div tag here, open php tag, ob_start(), then new div tag -->
     <?php
     if (isset($_GET['selectInfo'])){
         echo "<form id='selectForm' method='get'>
@@ -152,7 +152,7 @@
             }
         }
     /*
-     * Checking if you are to search for single student, or list every student
+     * Checking if you are to search for single student, list every student, or add a new student
      */
     if (isset($_GET["selectInfo"]))
     {

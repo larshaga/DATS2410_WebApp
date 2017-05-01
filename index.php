@@ -2,7 +2,8 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Web</title>
+    <title>DATS04 - Index</title>
+    <meta charset="UTF-8">
 </head>
 
 <body>

@@ -2,12 +2,13 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Course</title>
+    <title>DATS04 - Course</title>
+    <meta charset="UTF-8">
 </head>
 
 <body>
     <div class="title">
-        <h1>Every course in the database</h1>
+        <h1>Course</h1>
     </div>
 
     <div>
@@ -37,7 +38,7 @@
             $db="studentinfosys";
             $dbconn = new mysqli($host, $user, $pw, $db);
 
-            EveryCourse($dbconn, FALSE); //As a standard show every course, but when something else is chosen, it disappears.
+            EveryCourse($dbconn, FALSE);
 
             function EveryCourse($dbconn, $clean)
             {
@@ -101,7 +102,7 @@
                 $codepattern = "/^[a-zA-Z]{4}$/";
                 $titlepattern = "/^[a-zA-Z0-9 ]+$/";
                 $yearpattern = "/^[1-2][0-9]{3}$/";
-                $coursecode = strtoupper($coursecode); //Makes sure course-code is uppercase.
+                $coursecode = strtoupper($coursecode);
 
                 ob_clean();
 

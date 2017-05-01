@@ -2,12 +2,13 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Course</title>
+    <title>DATS04 - Course</title>
+    <meta charset="UTF-8">
 </head>
 
 <body>
 <div class="title">
-    <h1>Course info</h1>
+    <h1>Course Info</h1>
 </div>
 
 <div>

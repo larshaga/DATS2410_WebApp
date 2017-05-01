@@ -2,12 +2,13 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Study program</title>
+    <title>DATS04 - Study program</title>
+    <meta charset="UTF-8">
 </head>
 
 <body>
 <div class="title">
-    <h1>Every study program in the database</h1>
+    <h1>Study Program</h1>
 </div>
 
 <div>

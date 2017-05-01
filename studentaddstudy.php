@@ -2,12 +2,13 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Student</title>
+    <title>DATS04 - Student</title>
+    <meta charset="UTF-8">
 </head>
 
 <body>
     <div class="title">
-        <h1>HiOA student information system</h1>
+        <h1>Add Study Program To Student</h1>
     </div>
 
     <div>
