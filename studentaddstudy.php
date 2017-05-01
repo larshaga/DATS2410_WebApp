@@ -57,19 +57,10 @@
             echo "<p>Year student was enrolled:</p>
                   <form id=\"selectYear\" method=\"GET\">
                   <select name=\"year\">";
-            if (isset($_GET['year']))
-            {
-                for ($i = date("Y"); $i > 1900; $i--)
-                {
-                    echo"<option value='$i' name='year'"; isChosen($i,$_GET['year']); echo ">$i</option>";
-                }
-            }else
-            {
-                for ($i = date("Y"); $i > 1900; $i--)
+            for ($i = date("Y"); $i > 1900; $i--)
                 {
                     echo"<option value='$i' name='year'>$i</option>";
                 }
-            }
             echo "</select>
                 <input type='hidden' name='progcode' value='$progcode'>
                 <input type='hidden' name='stID' value='$stID'>
@@ -96,7 +87,23 @@
 
 
         if (isset($_GET["progcode"])){
-            selectYear($_GET['stID'],$_GET['progcode']);
+            if (isset($_GET['year']))
+            {
+                echo "<form id=\"selectYear\" method=\"GET\">
+                  <select name=\"year\">";
+                for ($i = date("Y"); $i > 1900; $i--)
+                {
+                    echo"<option value='$i' name='year'"; isChosen($i,$_GET['year']); echo ">$i</option>";
+                }
+                echo "</select>
+                <input type='hidden' name='progcode' value='$progcode'>
+                <input type='hidden' name='stID' value='$stID'>
+                <input class='dblock' type='Submit' value='Submit'>
+            </form>";
+            }else
+            {
+                selectYear($_GET['stID'], $_GET['progcode']);
+            }
         }
         if (isset($_GET["year"])){
             insertProgram($dbconn, $_GET['stID'],$_GET['progcode'],$_GET['year']);

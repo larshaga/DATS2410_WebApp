@@ -31,7 +31,20 @@
             $getTitle="select coursecode, title from Course group BY title;";
             $getTitlecourse = $dbconn->query($getTitle);
 
-            echo "<p>Course:</p>
+
+            if (isset($_GET['coursecode'])){
+                echo "<p>Course:</p>
+                    <form id=\"selectCourse\" method=\"GET\">
+                    <select name=\"coursecode\">";
+                while($row=$getTitlecourse->fetch_assoc()){
+                    echo "<option value=\"{$row['coursecode']}\" name='coursecode'"; isChosen($row['coursecode'],$_GET['coursecode']); echo ">{$row['title']}</option>";
+                }
+                echo "</select>
+                    <input type='hidden' name='stID' value='$stID'>
+                    <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
+                </form>";
+            }else{
+                echo "<p>Course:</p>
                     <form id=\"selectCourse\" method=\"GET\">
                     <select name=\"coursecode\">";
                         while($row=$getTitlecourse->fetch_assoc()){
@@ -41,6 +54,7 @@
                     <input type='hidden' name='stID' value='$stID'>
                     <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
                 </form>";
+            }
 
             function selectYear($dbconn,$stID,$coursecode){
                 $getYear="Select year from Course where coursecode='$coursecode';";
@@ -99,10 +113,45 @@
 
 
             if (isset($_GET["coursecode"])){
-                selectYear($dbconn,$_GET['stID'],$_GET['coursecode']);
+                if (isset($_GET['year'])){
+                    $getYear="Select year from Course where coursecode='$coursecode';";
+                    $getYearcourse = $dbconn->query($getYear);
+                    echo "<p>What year did the student attend the course?</p>
+                    <form id=\"selectYear\" method=\"GET\">
+                    <select name=\"year\">";
+                    while($row=$getYearcourse->fetch_assoc()){
+                        echo "<option value=\"{$row['year']}\" name='year'"; isChosen($row['year'],$_GET['year']); echo ">{$row['year']}</option>";
+                    }
+                    echo "</select>
+                    <input type='hidden' name='coursecode' value='$coursecode'>
+                    <input type='hidden' name='stID' value='$stID'>
+                    <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
+                </form>";
+                }else{
+                    selectYear($dbconn,$_GET['stID'],$_GET['coursecode']);
+                }
             }
             if (isset($_GET["year"])){
-                chooseGrade($_GET['stID'],$_GET['coursecode'],$_GET['year']);
+                if (isset($_GET['grade'])){
+                    echo "<p>Select the grade received:</p>
+                    <form id=\"selectGrade\" method=\"GET\">
+                    <select name=\"grade\">
+                        <option value='A'"; isChosen('A',$_GET['grade']); echo ">A</option>
+                        <option value='B'"; isChosen('B',$_GET['grade']); echo ">B</option>
+                        <option value='C'"; isChosen('C',$_GET['grade']); echo ">C</option>
+                        <option value='D'"; isChosen('D',$_GET['grade']); echo ">D</option>
+                        <option value='E'"; isChosen('E',$_GET['grade']); echo ">E</option>
+                        <option value='F'"; isChosen('F',$_GET['grade']); echo ">F</option>
+                        <option value=''"; isChosen('',$_GET['grade']); echo ">Not finished yet</option>
+                    </select>
+                    <input type='hidden' name='coursecode' value={$_GET['$coursecode']}>
+                    <input type='hidden' name='stID' value={$_GET['stID']}>
+                    <input type='hidden' name='year' value={$_GET['year']}>
+                    <input class=\"dblock\" type=\"Submit\" value=\"Submit\">
+                </form>";
+                }else{
+                    chooseGrade($_GET['stID'],$_GET['coursecode'],$_GET['year']);
+                }
             }
             if (isset($_GET["grade"])){
                 insertGrade($dbconn, $_GET['stID'],$_GET['coursecode'],$_GET['year'],$_GET['grade']);
