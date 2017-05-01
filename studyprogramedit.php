@@ -40,12 +40,12 @@
         {
             while ($row = $result->fetch_assoc())
             {
-                showCourse($progCode,$row['title']);
+                showProgram($progCode,$row['title']);
             }
         }
     }
 
-    function showCourse($progCode,$title)
+    function showProgram($progCode,$title,$err)
     {
         echo "<div class='form_div'>
             <p>Program Code: $progCode</p>
@@ -53,33 +53,46 @@
                 <input type='hidden' name='editProg' value='$progCode'>
                 <label for='title'> Title: </label>
                 <input class='dblock' type='Text' name='title' value='$title'>
+                <p><span class='errorField'>$err</span></p>
                 <input class='dblock' type='submit' value='Save'>
             </form>
           </div>";
     }
 
-    function updateCourse($progCode,$title,$dbconn)
+    function updateProgram($progCode,$title,$dbconn)
     {
-        $sql2 = "UPDATE Study_program SET title='$title' WHERE progcode='$progCode'";
-        if ($dbconn->query($sql2) === TRUE) {
-
+        $titlepattern = "/^[a-zA-Z 0-9]+^$/";
+        if (!preg_match($title,$titlepattern))
+        {
             ob_clean();
-            showCourse($progCode,$title);
-            echo "<p>Edit successfull!</p>
+            showProgram(progCode,$title,"Invalid title input");
+        }
+        else
+            {
+            $sql2 = "UPDATE Study_program SET title='$title' WHERE progcode='$progCode'";
+            if ($dbconn->query($sql2) === TRUE)
+            {
+
+                ob_clean();
+                showProgram($progCode, $title,"");
+                echo "<p>Edit successfull!</p>
                     <form action='studyprogram.php' method='get'>
                         <input type='submit' value='Back to study programs'>
                     </form>";
-        } else {
-            echo "<p>Failed to save changes</p>
+            }
+            else
+            {
+                echo "<p>Failed to save changes</p>
                     <form action='studyprogram.php' method='get'>
                         <input type='submit' value='Back to study programs'>
                     </form>";
+            }
         }
     }
 
     if(isset($_GET['title']) && isset($_GET['editProg']))
     {
-        updateCourse($_GET['editProg'],$_GET['title'], $dbconn);
+        updateProgram($_GET['editProg'],$_GET['title'], $dbconn);
     }
 
     ?>
