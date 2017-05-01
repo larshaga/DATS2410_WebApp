@@ -114,7 +114,7 @@
             $emailpattern = "[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+";
 
             ob_clean();
-            
+
             if (sizeof(preg_match($namepattern, $lastname)) == 1 && sizeof(preg_match($namepattern, $firstname)) == 1 && sizeof(preg_match($emailpattern, $email)) == 1)
             {
                 $sql = "INSERT INTO Student(lastname, firstname, email) VALUES ('$lastname', '$firstname', '$email')";
@@ -126,6 +126,7 @@
                 {
                     echo "<p>There was a problem adding the new student.</p>";
                 }
+                ListAll($dbconn);
             } else
             {
                 echo "<p>Invalid input. Names can only be normal characters, Email can only be on the form \"foo@bar.baz\".</p>";
