@@ -53,9 +53,9 @@
                   <select name=\"year\">";
 
             for ($i = date("Y"); $i > 1900; $i--)
-            { ?>
-                <option value='$i' name='year'>$i<option>
-            <?php
+            {
+                echo"<option value='$i' name='year'>$i</option>";
+
             }
             echo "</select>
                 <input type='hidden' name='progcode' value='$progcode'>
