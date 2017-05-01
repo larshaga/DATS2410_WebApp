@@ -71,7 +71,7 @@
         function insertProgram($dbconn, $stID, $progcode, $year){
             $insert="insert into Enrollment values ($stID,'$progcode',$year);";
             if ($dbconn->query($insert)===TRUE){
-                echo "<p>Succesfully added the course to student $stID</p>
+                echo "<p>Succesfully added $progcode to student $stID in the year $year</p>
                 <form action='studentinfo.php' method='get'>
                     <input type='hidden' name='stID' value=$stID>
                     <input type='submit' value='Back to student'>
