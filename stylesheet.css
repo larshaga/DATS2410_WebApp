@@ -1,5 +1,7 @@
+/* Link to where we get our font from */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+/* Sets background color and centers all text */
 html
 {
     text-align: center;
@@ -7,11 +9,14 @@ html
     background-color: lightgray;
     font-family: 'Open Sans', sans-serif;
 }
+
+/* Does so everything in the body does not overlap with the footer */
 body
 {
     margin-bottom: 45px;
 }
 
+/* Set the footer at the bottom, font-size and background color */
 .bottomofpage {
     position: fixed;
     right: 0;
@@ -29,28 +34,27 @@ body
     padding-bottom: 2em;
 }
 
+/* Set text size for the welcome message on the home page (index.php) */
 #welcomemessage
 {
     font-size: 30px;
     margin-top: 10%;
 }
 
-#indextitle
-{
-    font-size: 200%;
-}
-
+/* Sets padding between the navigation buttons */
 .navigation
 {
     padding: 20px;
 }
 
+/* Sets padding between the navigation buttons, but also makes the font bold */
 .currentpage
 {
     padding: 20px;
     font-weight: bold;
 }
 
+/* Displays the tables below each other's */
 .form_div
 {
     display: table;
@@ -58,6 +62,7 @@ body
     padding-bottom: 1em;
 }
 
+/* Mostly for the submit buttons */
 .dblock
 {
     display: block;
@@ -73,6 +78,8 @@ body
 {
     padding-bottom: 2em;
 }
+
+/* Makes the error message red and bold for better visibility */
 .errorField
 {
   color: red;
