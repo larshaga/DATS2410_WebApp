@@ -36,11 +36,14 @@
     $db="studentinfosys";
     $dbconn = new mysqli($host, $user, $pw, $db);
 
-    EveryProgram($dbconn);
+    EveryProgram($dbconn, FALSE);
 
-    function EveryProgram($dbconn)
+    function EveryProgram($dbconn, $clean)
     {
-        ob_clean();
+        if ($clean === TRUE)
+        {
+            ob_clean();
+        }
 
         $sql = "select * from Study_program";
         $result = $dbconn->query($sql);
@@ -104,6 +107,7 @@
             {
                 echo "<p>There was a problem adding the new program.</p>";
             }
+            EveryProgram($dbconn, FALSE);
         } else
         {
             echo "<p>Invalid input. Program-code must be exactly four characters, and none of the input-fields can be null.</p>";
@@ -152,7 +156,7 @@
     {
         $info = $_GET["selectInfo"];
         if ($info=="1") Search();
-        elseif ($info=="2") EveryProgram($dbconn);
+        elseif ($info=="2") EveryProgram($dbconn, TRUE);
         else AddProgram();
     }
 
@@ -170,6 +174,7 @@
             $dbconn->query("ROLLBACK");
             echo "<p>Something went wrong. The study program was not deleted.</p>";
         }
+        EveryProgram($dbconn, FALSE);
     } elseif (isset($_GET["progcode"]) && isset($_GET["progtitle"]))
     {
         AddNewProgram($_GET["progcode"], $_GET["progtitle"], $dbconn);
