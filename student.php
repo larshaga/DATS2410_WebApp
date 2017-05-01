@@ -148,7 +148,7 @@
                 ListAll($dbconn, FALSE);
             } else
             {
-                echo "<p>Invalid input. Names can only be normal characters, Email can only be on the form \"foo@bar.baz\".</p>";
+                echo "<p>Invalid input. Names can only be characters a-z, Email can only be on the form \"foo@bar.baz\".</p>";
             }
         }
     /*
