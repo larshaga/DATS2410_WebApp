@@ -20,14 +20,15 @@
 
 <div class="siteinfo"
 <?php
-ini_set('display_errors',1);
 //Connection to dats04-dbproxy
 $host="10.1.1.130";
 $user="webuser";
 $pw="welcomeunclebuild";
 $db="studentinfosys";
 $dbconn = new mysqli($host, $user, $pw, $db);
+//start the output buffer
 ob_start();
+//check if form on previous page is submitted
 if(isset($_GET['stID']))
 {
     $id = $_GET['stID'];
@@ -36,6 +37,7 @@ if(isset($_GET['stID']))
     $result = $dbconn->query($sql);
     if(!$result)
     {
+        //feedback if not able to find Student in database
         echo "Failed to find selected Student in Database.";
     }
     else
@@ -47,7 +49,7 @@ if(isset($_GET['stID']))
     }
 }
 
-
+//prints a new form to the screeen
 function showStudent($fname,$lname,$email,$id,$fnErr,$lnErr,$emErr)
 {
     echo "<div class='form_div'>
@@ -67,14 +69,18 @@ function showStudent($fname,$lname,$email,$id,$fnErr,$lnErr,$emErr)
           </div>";
 }
 
+//check if input is valid and updates database if it is
 function updateStudent($fname,$lname,$email,$id,$dbconn)
 {
+    //check if the users input is valid
     $namepattern = "/^[a-zA-Z]+$/";
     $emailpattern = "/^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$/";
     if(!preg_match($namepattern, $lname) || !preg_match($namepattern, $fname) || !preg_match($emailpattern, $email))
     {
+        //clear the outputbuffer
         ob_clean();
         $fnErr = $lnErr = $emErr = "";
+        //check wich field is invalid
         if (!preg_match($namepattern, $fname))$fnErr="Invalid firstname input";
         if (!preg_match($namepattern, $lname))$lnErr="Invalid lastname input";
         if (!preg_match($emailpattern, $email))$emErr="Invalid email input";
@@ -84,14 +90,17 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
     {
         $sql2 = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE stID='$id'";
         if ($dbconn->query($sql2) === TRUE) {
-            ob_clean();
+            //clear the outputbuffer and feedback on updated database
             showStudent($fname, $lname, $email, $id,"","","");
             echo "<p>Edit successfull!</p>
             <form action='studentinfo.php' method='get'>
                 <input type='hidden' name='stID' value=$id>
                 <input type='submit' value='Back to student'>
             </form>";
-        } else {
+        }
+        else
+        {
+            //Feedback if unable to update the database
             echo "<p>Failed to save changes</p>
             <form action='studentinfo.php' method='get'>
                 <input type='hidden' name='stID' value=$id>
@@ -100,6 +109,8 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
         }
     }
 }
+
+// check if the form is is submitted
 if(isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['email']) && isset($_GET['stID']))
 {
     updateStudent($_GET['fname'],$_GET['lname'],$_GET['email'],$_GET['stID'],$dbconn);

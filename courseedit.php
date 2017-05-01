@@ -20,7 +20,6 @@
 
 <div class="siteinfo">
     <?php
-    ini_set('display_errors',1);
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $user="webuser";
@@ -28,6 +27,7 @@
     $db="studentinfosys";
     ob_start();
     $dbconn = new mysqli($host, $user, $pw, $db);
+    //check if form on previous page is submitted
     if(isset($_GET['editCourse']))
     {
         $courseCode = $_GET['editCourse'];
@@ -35,6 +35,7 @@
         $result = $dbconn->query($sql);
         if(!$result)
         {
+            //feedback if not able to find Course in database
             echo "Failed to find selected Course in Database.";
         }
         else
@@ -46,6 +47,7 @@
         }
     }
 
+    //prints a new form to the screeen
     function showCourse($courseCode,$title,$err)
     {
         echo "<div class='form_div'>
@@ -60,8 +62,10 @@
           </div>";
     }
 
+    //check if input is valid and updates database if it is
     function updateCourse($courseCode,$title,$dbconn)
     {
+        //check if input is valid
         $titlepattern = "/^[a-zA-Z 0-9]+$/";
         if (!preg_match($titlepattern,$title))
         {
@@ -74,13 +78,17 @@
             $sql2 = "UPDATE Course SET title='$title' WHERE coursecode='$courseCode'";
             if ($dbconn->query($sql2) === TRUE) {
 
+                //clear the outputbuffer and feedback on updated database
                 ob_clean();
                 showCourse($courseCode, $title,"");
                 echo "<p>Edit successful!</p> 
                     <form action='studyprogram.php' method='get'>
                         <input type='submit' value='Back to study programs'>
                     </form>";
-            } else {
+            }
+            else
+            {
+                //Feedback if unable to update the database
                 echo "<p>Failed to save changes.</p>
                     <form action='studyprogram.php' method='get'>
                         <input type='submit' value='Back to study programs'>
@@ -89,6 +97,7 @@
         }
     }
 
+    // check if the form is is submitted
     if(isset($_GET['title']) && isset($_GET['editCourse']))
     {
         updateCourse($_GET['editCourse'],$_GET['title'], $dbconn);

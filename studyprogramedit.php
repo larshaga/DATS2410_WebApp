@@ -20,14 +20,15 @@
 
 <div class="siteinfo">
     <?php
-    ini_set('display_errors',1);
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $user="webuser";
     $pw="welcomeunclebuild";
     $db="studentinfosys";
+    //start the outputbuffer
     ob_start();
     $dbconn = new mysqli($host, $user, $pw, $db);
+    //check if form on previous page is submitted
     if(isset($_GET['editProg']))
     {
         $progCode = $_GET['editProg'];
@@ -35,6 +36,7 @@
         $result = $dbconn->query($sql);
         if(!$result)
         {
+            //feedback if not able to find Program in database
             echo "Failed to find selected program in the database";
         }
         else
@@ -46,6 +48,7 @@
         }
     }
 
+    //prints a new form to the screen
     function showProgram($progCode,$title,$err)
     {
         echo "<div class='form_div'>
@@ -60,8 +63,10 @@
           </div>";
     }
 
+    //check if input is valid and updates database if it is
     function updateProgram($progCode,$title,$dbconn)
     {
+        //check if input is valid
         $titlepattern = "/^[a-zA-Z 0-9]+$/";
         if (!preg_match($titlepattern,$title))
         {
@@ -73,7 +78,7 @@
             $sql2 = "UPDATE Study_program SET title='$title' WHERE progcode='$progCode'";
             if ($dbconn->query($sql2) === TRUE)
             {
-
+                //clear the outputbuffer and feedback on updated database
                 ob_clean();
                 showProgram($progCode, $title,"");
                 echo "<p>Edit successfull!</p>
@@ -83,6 +88,7 @@
             }
             else
             {
+                //feedback if unable to update the datatbase
                 echo "<p>Failed to save changes</p>
                     <form action='studyprogram.php' method='get'>
                         <input type='submit' value='Back to study programs'>
@@ -91,6 +97,7 @@
         }
     }
 
+    //check if the form is submitted
     if(isset($_GET['title']) && isset($_GET['editProg']))
     {
         updateProgram($_GET['editProg'],$_GET['title'], $dbconn);
