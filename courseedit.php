@@ -40,7 +40,7 @@
         {
             while ($row = $result->fetch_assoc())
             {
-                showCourse($courseCode,$row['title']);
+                showCourse($courseCode,$row['title'],"");
             }
         }
     }
