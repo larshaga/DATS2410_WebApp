@@ -28,7 +28,8 @@
   </div>
 
   <div id="welcomemessage" class="siteinfo">
-    <p>Welcome to Student information system. In each site from the navigation-bar you can either retrieve, add new, update, or delete information.</p>
+      <p>Welcome to the Student information system of group 4.</p>
+      <p>In each site from the navigation-bar you can either retrieve, add new, update, or delete information.</p>
   </div>
 </body>
 
