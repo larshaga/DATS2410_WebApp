@@ -76,7 +76,7 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
         $fnErr = $lnErr = $emErr = "";
         if (!preg_match($namepattern, $fname))$fnErr="Invalid firstname input";
         if (!preg_match($namepattern, $lname))$lnErr="Invalid lastname input";
-        if (!preg_match($namepattern, $email))$emErr="Invalid email input";
+        if (!preg_match($emailpattern, $email))$emErr="Invalid email input";
         showStudent($fname,$lname,$email,$id,$fnErr,$lnErr,$emErr);
     }
     else
