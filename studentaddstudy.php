@@ -41,7 +41,7 @@
               <select name=\"progcode\">";
         if (isset($_GET['progcode'])){
             while($row=$getTitlecourse->fetch_assoc()){
-                echo "<option value=\"{$row['progcode']}\" name='progcode'"; isChosen($row['progcode'],$_GET['progcode']); echo ">{$row['title']}</option>";
+                echo "<option value=\"{$row['progcode']}\" name='progcode' "; isChosen($row['progcode'],$_GET['progcode']); echo ">{$row['title']}</option>";
             }
         }else{
             while($row=$getTitlecourse->fetch_assoc()){
@@ -93,7 +93,7 @@
                   <select name=\"year\">";
                 for ($i = date("Y"); $i > 1900; $i--)
                 {
-                    echo"<option value='$i' name='year'"; isChosen($i,$_GET['year']); echo ">$i</option>";
+                    echo"<option value='$i' name='year' "; isChosen($i,$_GET['year']); echo ">$i</option>";
                 }
                 echo "</select>
                 <input type='hidden' name='progcode' value='$progcode'>
