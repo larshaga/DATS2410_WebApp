@@ -55,7 +55,6 @@
             for ($i = date("Y"); $i > 1900; $i--)
             {
                 echo"<option value='$i' name='year'>$i</option>";
-
             }
             echo "</select>
                 <input type='hidden' name='progcode' value='$progcode'>
@@ -67,9 +66,17 @@
         function insertProgram($dbconn, $stID, $progcode, $year){
             $insert="insert into Enrollment values ($stID,'$progcode',$year);";
             if ($dbconn->query($insert)===TRUE){
-                echo "<p>Succesfully added the course to student $stID</p>";
+                echo "<p>Succesfully added the course to student $stID</p>
+                <form action='studentinfo.php' method='get'>
+                    <input type='hidden' name='stID' value=$stID>
+                    <input type='submit' value='Back to student'>
+                </form>";
             }else {
-                echo "<p>Something went wrong. The course was not added to student $stID</p>";
+                echo "<p>Something went wrong. The course was not added to student $stID</p>
+                      <form action='studentinfo.php' method='get'>
+                        <input type='hidden' name='stID' value=$stID>
+                        <input type='submit' value='Back to student'>
+                      </form>";
             }
         }
 
