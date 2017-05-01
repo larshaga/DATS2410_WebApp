@@ -14,7 +14,7 @@
     <a class="navigation" href="index.php">Home</a>
     <a class="currentpage" href="student.php">Student</a>
     <a class="navigation" href="course.php">Course</a>
-    <a class="navigation" href="studyprogram.php">Study Program</a>
+    <a class="navigation" href="studyprogram.php">Study program</a>
 </div>
 
 <div class="siteinfo">
@@ -45,6 +45,17 @@
             echo "<p>Something went wrong. The student ($stID) was not deleted.</p>";
         }
     }
+
+
+    $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=$stID;";
+    $result = $dbconn->query($sql);
+    echo "
+        <div class='studentinfo'>";
+    while($row=$result->fetch_assoc()){
+        echo "<h2>Name: {$row['name']}</h2>
+            <h3>Student ID: {$row['stID']}</h3>    
+            <h3>E-mail: {$row['email']}</h3>";
+    }
     if (isset($_GET['deletecourse'])){
         $sql4 = "Delete from Grade where stID = $stID and coursecode = '{$_GET['coursecode']}' and year = '{$_GET['courseyear']}';";
         if ($dbconn->query($sql4)===TRUE){
@@ -62,16 +73,6 @@
             echo "<p>Something went wrong. The program was not deleted.</p>";
         }
     }
-
-    $sql = "select s.stID, concat(s.lastname,', ',s.firstname) as name, s.email from Student s where s.stID=$stID;";
-    $result = $dbconn->query($sql);
-    echo "
-        <div class='studentinfo'>";
-    while($row=$result->fetch_assoc()){
-        echo "<h2>Name: {$row['name']}</h2>
-            <h3>Student ID: {$row['stID']}</h3>    
-            <h3>E-mail: {$row['email']}</h3>";
-    }
     echo "<form action=\"studentedit.php\" method=\"GET\">
                 <input type=\"hidden\" name=\"stID\" value=$stID>
                 <input type=\"submit\" value=\"Edit\">
@@ -82,38 +83,21 @@
                 <input type=\"submit\" value=\"Delete\">
           </form>
         </div>";
-    /*
-    echo "<table border='1'>";
-    echo "<tr><td>StudentID</td><td>Name</td><td>E-mail</td></tr>";
 
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td> <td>{$row['email']}</td>
-            <td><form action=\"studentedit.php\" method=\"GET\">
-                    <input type=\"hidden\" name=\"stID\" value=$stID>
-                    <input type=\"submit\" value=\"Edit\">
-                </form></td>
-            <td><form action=\"studentinfo.php\" method=\"GET\">
-                    <input type=\"hidden\" name=\"stID\" value=$stID>
-                    <input type=\"hidden\" name=\"deleteBool\" value=1>
-                    <input type=\"submit\" value=\"Delete\">
-                </form></td></tr>";
-    }
-    echo "</table>";
-*/
     $sql = "select p.progcode, p.title, e.startyear as 'Start Year' from Student s, Enrollment e, Study_program p where s.stID=e.stID and e.progcode=p.progcode and s.stID=$stID;";
     $result = $dbconn->query($sql);
 
-    echo "<div class='form_div'><table border='1'>";
-    echo "<tr><td>Program Code</td><td>Study Program</td><td>Enrolled (Year)</td><td>
+    echo "<div class='form_div'><table border='1' id='studentinfo'><caption align='center'>Enrolled study program(s):</caption>";
+    echo "<tr><td>Program Code</td><td>Study program</td><td>Enrolled (Year)</td><td colspan='2'>
                 <form action=\"studentaddstudy.php\" method=\"GET\">
                     <input type=\"hidden\" name=\"stID\" value=$stID>
                     <input type=\"hidden\" name=\"addstudy\" value=1>
-                    <input type=\"submit\" value=\"Add\">
+                    <input type=\"submit\" value=\"Add a study program\">
                 </form></td><tr>";
 
     while ($row = $result->fetch_assoc()) {
         echo "<tr><td>{$row['progcode']}</td><td>{$row['title']}</td><td>{$row['Start Year']}</td>
-                <td><form action=\"studentprogramedit.php\" method=\"GET\">
+                <td><form action=\"studentprogramedit.php\" method=\"GET\">                         
                     <input type='hidden' name='progcode' value={$row['progcode']}>
                     <input type=\"hidden\" name=\"stID\" value=$stID>
                     <input type=\"submit\" value=\"Edit\">
@@ -131,12 +115,12 @@
     $sql = "select c.coursecode, c.title as 'Course name', g.year, g.grade from Student s, Grade g, Course c where s.stID=g.stID and g.coursecode=c.coursecode and g.year=c.year and s.stID=$stID;";
     $result = $dbconn->query($sql);
 
-    echo "<table border='1'>";
-    echo "<tr><td>Course Name</td><td>Year</td><td>Grade</td><td>
+    echo "<table border='1' id='studentinfo'><caption align='center'>Courses taken or in progress:</caption>";
+    echo "<tr><td>Course Name</td><td>Year</td><td>Grade</td><td colspan='2'>
                 <form action=\"studentaddcourse.php\" method=\"GET\">
                     <input type=\"hidden\" name=\"stID\" value=$stID>
                     <input type=\"hidden\" name=\"addcourse\" value=1>
-                    <input type=\"submit\" value=\"Add\">
+                    <input type=\"submit\" value=\"Add a Course\">
                 </form></td></tr>";
 
     while ($row = $result->fetch_assoc()) {

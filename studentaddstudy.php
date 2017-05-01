@@ -9,7 +9,7 @@
     <div class="title">
         <h1>HiOA student information system</h1>
     </div>
-
+    
     <div>
         <a class="navigation" href="index.php">Home</a>
         <a class="currentpage" href="student.php">Student</a>

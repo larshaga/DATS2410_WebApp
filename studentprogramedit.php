@@ -14,7 +14,7 @@
     <a class="navigation" href="index.php">Home</a>
     <a class="currentpage" href="student.php">Student</a>
     <a class="navigation" href="course.php">Course</a>
-    <a class="navigation" href="studyprogram.php">Study Program</a>
+    <a class="navigation" href="studyprogram.php">Study program</a>
 </div>
 <div class="siteinfo">
     <?php
@@ -30,9 +30,17 @@
     if (isset($_GET['year'])){
         $sqlUpdate="update Enrollment set startyear={$_GET['year']} where stID={$_GET['stID']} and progcode='{$_GET['progcode']}'";
         if ($dbconn->query($sqlUpdate)){
-            echo "<p>Update was successfull!</p>";
+            echo "<p>Update was successfull!</p>
+                    <form action='studentinfo.php' method='get'>
+                        <input type='hidden' name='stID' value={$_GET['stID']}>
+                        <input type='submit' value='Back to student'>
+                    </form>";
         }else{
-            echo "<p>Something went wrong. Update was not successfull.</p>";
+            echo "<p>Something went wrong. Update was not successfull.</p>
+                    <form action='studentinfo.php' method='get'>
+                        <input type='hidden' name='stID' value={$_GET['stID']}>
+                        <input type='submit' value='Back to student'>
+                    </form>";
         }
     }else{
         chooseYear($dbconn, $_GET['stID'], $_GET['progcode']);

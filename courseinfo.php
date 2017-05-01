@@ -19,6 +19,7 @@
 
 <div class="siteinfo">
     <?php
+    ini_set('display_errors',1);
     //Connection to dats04-dbproxy
     $host="10.1.1.130";
     $user="webuser";
@@ -27,32 +28,36 @@
     $dbconn = new mysqli($host, $user, $pw, $db);
 
     $coursecode=$_GET['coursecode'];
-    $coursetitle=$_GET['coursetitle'];
     $year=$_GET['year'];
+    $titleSQL = "SELECT DISTINCT title FROM Course WHERE coursecode='$coursecode'";
+    $result=$dbconn->query($titleSQL);
+    while ($row=$result->fetch_assoc()){
+        $title=$row['title'];
+    }
 
     $sql = "SELECT s.stID, Concat(s.lastname,', ', s.firstname) as name, g.grade FROM Student s, Grade g where g.year=$year and s.stID=g.stID and g.coursecode='$coursecode' Order by name asc;";
     $result = $dbconn->query($sql);
 
-    echo "<p>Couse Code: '$coursecode'</p>";
-    echo "<p>Course Title: '$coursetitle'<p/>";
-    echo "<p>Year: '$year'</p>";
+    echo "<p>Course Title: $title<p/>";
+    echo "<p>Couse Code: $coursecode</p>";
+    echo "<p>Year: $year</p>";
+    echo "<p>People who attended this course: </p>";
     echo "<table class='form_div'>";
     echo "<tr><td>StudentID</td><td>Name</td><td>Grade</td><td>Student info</td></tr>";
     if (empty($result)){
-
+        echo "<tr><td colspan='4' align='center'>Empty</td></tr>";
     }else{
-
-    while ($row = $result->fetch_assoc())
-    {
-        echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td><td>{$row['grade']}</td>
-            <td>
-                <form action=\"studentinfo.php\" method=\"GET\">
-                    <input type='hidden' name='stID' value={$row['stID']}>
-                    <input type=\"submit\" value=\"Show\">
-                </form>
-            </td></tr>";
-    }
-    echo "</table>";
+        while ($row = $result->fetch_assoc())
+        {
+            echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td><td>{$row['grade']}</td>
+                <td>
+                    <form action=\"studentinfo.php\" method=\"GET\">
+                        <input type='hidden' name='stID' value={$row['stID']}>
+                        <input type=\"submit\" value=\"Show\">
+                    </form>
+                </td></tr>";
+        }
+        echo "</table>";
     }
     ?>
 </div>
@@ -61,7 +66,7 @@
 <footer class="bottomofpage">
     <?php
     echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
-    echo "The database server IP:" . $dbconn->host_info . "<br>";
+    echo "The database server IP:" . $dbconn->get_server_info() . "<br>";//TODO: fix this so we can see what database-server
     $result->close();
     $dbconn->close();
     ?>
