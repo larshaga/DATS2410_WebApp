@@ -9,7 +9,7 @@
     <div class="title">
         <h1>HiOA student information system</h1>
     </div>
-    
+
     <div>
         <a class="navigation" href="index.php">Home</a>
         <a class="currentpage" href="student.php">Student</a>
@@ -53,8 +53,9 @@
                   <select name=\"year\">";
 
             for ($i = date("Y"); $i > 1900; $i--)
-            {
-                echo "<option value='$i' name='year'>$i<option>";
+            { ?>
+                <option value='$i' name='year'>$i<option>
+            <?php
             }
             echo "</select>
                 <input type='hidden' name='progcode' value='$progcode'>
