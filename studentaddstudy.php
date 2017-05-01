@@ -39,8 +39,14 @@
         echo "<p>Study program:</p>
               <form id=\"selectprogram\" method=\"GET\">
               <select name=\"progcode\">";
-        while($row=$getTitlecourse->fetch_assoc()){
-            echo "<option value=\"{$row['progcode']}\" name='progcode'>{$row['title']}</option>";
+        if (isset($_GET['progcode'])){
+            while($row=$getTitlecourse->fetch_assoc()){
+                echo "<option value=\"{$row['progcode']}\" name='progcode' <?= ({$row['progcode']} === {$_GET['progcode']} ? 'selected=\"selected\"' : '')?>>{$row['title']}</option>";
+            }
+        }else{
+            while($row=$getTitlecourse->fetch_assoc()){
+                echo "<option value=\"{$row['progcode']}\" name='progcode'>{$row['title']}</option>";
+            }
         }
         echo "</select>
                 <input type='hidden' name='stID' value='$stID'>
@@ -51,10 +57,18 @@
             echo "<p>Year student was enrolled:</p>
                   <form id=\"selectYear\" method=\"GET\">
                   <select name=\"year\">";
-
-            for ($i = date("Y"); $i > 1900; $i--)
+            if (isset($_GET['year']))
             {
-                echo"<option value='$i' name='year'>$i</option>";
+                for ($i = date("Y"); $i > 1900; $i--)
+                {
+                    echo"<option value='$i' name='year' <?= ({$i} === {$_GET['year']} ? 'selected=\"selected\"' : '')?>>$i</option>";
+                }
+            }else
+            {
+                for ($i = date("Y"); $i > 1900; $i--)
+                {
+                    echo"<option value='$i' name='year'>$i</option>";
+                }
             }
             echo "</select>
                 <input type='hidden' name='progcode' value='$progcode'>
