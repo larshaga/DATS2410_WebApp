@@ -2,25 +2,24 @@
 
 html
 {
-  text-align: center;
-  height: 100%;
-  background-color: lightgray;
-
+    text-align: center;
+    height: 100%;
+    background-color: lightgray;
+    font-family: 'Open Sans', sans-serif;
 }
 body
 {
-  margin-bottom: 45px;
-  font-family: 'Open Sans', sans-serif;
+    margin-bottom: 45px;
 }
 
 .bottomofpage {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 10px;
-  font-size: 14px;
-  height: 35px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    font-size: 14px;
+    height: 35px;
     background-color: #7A7979;
 }
 
@@ -38,32 +37,31 @@ body
 
 #indextitle
 {
-  font-size: 200%;
+    font-size: 200%;
 }
 
 .navigation
 {
-  padding: 20px;
+    padding: 20px;
 }
 
 .currentpage
 {
-  padding: 20px;
-  font-weight: bold;
+    padding: 20px;
+    font-weight: bold;
 }
 
 .form_div
 {
-  display: table;
+    display: table;
     margin: 0px auto;
-  padding-bottom: 1em;
+    padding-bottom: 1em;
 }
 
 .dblock
 {
-  display: block;
-  margin: 20px auto;
-
+    display: block;
+    margin: 20px auto;
 }
 
 .studentinfo
@@ -73,5 +71,5 @@ body
 
 #deletebuttonSI
 {
-  padding-bottom: 2em;
+    padding-bottom: 2em;
 }
