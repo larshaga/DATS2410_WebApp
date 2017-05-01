@@ -40,7 +40,7 @@
         {
             while ($row = $result->fetch_assoc())
             {
-                showProgram($progCode,$row['title']);
+                showProgram($progCode,$row['title'],"");
             }
         }
     }
