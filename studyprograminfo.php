@@ -35,7 +35,7 @@
     $result = $dbconn->query($sql);
 
     echo "<table class='form_div'>";
-    echo "<caption>Students in $progtitle</caption>";
+    echo "<caption>Students in $progtitle:</caption>";
     echo "<tr><td>StudentID</td><td>Name</td><td>Year</td><td>Show more info</td></tr>";
     while ($row = $result->fetch_assoc())
     {
