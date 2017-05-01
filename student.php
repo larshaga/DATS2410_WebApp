@@ -35,10 +35,15 @@
         $pw="welcomeunclebuild";
         $db="studentinfosys";
         $dbconn = new mysqli($host, $user, $pw, $db);
-        ListAll($dbconn);
-        function ListAll($dbconn)
+        ListAll($dbconn, FALSE);
+        
+        function ListAll($dbconn, $clean)
         {
-            ob_clean();
+            if ($clean === TRUE)
+            {
+                ob_clean();
+            }
+
             $sql = "SELECT stID AS 'Student number', CONCAT(lastname, ', ', firstname) as Name, email as 'Email' from Student ORDER BY Name";
             $result = $dbconn->query($sql);
 
@@ -70,6 +75,7 @@
 
         function SearchResult($id, $dbconn)
         {
+            ob_clean();
             $sql = "SELECT stID AS 'Student number', CONCAT(lastname, ', ', firstname) as Name, email as 'Email' from Student WHERE stID='$id' ORDER BY Name";
             $result = $dbconn->query($sql);
 
@@ -126,7 +132,7 @@
                 {
                     echo "<p>There was a problem adding the new student.</p>";
                 }
-                ListAll($dbconn);
+                ListAll($dbconn, FALSE);
             } else
             {
                 echo "<p>Invalid input. Names can only be normal characters, Email can only be on the form \"foo@bar.baz\".</p>";
@@ -139,7 +145,7 @@
     {
         $info = $_GET["selectInfo"];
         if ($info=="1") Search();
-        elseif ($info=="2") ListAll($dbconn);
+        elseif ($info=="2") ListAll($dbconn, TRUE);
         else Add($dbconn);
     }
 
