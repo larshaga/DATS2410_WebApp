@@ -93,16 +93,16 @@
 
     function AddNewCourse($coursecode, $courseyear, $coursetitle, $dbconn)
     {
+
         /* Regular expressions to check if input is valid. */
         $codepattern = "[a-zA-Z]{4}";
         $titlepattern = "[a-zA-Z]+";
         $yearpattern = "[1-2][0-9]{3}";
         $coursecode = strtoupper($coursecode); //Makes sure course-code is uppercase.
-
+        ob_clean();
         if (sizeof(preg_match($codepattern, $coursecode)) == 1 && sizeof(preg_match($titlepattern, $coursetitle)) == 1 && sizeof(preg_match($yearpattern, $courseyear)) == 1)
         {
             $sql = "INSERT INTO Course VALUES ('$coursecode', '$courseyear', '$coursetitle')";
-
             if ($result = $dbconn->query($sql) === TRUE)
             {
                 echo "<p>Course was successcully added.</p>";

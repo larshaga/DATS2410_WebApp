@@ -56,6 +56,18 @@
             <h3>Student ID: {$row['stID']}</h3>    
             <h3>E-mail: {$row['email']}</h3>";
     }
+
+    echo "<form action=\"studentedit.php\" method=\"GET\">
+                <input type=\"hidden\" name=\"stID\" value=$stID>
+                <input type=\"submit\" value=\"Edit\">
+          </form>
+          <form id='deletebuttonSI' action=\"studentinfo.php\" method=\"GET\">
+                <input type=\"hidden\" name=\"stID\" value=$stID>
+                <input type=\"hidden\" name=\"deleteBool\" value=1>
+                <input type=\"submit\" value=\"Delete\">
+          </form>
+        </div>";
+
     if (isset($_GET['deletecourse'])){
         $sql4 = "Delete from Grade where stID = $stID and coursecode = '{$_GET['coursecode']}' and year = '{$_GET['courseyear']}';";
         if ($dbconn->query($sql4)===TRUE){
@@ -73,16 +85,6 @@
             echo "<p>Something went wrong. The program was not deleted.</p>";
         }
     }
-    echo "<form action=\"studentedit.php\" method=\"GET\">
-                <input type=\"hidden\" name=\"stID\" value=$stID>
-                <input type=\"submit\" value=\"Edit\">
-          </form>
-          <form id='deletebuttonSI' action=\"studentinfo.php\" method=\"GET\">
-                <input type=\"hidden\" name=\"stID\" value=$stID>
-                <input type=\"hidden\" name=\"deleteBool\" value=1>
-                <input type=\"submit\" value=\"Delete\">
-          </form>
-        </div>";
 
     $sql = "select p.progcode, p.title, e.startyear as 'Start Year' from Student s, Enrollment e, Study_program p where s.stID=e.stID and e.progcode=p.progcode and s.stID=$stID;";
     $result = $dbconn->query($sql);
