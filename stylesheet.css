@@ -75,13 +75,3 @@ body
 {
   padding-bottom: 2em;
 }
-
-table#studentinfo tr:nth-child(odd)
-{
-  background: #7A7979;
-}
-
-table#studentinfo
-{
-  margin-bottom: 1em;
-}

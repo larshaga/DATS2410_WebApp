@@ -66,7 +66,7 @@
 <footer class="bottomofpage">
     <?php
     echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
-    echo "The database server IP:" . $dbconn->get_server_info() . "<br>";//TODO: fix this so we can see what database-server
+    echo "The database server IP:" . $dbconn->host_info . "<br>";
     $result->close();
     $dbconn->close();
     ?>

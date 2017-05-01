@@ -89,7 +89,7 @@
     $sql = "select p.progcode, p.title, e.startyear as 'Start Year' from Student s, Enrollment e, Study_program p where s.stID=e.stID and e.progcode=p.progcode and s.stID=$stID;";
     $result = $dbconn->query($sql);
 
-    echo "<div class='form_div'><table border='1' id='studentinfo'><caption align='center'>Enrolled study program(s):</caption>";
+    echo "<div class='form_div'><table border='1'><caption align='center'>Enrolled study program(s):</caption>";
     echo "<tr><td>Program Code</td><td>Study program</td><td>Enrolled (Year)</td><td colspan='2'>
                 <form action=\"studentaddstudy.php\" method=\"GET\">
                     <input type=\"hidden\" name=\"stID\" value=$stID>
@@ -117,7 +117,7 @@
     $sql = "select c.coursecode, c.title as 'Course name', g.year, g.grade from Student s, Grade g, Course c where s.stID=g.stID and g.coursecode=c.coursecode and g.year=c.year and s.stID=$stID;";
     $result = $dbconn->query($sql);
 
-    echo "<table border='1' id='studentinfo'><caption align='center'>Courses taken or in progress:</caption>";
+    echo "<table border='1'><caption align='center'>Courses taken or in progress:</caption>";
     echo "<tr><td>Course Name</td><td>Year</td><td>Grade</td><td colspan='2'>
                 <form action=\"studentaddcourse.php\" method=\"GET\">
                     <input type=\"hidden\" name=\"stID\" value=$stID>
