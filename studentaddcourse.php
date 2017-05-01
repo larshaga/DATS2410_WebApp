@@ -157,6 +157,14 @@
                 insertGrade($dbconn, $_GET['stID'],$_GET['coursecode'],$_GET['year'],$_GET['grade']);
             }
 
+            function isChosen($var, $const){
+                if ($var===$const){
+                    echo "selected='selected'";
+                }else{
+                    echo "";
+                }
+            }
+
         ?>
     </div>
 </body>
