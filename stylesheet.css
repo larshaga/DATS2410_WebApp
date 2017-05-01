@@ -73,3 +73,8 @@ body
 {
     padding-bottom: 2em;
 }
+.errorField
+{
+  color: red;
+  font-weight: bold;
+}
