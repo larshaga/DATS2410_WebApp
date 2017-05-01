@@ -2,12 +2,12 @@
 <html>
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Dats04 - Course</title>
+    <title>Dats04 - Study program</title>
 </head>
 
 <body>
 <div class="title">
-    <h1>Course info</h1>
+    <h1>Program info</h1>
 </div>
 
 <div>
@@ -27,15 +27,19 @@
     $dbconn = new mysqli($host, $user, $pw, $db);
 
     $progcode=$_GET['progcode'];
+    $progSQL = "SELECT DISTINCT title FROM Study_program WHERE progcode='$progcode'";
+    $progresult = $dbconn->query($progSQL);
+    while ($row = $progresult->fetch_assoc()) $progtitle=$row['title'];
 
     $sql = " select s.stID, concat(s.lastname,', ',s.firstname) as name, p.title, e.startyear from Student s, Enrollment e, Study_program p where p.progcode=e.progcode and e.progcode='$progcode' and s.stID=e.stID;";
     $result = $dbconn->query($sql);
 
     echo "<table class='form_div'>";
-    echo "<tr><td>StudentID</td><td>Name</td><td>Title</td><td>Year</td><td>Show more info</td></tr>";
+    echo "<caption>Students in $progtitle</caption>";
+    echo "<tr><td>StudentID</td><td>Name</td><td>Year</td><td>Show more info</td></tr>";
     while ($row = $result->fetch_assoc())
     {
-        echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td><td>{$row['title']}</td><td>{$row['startyear']}</td>
+        echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td><td>{$row['startyear']}</td>
             <td>
                 <form action=\"studentinfo.php\" method=\"GET\">
                     <input type='hidden' name='stID' value={$row['stID']}>
