@@ -70,7 +70,7 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
 {
     $namepattern = "/^[a-zA-Z]+$/";
     $emailpattern = "/^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$/";
-    if(preg_match($namepattern, $lname) && preg_match($namepattern, $fname) && preg_match($emailpattern, $email))
+    if(!preg_match($namepattern, $lname) && !preg_match($namepattern, $fname) && !preg_match($emailpattern, $email))
     {
         ob_clean();
         $fnErr = $lnErr = $emErr = "";
@@ -79,9 +79,8 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
         if (preg_match($namepattern, $email))$emErr="Invalid email input";
         showStudent($fname,$lname,$email,$id,$fnErr,$lnErr,$emErr);
     }
-    else {
-
-        $dbconn;
+    else
+    {
         $sql2 = "UPDATE Student SET firstname='$fname',lastname='$lname',email='$email' WHERE stID='$id'";
         if ($dbconn->query($sql2) === TRUE) {
             ob_clean();

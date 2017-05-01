@@ -45,7 +45,7 @@
         }
     }
 
-    function showCourse($courseCode,$title)
+    function showCourse($courseCode,$title,$err)
     {
         echo "<div class='form_div'>
             <p>Course Code: $courseCode</p>
@@ -53,6 +53,7 @@
                 <input type='hidden' name='editCourse' value='$courseCode'>
                 <label for='title'> Title: </label>
                 <input class='dblock' type='Text' name='title' value='$title'>
+                <p><span class='errorField'>$err</span></p>
                 <input class='dblock' type='submit' value='Save'>
             </form>
           </div>";
@@ -60,21 +61,30 @@
 
     function updateCourse($courseCode,$title,$dbconn)
     {
-        dbconn;
-        $sql2 = "UPDATE Course SET title='$title' WHERE coursecode='$courseCode'";
-        if ($dbconn->query($sql2) === TRUE) {
-
+        $titlepattern = "/^[a-zA-Z 0-9]+^$/";
+        if (!preg_match($title,$titlepattern))
+        {
             ob_clean();
-            showCourse($courseCode,$title);
-            echo "<p>Edit successful!</p> 
+            showCourse($courseCode,$title,"Invalid title input");
+        }
+        else
+        {
+
+            $sql2 = "UPDATE Course SET title='$title' WHERE coursecode='$courseCode'";
+            if ($dbconn->query($sql2) === TRUE) {
+
+                ob_clean();
+                showCourse($courseCode, $title,"");
+                echo "<p>Edit successful!</p> 
                     <form action='studyprogram.php' method='get'>
                         <input type='submit' value='Back to study programs'>
                     </form>";
-        } else {
-            echo "<p>Failed to save changes.</p>
+            } else {
+                echo "<p>Failed to save changes.</p>
                     <form action='studyprogram.php' method='get'>
                         <input type='submit' value='Back to study programs'>
                     </form>";
+            }
         }
     }
 
