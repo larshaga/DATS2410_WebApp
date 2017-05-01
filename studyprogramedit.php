@@ -7,14 +7,14 @@
 
 <body>
 <div class="title">
-    <h1>Every study program in the database</h1>
+    <h1>Edit Study program</h1>
 </div>
 
 <div>
     <a class="navigation" href="index.php">Home</a>
     <a class="navigation" href="student.php">Student</a>
     <a class="navigation" href="course.php">Course</a>
-    <a class="currentpage">Study program</a>
+    <a class="navigation" href="studyprogram.php">Study program</a>
 </div>
 
 <div class="siteinfo">
@@ -48,7 +48,7 @@
     function showCourse($progCode,$title)
     {
         echo "<div class='form_div'>
-            <p>Edit: '$progCode'</p>
+            <p>Program Code: $progCode</p>
             <form method='GET'>
                 <input type='hidden' name='editProg' value='$progCode'>
                 <label for='title'> Title: </label>
