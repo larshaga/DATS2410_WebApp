@@ -96,8 +96,8 @@
                     echo"<option value='$i' name='year' "; isChosen($i,$_GET['year']); echo ">$i</option>";
                 }
                 echo "</select>
-                <input type='hidden' name='progcode' value='$progcode'>
-                <input type='hidden' name='stID' value='$stID'>
+                <input type='hidden' name='progcode' value='{$_GET['progcode']}'>
+                <input type='hidden' name='stID' value='{$_GET['stID']}'>
                 <input class='dblock' type='Submit' value='Submit'>
             </form>";
             }else
