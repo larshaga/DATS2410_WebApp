@@ -61,7 +61,7 @@
 
     function updateCourse($courseCode,$title,$dbconn)
     {
-        $titlepattern = "/^[a-zA-Z 0-9]+^$/";
+        $titlepattern = "/^[a-zA-Z 0-9]+$/";
         if (!preg_match($title,$titlepattern))
         {
             ob_clean();
