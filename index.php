@@ -1,6 +1,7 @@
 <!doctype HTML>
 <html>
 <head>
+    <!-- Connects to a stylesheet -->
     <link rel="stylesheet" href="stylesheet.css">
     <title>DATS04 - Index</title>
     <meta charset="UTF-8">
@@ -21,6 +22,7 @@
   ?>
 
   <div>
+      <!-- Used to navigate throughout the web page -->
       <a class="currentpage">Home</a>
       <a class="navigation" href="student.php">Student</a>
       <a class="navigation" href="course.php">Course</a>
@@ -28,6 +30,7 @@
   </div>
 
   <div id="welcomemessage" class="siteinfo">
+      <!-- A welcome message -->
       <p>Welcome to the Student information system of group 4.</p>
       <p>In each site from the navigation-bar you can either retrieve, add new, update, or delete information.</p>
   </div>
@@ -35,6 +38,7 @@
 
 <footer class="bottomofpage">
     <?php
+    /* Displays the web server IP and the DBProxy */
     echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
     echo "The database server IP:" . $dbconn->host_info . "<br>";
     $dbconn->close();
