@@ -92,11 +92,11 @@
     function AddNewProgram($progcode, $progtitle, $dbconn)
     {
         /* Regular expressions to check if input is valid. */
-        $codepattern = "[a-zA-Z]{4}";
-        $titlepattern = "[a-zA-Z]+";
+        $codepattern = "/^[a-zA-Z]{4}$/";
+        $titlepattern = "/^[a-zA-Z0-9 ]+$/";
         $progcode = strtoupper($progcode); //Makes sure program-code is uppercase.
 
-        if (sizeof(preg_match($codepattern, $progcode)) == 1 && sizeof(preg_match($titlepattern, $progtitle)) == 1)
+        if (preg_match($codepattern, $progcode) && preg_match($titlepattern, $progtitle))
         {
             $sql = "INSERT INTO Study_program VALUES ('$progcode', '$progtitle')";
 
@@ -128,13 +128,16 @@
     function SearchResultProg($id, $dbconn)
     {
         ob_clean();
-        $sql = "SELECT * from Study_program WHERE progcode='$id' ORDER BY title";
-        $result = $dbconn->query($sql);
+        $idpattern = "/^[a-zA-Z]{4}$/";
+        if (preg_match($idpattern, $id))
+        {
+            $sql = "SELECT * from Study_program WHERE progcode='$id' ORDER BY title";
+            $result = $dbconn->query($sql);
 
-        echo "<table class='form_div'>";
-        echo "<tr><td>Program Code</td><td>Title</td><td>Show more info</td></tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr><td>{$row['progcode']}</td><td>{$row['title']}</td>
+            echo "<table class='form_div'>";
+            echo "<tr><td>Program Code</td><td>Title</td><td>Show more info</td></tr>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr><td>{$row['progcode']}</td><td>{$row['title']}</td>
                 <td>
                     <form action=\"studyprograminfo.php\" method=\"GET\">
                         <input type='hidden' name='progcode' value={$row['progcode']}>
@@ -147,8 +150,12 @@
                         <input type='submit' value='Delete'>
                     </form>
                 </td></tr>";
+            }
+            echo "</table>";
+        } else
+        {
+            echo "<p>Invalid search. You can only use four letters and they need to be a-z</p>";
         }
-        echo "</table>";
     }
 
     if (isset($_GET["selectInfo"]))

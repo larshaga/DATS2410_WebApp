@@ -98,14 +98,14 @@
             {
 
                 /* Regular expressions to check if input is valid. */
-                $codepattern = "[a-zA-Z]{4}";
-                $titlepattern = "[a-zA-Z]+";
-                $yearpattern = "[1-2][0-9]{3}";
+                $codepattern = "/^[a-zA-Z]{4}$/";
+                $titlepattern = "/^[a-zA-Z0-9 ]+$/";
+                $yearpattern = "/^[1-2][0-9]{3}$/";
                 $coursecode = strtoupper($coursecode); //Makes sure course-code is uppercase.
 
                 ob_clean();
 
-                if (sizeof(preg_match($codepattern, $coursecode)) == 1 && sizeof(preg_match($titlepattern, $coursetitle)) == 1 && sizeof(preg_match($yearpattern, $courseyear)) == 1)
+                if (preg_match($codepattern, $coursecode) && preg_match($titlepattern, $coursetitle) && preg_match($yearpattern, $courseyear))
                 {
                     $sql = "INSERT INTO Course VALUES ('$coursecode', '$courseyear', '$coursetitle')";
                     if ($result = $dbconn->query($sql) === TRUE)
@@ -137,15 +137,17 @@
             function SearchResult($id, $dbconn)
             {
                 ob_clean();
-                $sql = "SELECT * from Course WHERE coursecode='$id' ORDER BY year DESC";
-                $result = $dbconn->query($sql);
-
-                echo "<table class='form_div'>";
-                echo "<tr><td>Course code</td><td>Year</td><td>Title</td><td>Action</td></tr>";
-                while ($row = $result->fetch_assoc())
+                $idpattern = "/^[a-zA-Z]{4}$/";
+                if (preg_match($idpattern, $id))
                 {
-                    $courseTitle=urlencode($row['title']);
-                    echo "<tr><td>{$row['coursecode']}</td><td>{$row['year']}</td><td>{$row['title']}</td>
+                    $sql = "SELECT * from Course WHERE coursecode='$id' ORDER BY year DESC";
+                    $result = $dbconn->query($sql);
+
+                    echo "<table class='form_div'>";
+                    echo "<tr><td>Course code</td><td>Year</td><td>Title</td><td>Action</td></tr>";
+                    while ($row = $result->fetch_assoc()) {
+                        $courseTitle = urlencode($row['title']);
+                        echo "<tr><td>{$row['coursecode']}</td><td>{$row['year']}</td><td>{$row['title']}</td>
                         <td>
                             <form action=\"courseinfo.php\" method=\"GET\">
                                 <input type='hidden' name='coursecode' value='$courseTitle'>
@@ -164,8 +166,12 @@
                                 <input type='submit' value=\"Delete\">                
                             </form>
                         </td></tr>";
+                    }
+                    echo "</table>";
+                } else
+                {
+                    echo "<p>Invalid search. You can only use four letters and they need to be a-z</p>";
                 }
-                echo "</table>";
             }
 
             if (isset($_GET["selectInfo"]))

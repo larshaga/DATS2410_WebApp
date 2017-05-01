@@ -129,12 +129,12 @@
         function AddNew($lastname, $firstname, $email, $dbconn)
         {
              /* Regular expressions to check if input is valid. */
-            $namepattern = "[a-zA-Z]+";
-            $emailpattern = "[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+";
+            $namepattern = "/^[a-zA-Z]+$/";
+            $emailpattern = "/^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$/";
 
             ob_clean();
 
-            if (sizeof(preg_match($namepattern, $lastname)) == 1 && sizeof(preg_match($namepattern, $firstname)) == 1 && sizeof(preg_match($emailpattern, $email)) == 1)
+            if (preg_match($namepattern, $lastname) && preg_match($namepattern, $firstname) && preg_match($emailpattern, $email))
             {
                 $sql = "INSERT INTO Student(lastname, firstname, email) VALUES ('$lastname', '$firstname', '$email')";
 
