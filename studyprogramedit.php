@@ -62,7 +62,7 @@
     function updateProgram($progCode,$title,$dbconn)
     {
         $titlepattern = "/^[a-zA-Z 0-9]+$/";
-        if (!preg_match($title,$titlepattern))
+        if (!preg_match($titlepattern,$title))
         {
             ob_clean();
             showProgram($progCode,$title,"Invalid title input");

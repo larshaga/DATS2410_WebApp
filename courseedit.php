@@ -62,7 +62,7 @@
     function updateCourse($courseCode,$title,$dbconn)
     {
         $titlepattern = "/^[a-zA-Z 0-9]+$/";
-        if (!preg_match($title,$titlepattern))
+        if (!preg_match($titlepattern,$title))
         {
             ob_clean();
             showCourse($courseCode,$title,"Invalid title input");
