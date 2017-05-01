@@ -65,10 +65,10 @@
 
             ob_clean();
             showCourse($progCode,$title);
-            echo "<p>Edit successfull!
+            echo "<p>Edit successfull!</p>
                     <form action='studyprogram.php' method='get'>
                         <input type='submit' value='Back to study programs'>
-                    </form></p>";
+                    </form>";
         } else {
             echo "<p>Failed to save changes</p>
                     <form action='studyprogram.php' method='get'>

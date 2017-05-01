@@ -79,7 +79,7 @@
                     <p>Program code (four letters):</p>
                     <input name='progcode' type='text' maxlength='4' required>
                     
-                    <p>Title of course:</p>
+                    <p>Title of study program:</p>
                     <input name='progtitle' type='text' required>
                     
                     <input type='submit' value='Add program'>
