@@ -28,6 +28,16 @@
     </form>
 <!-- Could be that we should close div tag here, open php tag, ob_start(), then new div tag -->
     <?php
+
+    echo "<form id='selectForm' method='get'>
+        <select name='selectInfo'>
+            <option value='1'"; isChosen(1, $_GET['selectInfo']); echo ">Search for student by studentnumber</option>
+            <option value='2'"; isChosen(2, $_GET['selectInfo']); echo ">Show every student in database</option>
+            <option value='3'"; isChosen(3, $_GET['selectInfo']); echo ">Add new student</option>
+        </select>
+        <input class='dblock' type='Submit' value='Submit'>
+    </form>";
+
         ob_start();
         //Connection to dats04-dbproxy
         $host="10.1.1.130";
@@ -158,6 +168,14 @@
     } elseif (isset($_GET['lastname']) && isset($_GET['firstname']) && isset($_GET['email']))
     {
         AddNew($_GET['lastname'], $_GET['firstname'], $_GET['email'], $dbconn);
+    }
+
+    function isChosen($var, $const){
+        if ($var===$const){
+            echo "selected='selected'";
+        }else{
+            echo "";
+        }
     }
 
     ?>
