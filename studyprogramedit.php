@@ -65,7 +65,7 @@
         if (!preg_match($title,$titlepattern))
         {
             ob_clean();
-            showProgram(progCode,$title,"Invalid title input");
+            showProgram($progCode,$title,"Invalid title input");
         }
         else
             {
