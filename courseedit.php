@@ -66,9 +66,15 @@
 
             ob_clean();
             showCourse($courseCode,$title);
-            echo "<p>Edit successful!</p>";
+            echo "<p>Edit successful!</p> 
+                    <form action='studyprogram.php' method='get'>
+                        <input type='submit' value='Back to study programs'>
+                    </form>";
         } else {
-            echo "<p>Failed to save changes.</p>";
+            echo "<p>Failed to save changes.</p>
+                    <form action='studyprogram.php' method='get'>
+                        <input type='submit' value='Back to study programs'>
+                    </form>";
         }
     }
 
