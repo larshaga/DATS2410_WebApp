@@ -37,11 +37,14 @@
             $db="studentinfosys";
             $dbconn = new mysqli($host, $user, $pw, $db);
 
-            EveryCourse($dbconn); //As a standard show every course, but when something else is chosen, it disappears.
+            EveryCourse($dbconn, FALSE); //As a standard show every course, but when something else is chosen, it disappears.
 
-            function EveryCourse($dbconn)
+            function EveryCourse($dbconn, $clean)
             {
-                ob_clean();
+                if ($clean === TRUE)
+                {
+                    ob_clean();
+                }
 
                 $sql = "SELECT * from Course ORDER BY year DESC";
                 $result = $dbconn->query($sql);
@@ -99,7 +102,9 @@
                 $titlepattern = "[a-zA-Z]+";
                 $yearpattern = "[1-2][0-9]{3}";
                 $coursecode = strtoupper($coursecode); //Makes sure course-code is uppercase.
+
                 ob_clean();
+
                 if (sizeof(preg_match($codepattern, $coursecode)) == 1 && sizeof(preg_match($titlepattern, $coursetitle)) == 1 && sizeof(preg_match($yearpattern, $courseyear)) == 1)
                 {
                     $sql = "INSERT INTO Course VALUES ('$coursecode', '$courseyear', '$coursetitle')";
@@ -110,6 +115,7 @@
                     {
                         echo "<p>There was a problem adding the new course.</p>";
                     }
+                    EveryCourse($dbconn, FALSE);
                 } else
                 {
                     echo "<p>Invalid input. Course code must be exactly four characters, year must be valid, and none of the input-fields can be null.</p>";
@@ -166,7 +172,7 @@
             {
                 $info = $_GET["selectInfo"];
                 if ($info=="1") Search();
-                elseif ($info=="2") EveryCourse($dbconn);
+                elseif ($info=="2") EveryCourse($dbconn, TRUE);
                 else AddCourse();
             }
 
@@ -186,6 +192,7 @@
                     $dbconn->query("ROLLBACK");
                     echo "<p>Something went wrong. The course was not deleted.</p>";
                 }
+                EveryCourse($dbconn, FALSE);
             } elseif (isset($_GET["coursecode"]) && isset($_GET["courseyear"]) && isset($_GET["coursetitle"]))
             {
                 AddNewCourse($_GET["coursecode"], $_GET["courseyear"], $_GET["coursetitle"], $dbconn);

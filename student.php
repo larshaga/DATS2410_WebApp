@@ -36,7 +36,7 @@
         $db="studentinfosys";
         $dbconn = new mysqli($host, $user, $pw, $db);
         ListAll($dbconn, FALSE);
-        
+
         function ListAll($dbconn, $clean)
         {
             if ($clean === TRUE)
