@@ -70,7 +70,7 @@ function updateStudent($fname,$lname,$email,$id,$dbconn)
 {
     $namepattern = "/^[a-zA-Z]+$/";
     $emailpattern = "/^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$/";
-    if(!preg_match($namepattern, $lname) && !preg_match($namepattern, $fname) && !preg_match($emailpattern, $email))
+    if((!preg_match($namepattern, $lname) || !preg_match($namepattern, $fname) || !preg_match($emailpattern, $email))
     {
         ob_clean();
         $fnErr = $lnErr = $emErr = "";
