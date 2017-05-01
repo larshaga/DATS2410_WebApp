@@ -45,20 +45,19 @@
     echo "<table class='form_div'>";
     echo "<tr><td>StudentID</td><td>Name</td><td>Grade</td><td>Student info</td></tr>";
     if (empty($result)){
-
+        echo "<tr><td colspan='4' align='center'>Empty</td></tr>";
     }else{
-
-    while ($row = $result->fetch_assoc())
-    {
-        echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td><td>{$row['grade']}</td>
-            <td>
-                <form action=\"studentinfo.php\" method=\"GET\">
-                    <input type='hidden' name='stID' value={$row['stID']}>
-                    <input type=\"submit\" value=\"Show\">
-                </form>
-            </td></tr>";
-    }
-    echo "</table>";
+        while ($row = $result->fetch_assoc())
+        {
+            echo "<tr><td>{$row['stID']}</td><td>{$row['name']}</td><td>{$row['grade']}</td>
+                <td>
+                    <form action=\"studentinfo.php\" method=\"GET\">
+                        <input type='hidden' name='stID' value={$row['stID']}>
+                        <input type=\"submit\" value=\"Show\">
+                    </form>
+                </td></tr>";
+        }
+        echo "</table>";
     }
     ?>
 </div>
@@ -67,7 +66,7 @@
 <footer class="bottomofpage">
     <?php
     echo "The web server IP:" . $_SERVER['SERVER_ADDR'] . " port: " . $_SERVER['SERVER_PORT'] . "<br>";
-    echo "The database server IP:" . $dbconn->host_info . "<br>";
+    echo "The database server IP:" . $dbconn->get_server_info() . "<br>";//TODO: fix this so we can see what database-server
     $result->close();
     $dbconn->close();
     ?>
