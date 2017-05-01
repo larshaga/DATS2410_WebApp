@@ -17,7 +17,7 @@
     <a class="navigation" href="studyprogram.php">Study program</a>
 </div>
 <div class="siteinfo">
-    <div class="studentinfo">
+    <div class="form_div">
         <?php
         ob_start();
         ini_set('display_errors',1);
